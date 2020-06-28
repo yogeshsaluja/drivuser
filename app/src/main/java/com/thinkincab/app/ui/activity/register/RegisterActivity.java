@@ -89,7 +89,7 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
 
         clickFunctions();
 
-        setCountryList();
+        //setCountryList();
         phoneNumber.setText(MvpApplication.mobileno);
         phoneNumber.setEnabled(false);
         /*if (BuildConfig.DEBUG) {
@@ -120,11 +120,11 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
             mCountryPicker.dismiss();
         });
 
-        countryImage.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
+      //  countryImage.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
 
-        countryNumber.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
+        //countryNumber.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
 
-        getUserCountryInfo();
+       // getUserCountryInfo();
     }
 
     private void getUserCountryInfo() {

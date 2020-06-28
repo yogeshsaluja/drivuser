@@ -54,11 +54,11 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
             mCountryPicker.dismiss();
         });
 
-        countryImage.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
+       // countryImage.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
 
-        countryNumber.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
+       // countryNumber.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
 
-        getUserCountryInfo();
+      //  getUserCountryInfo();
     }
     private void getUserCountryInfo() {
         Country country = getDeviceCountry(RegisterPhoneActivity.this);

@@ -43,6 +43,7 @@ import com.thinkincab.app.data.network.model.Service;
 import com.thinkincab.app.data.network.model.User;
 import com.thinkincab.app.ui.activity.OnBoardActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
+import com.thinkincab.app.ui.activity.register.RegisterPhoneActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -158,7 +159,7 @@ public class SplashActivity extends BaseActivity implements SplashIView,
         if (SharedHelper.getBoolKey(SplashActivity.this, "logged_in", false))
             presenter.profile();
         else {
-            Intent nextScreen = new Intent(SplashActivity.this, OnBoardActivity.class);
+            Intent nextScreen = new Intent(SplashActivity.this, RegisterPhoneActivity.class);
             nextScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(nextScreen);
             finishAffinity();

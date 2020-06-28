@@ -137,7 +137,7 @@
                         android:layout_height="@dimen/_20sdp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:src="@drawable/flag_in" />
+                        android:src="@drawable/flag_lk" />
 
                     <TextView
                         android:id="@+id/countryNumber"
@@ -147,7 +147,7 @@
                         android:layout_marginStart="@dimen/_6sdp"
                         android:layout_toEndOf="@+id/countryImage"
                         android:gravity="center"
-                        android:text="+91"
+                        android:text="+94"
                         android:textSize="@dimen/_15sdp" />
 
                     <EditText
