@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "952820941384",
+    "firebase_url": "https://thinkin-cab.firebaseio.com",
+    "project_id": "thinkin-cab",
+    "storage_bucket": "thinkin-cab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952820941384:android:d72f18528e797122",
+        "android_client_info": {
+          "package_name": "com.thinkincab.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952820941384-fpgg0irbrjgf8c60aau1dj8tdn89clqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANlWt8ZBwn1LL2Q-mF71pnChfZswutXHU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952820941384:android:2e726ed11151def6",
+        "android_client_info": {
+          "package_name": "com.thinkincab.provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952820941384-fpgg0irbrjgf8c60aau1dj8tdn89clqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANlWt8ZBwn1LL2Q-mF71pnChfZswutXHU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

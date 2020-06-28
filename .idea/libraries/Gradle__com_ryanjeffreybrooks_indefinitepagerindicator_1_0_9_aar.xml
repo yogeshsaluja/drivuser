@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ryanjeffreybrooks:indefinitepagerindicator:1.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-indefinitepagerindicator-1.0.9.aar/e3d937c0e31a3143743416f86a509394/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-indefinitepagerindicator-1.0.9.aar/e3d937c0e31a3143743416f86a509394/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ryanjeffreybrooks/indefinitepagerindicator/1.0.9/25b5778816ca3d865fa343c437aa9c4a9590d959/indefinitepagerindicator-1.0.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ryanjeffreybrooks/indefinitepagerindicator/1.0.9/63927d260e1fcf18bef87b01e4c8cd8460340d9a/indefinitepagerindicator-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
