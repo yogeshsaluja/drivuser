@@ -186,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="MALE   "
+                android:layout_marginLeft="8dp"
                 android:fontFamily="@font/clanpro_narrnews"
                 android:gravity="end"
                 android:textColor="@color/colorPrimaryText"

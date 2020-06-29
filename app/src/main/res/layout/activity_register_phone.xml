@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/colorPrimary"
     tools:context="com.thinkincab.app.ui.activity.register.RegisterPhoneActivity">
 
     <ImageView
@@ -86,7 +86,7 @@
         <EditText
             android:id="@+id/number"
             android:layout_width="match_parent"
-
+            android:inputType="phone"
             android:layout_height="match_parent"
             android:background="@null"
             android:gravity="center|left"

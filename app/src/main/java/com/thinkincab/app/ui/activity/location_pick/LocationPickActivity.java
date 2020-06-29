@@ -584,6 +584,7 @@ public class LocationPickActivity extends BaseActivity
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         mLastKnownLocation = task.getResult();
+                        if(mLastKnownLocation!=null)
                         LocationPickActivity.this.moveCamera(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
                     }
                 });

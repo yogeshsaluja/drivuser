@@ -42,6 +42,7 @@ import com.thinkincab.app.data.network.model.CheckVersion;
 import com.thinkincab.app.data.network.model.Service;
 import com.thinkincab.app.data.network.model.User;
 import com.thinkincab.app.ui.activity.OnBoardActivity;
+import com.thinkincab.app.ui.activity.login.EmailActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.register.RegisterPhoneActivity;
 
