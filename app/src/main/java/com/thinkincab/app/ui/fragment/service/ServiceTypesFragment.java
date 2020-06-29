@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.base.BaseFragment;
@@ -97,6 +98,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         @Override
         public void whenClicked(int pos) {
             try {
+                MvpApplication.marker=mServices.get(pos).getMarker();
                 isFromAdapter = true;
                 servicePos = pos;
                 String key = mServices.get(pos).getName() + mServices.get(pos).getId();

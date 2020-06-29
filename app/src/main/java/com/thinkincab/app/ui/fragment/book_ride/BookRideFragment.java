@@ -9,6 +9,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,6 +71,8 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
 //    Button scheduleRide;
     @BindView(R.id.ride_now)
     Button rideNow;
+    @BindView(R.id.gender)
+    SwitchCompat gender;
     @BindView(R.id.tvEstimatedFare)
     TextView tvEstimatedFare;
     @BindView(R.id.use_wallet)
@@ -269,6 +273,11 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
         map.put("promocode_id", lastSelectCoupon);
+        if (gender.isChecked())
+            map.put("gender", "FEMALE");
+        else
+            map.put("gender", "MALE");
+
         if (paymentMode != null && !paymentMode.equalsIgnoreCase(""))
             map.put("payment_mode", paymentMode);
         else map.put("payment_mode", "CASH");

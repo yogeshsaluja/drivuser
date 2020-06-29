@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -22,6 +23,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import androidx.annotation.NonNull;
@@ -121,6 +123,7 @@ import com.thinkincab.app.ui.fragment.service.ServiceTypesFragment;
 import com.thinkincab.app.ui.fragment.service_flow.ServiceFlowFragment;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -247,6 +250,7 @@ public class MainActivity extends BaseActivity implements
             mainPresenter.checkStatus();
         }
     };
+    private LatLngBounds.Builder builder;
 
     @Override
     public int getLayoutId() {
@@ -267,6 +271,7 @@ public class MainActivity extends BaseActivity implements
         mPlacesClient = Places.createClient(this);
 
         registerReceiver(myReceiver, new IntentFilter(INTENT_FILTER));
+        builder = new LatLngBounds.Builder();
 
         mainPresenter.attachView(this);
 
@@ -427,6 +432,8 @@ public class MainActivity extends BaseActivity implements
                 pickLocationLayout.setVisibility(View.VISIBLE);
                 mGoogleMap.clear();
                 providersMarker.clear();
+
+                hideLoading();
                 addAllProviders(SharedHelper.getProviders(this));
 //                displayCurrentAddress();
                 changeFragment(null);
@@ -891,6 +898,7 @@ public class MainActivity extends BaseActivity implements
                         (this, polyLinePoints, 2, getResources().getColor(R.color.colorAccent)));
         } else {
             changeFlow(EMPTY);
+
             Toast.makeText(this, getString(R.string.root_not_available), Toast.LENGTH_SHORT).show();
         }
     }
@@ -1146,6 +1154,9 @@ public class MainActivity extends BaseActivity implements
                     //Se for outro (carro)
                     serviceIcon = R.drawable.car_icon_11;
                 }
+
+             //   new TheTask(provider.getId(),provider.getLatitude(), provider.getLongitude(), provider.getFirstName(),"",MvpApplication.marker).execute();
+
                 MarkerOptions markerOptions = new MarkerOptions()
                         .anchor(0.5f, 0.5f)
                         .position(new LatLng(provider.getLatitude(), provider.getLongitude()))
@@ -1154,6 +1165,82 @@ public class MainActivity extends BaseActivity implements
                         .icon(BitmapDescriptorFactory.fromResource(serviceIcon));
                 providersMarker.put(provider.getId(), mGoogleMap.addMarker(markerOptions));
             }
+    }
+
+    public class TheTask extends AsyncTask<Void,Void,Void>
+    {
+        double lat,lang;
+        int pos;
+        String firstname,dis,markerurl;
+        Bitmap bmp;
+        public TheTask(int i, Double latitude, Double longitude, String firstName, String description, String marker) {
+
+            firstname=firstName;
+            lat=latitude;
+            lang=longitude;
+            dis=description;
+            markerurl=marker;
+            pos=i;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+
+
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            URL url ;
+            try {
+                url = new URL(markerurl);
+                bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                bmp.setPixel(18,18,getResources().getColor(R.color.default_dot_color));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+            super.onPostExecute(result);
+
+            if (bmp!=null){
+                MarkerOptions markerOptions=new MarkerOptions();
+                markerOptions.position(new LatLng(lat, lang))
+                        .anchor(0.5f,0.5f)
+                        .title(firstname)
+                        .snippet(dis)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bmp));
+
+                builder.include(markerOptions.getPosition());
+                providersMarker.put(pos, mGoogleMap.addMarker(markerOptions));
+
+            }else {
+                Integer serviceIcon;
+                serviceIcon = R.drawable.car_icon_11;
+
+                MarkerOptions markerOptions=new MarkerOptions();
+                markerOptions.position(new LatLng(lat, lang))
+                        .anchor(0.5f,0.5f)
+                        .title(firstname)
+                        .snippet(dis)
+                        .icon(BitmapDescriptorFactory.fromResource(serviceIcon));
+
+                builder.include(markerOptions.getPosition());
+
+                providersMarker.put(pos, mGoogleMap.addMarker(markerOptions));
+
+
+
+
+            }
+
+         //   providersMarker.put(pos, mGoogleMap.addMarker(markerOptions));
+
+        }
     }
 
     public void addSpecificProviders(List<Provider> providers, String key) {
@@ -1191,13 +1278,15 @@ public class MainActivity extends BaseActivity implements
                     serviceIcon = R.drawable.car_icon_11;
                 }
 
-                MarkerOptions markerOptions = new MarkerOptions()
+                new TheTask(provider.getId(),provider.getLatitude(), provider.getLongitude(), provider.getFirstName(),"",MvpApplication.marker).execute();
+
+               /* MarkerOptions markerOptions = new MarkerOptions()
                         .anchor(0.5f, 0.5f)
                         .position(new LatLng(provider.getLatitude(), provider.getLongitude()))
                         .rotation(0.0f)
                         .snippet("" + provider.getId())
                         .icon(BitmapDescriptorFactory.fromResource(serviceIcon));
-                providersMarker.put(provider.getId(), mGoogleMap.addMarker(markerOptions));
+                providersMarker.put(provider.getId(), mGoogleMap.addMarker(markerOptions));*/
             }
         }
     }

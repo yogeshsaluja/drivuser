@@ -174,7 +174,45 @@
                 android:textSize="@dimen/text_12" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:paddingStart="-7dp"
+            android:paddingEnd="0dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="MALE   "
+                android:fontFamily="@font/clanpro_narrnews"
+                android:gravity="end"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_12" />
 
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/clanpro_narrnews"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=" FEMALE"
+                android:fontFamily="@font/clanpro_narrnews"
+                android:gravity="end"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_12" />
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

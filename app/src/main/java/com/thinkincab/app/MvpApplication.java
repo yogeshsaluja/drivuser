@@ -21,11 +21,13 @@ import io.fabric.sdk.android.Fabric;
 
 public class MvpApplication extends Application {
 
+    public static String marker;
     private static MvpApplication mInstance;
 
     public static boolean canGoToChatScreen;
     public static boolean isChatScreenOpen;
 
+    
     public static boolean isCash = true;
     public static boolean isCard;
     public static boolean isPayumoney;
