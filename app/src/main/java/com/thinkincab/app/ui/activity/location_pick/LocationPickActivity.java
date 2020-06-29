@@ -330,16 +330,12 @@ public class LocationPickActivity extends BaseActivity
 
 
 
-        source.setText(RIDE_REQUEST.containsKey(SRC_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString())
-                ? ""
-                : String.valueOf(RIDE_REQUEST.get(SRC_ADD))
-                : "");
+         if(SRC_ADD!=null)
 
-        destination.setText(RIDE_REQUEST.containsKey(DEST_ADD)
-                ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(DEST_ADD)).toString())
-                ? ""
-                : String.valueOf(RIDE_REQUEST.get(DEST_ADD))
-                : "");
+        source.setText(RIDE_REQUEST.containsKey(SRC_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString()) ? "" : String.valueOf(RIDE_REQUEST.get(SRC_ADD)) : "");
+
+         if(DEST_ADD!=null)
+        destination.setText(RIDE_REQUEST.containsKey(DEST_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(DEST_ADD)).toString()) ? "" : String.valueOf(RIDE_REQUEST.get(DEST_ADD)) : "");
 
 
         locationsRv.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {
@@ -584,9 +580,12 @@ public class LocationPickActivity extends BaseActivity
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(this, task -> {
-                    mLastKnownLocation = task.getResult();
-                    moveCamera(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
+                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        mLastKnownLocation = task.getResult();
+                        LocationPickActivity.this.moveCamera(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
+                    }
                 });
             }
         } catch (SecurityException e) {

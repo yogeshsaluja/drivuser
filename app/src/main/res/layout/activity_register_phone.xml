@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3F51B5"
-
     tools:context="com.thinkincab.app.ui.activity.register.RegisterPhoneActivity">
 
     <ImageView

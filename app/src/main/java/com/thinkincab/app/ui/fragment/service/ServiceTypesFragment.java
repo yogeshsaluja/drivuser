@@ -3,6 +3,7 @@ package com.thinkincab.app.ui.fragment.service;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -92,20 +93,28 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     private double walletAmount;
     private int surge;
 
-    private ServiceListener mListener = pos -> {
-        isFromAdapter = true;
-        servicePos = pos;
-        String key = mServices.get(pos).getName() + mServices.get(pos).getId();
-        RIDE_REQUEST.put(SERVICE_TYPE, mServices.get(pos).getId());
-        showLoading();
-        estimatedApiCall();
-        List<Provider> providers = new ArrayList<>();
-        for (Provider provider : getProviders(Objects.requireNonNull(getActivity())))
-            if (provider.getProviderService().getServiceTypeId() == mServices.get(pos).getId())
-                providers.add(provider);
+    private ServiceListener mListener = new ServiceListener() {
+        @Override
+        public void whenClicked(int pos) {
+            try {
+                isFromAdapter = true;
+                servicePos = pos;
+                String key = mServices.get(pos).getName() + mServices.get(pos).getId();
+                RIDE_REQUEST.put(SERVICE_TYPE, mServices.get(pos).getId());
+                ServiceTypesFragment.this.showLoading();
+                ServiceTypesFragment.this.estimatedApiCall();
+                List<Provider> providers = new ArrayList<>();
 
-        ((MainActivity) getActivity()).addSpecificProviders(providers, key);
+                for (Provider provider : getProviders(Objects.requireNonNull(ServiceTypesFragment.this.getActivity())))
+                    if (provider.getProviderService().getServiceTypeId() == mServices.get(pos).getId())
+                        providers.add(provider);
 
+                ((MainActivity) ServiceTypesFragment.this.getActivity()).addSpecificProviders(providers, key);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     };
 
     public ServiceTypesFragment() {
@@ -227,42 +236,45 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     public void onSuccess(List<Service> services) {
         try {
             hideLoading();
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-        if (services != null && !services.isEmpty()) {
-            RIDE_REQUEST.put(SERVICE_TYPE, 1);
-            mServices.clear();
-            mServices.addAll(services);
+            if (services != null && !services.isEmpty()) {
+                RIDE_REQUEST.put(SERVICE_TYPE, 1);
+                mServices.clear();
+                mServices.addAll(services);
 
-            try {
-                AsyncTask.execute(() -> {
-                    for (Service s : mServices) {
-                        String key = s.getName() + s.getId();
-                        if (!TextUtils.isEmpty(s.getMarker()))
-                            if (TextUtils.isEmpty(getKey(Objects.requireNonNull(getActivity()), key))) {
-                                Bitmap b = ((BaseActivity) getActivity()).getBitmapFromURL(s.getMarker());
-                                Log.e("get image", String.valueOf(b));
-                                if (b != null)
-                                    putKey(getActivity(), key, ((BaseActivity) getActivity()).encodeBase64(b));
+                try {
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (Service s : mServices) {
+                                String key = s.getName() + s.getId();
+                                if (!TextUtils.isEmpty(s.getMarker()))
+                                    if (TextUtils.isEmpty(getKey(Objects.requireNonNull(ServiceTypesFragment.this.getActivity()), key))) {
+                                        Bitmap b = ((BaseActivity) ServiceTypesFragment.this.getActivity()).getBitmapFromURL(s.getMarker());
+                                        Log.e("get image", String.valueOf(b));
+                                        if (b != null)
+                                            putKey(ServiceTypesFragment.this.getActivity(), key, ((BaseActivity) ServiceTypesFragment.this.getActivity()).encodeBase64(b));
+                                    }
                             }
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            adapter = new ServiceAdapter(getActivity(), mServices, mListener, capacity, mEstimateFare);
-            serviceRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            serviceRv.setItemAnimator(new DefaultItemAnimator());
-            serviceRv.addItemDecoration(new EqualSpacingItemDecoration(16, EqualSpacingItemDecoration.HORIZONTAL));
-            serviceRv.setAdapter(adapter);
+                adapter = new ServiceAdapter(getActivity(), mServices, mListener, capacity, mEstimateFare);
+                serviceRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+                serviceRv.setItemAnimator(new DefaultItemAnimator());
+                serviceRv.addItemDecoration(new EqualSpacingItemDecoration(16, EqualSpacingItemDecoration.HORIZONTAL));
+                serviceRv.setAdapter(adapter);
 
-            if (adapter != null) {
-                Service mService = adapter.getSelectedService();
-                if (mService != null) RIDE_REQUEST.put(SERVICE_TYPE, mService.getId());
+                if (adapter != null) {
+                    Service mService = adapter.getSelectedService();
+                    if (mService != null) RIDE_REQUEST.put(SERVICE_TYPE, mService.getId());
+                }
+                mListener.whenClicked(0);
             }
-            mListener.whenClicked(0);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -275,7 +287,11 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                 .setTitle("Attention")
                 .setIcon(R.drawable.ic_checked)
                 .setMessage("\n" + "We have no services in this region.")
-                .setPositiveButton("OK", (dialog, which) -> {})
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
                 .show();
     }
 
@@ -302,10 +318,11 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     public void onSuccess(@NonNull Object object) {
         try {
             hideLoading();
+            baseActivity().sendBroadcast(new Intent(INTENT_FILTER));
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        baseActivity().sendBroadcast(new Intent(INTENT_FILTER));
+
     }
 
     @Override
