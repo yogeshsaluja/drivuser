@@ -69,10 +69,10 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
                 include(SphericalUtil.computeOffset(mBounds.getCenter(), radius, 270)).build();
 
         FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
-                .setCountry("br")
+                .setCountry("lk")
                 .setSessionToken(sessionToken)
                 .setQuery(query)
-                .setLocationBias(RectangularBounds.newInstance(bounds))
+
                 .build();
 
         mPlacesClient.findAutocompletePredictions(request).addOnSuccessListener(response -> {

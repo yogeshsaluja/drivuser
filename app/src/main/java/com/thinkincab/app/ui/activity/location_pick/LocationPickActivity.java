@@ -287,6 +287,7 @@ public class LocationPickActivity extends BaseActivity
                     //passando apenas resultados do place local do usuário
                     mAutoCompleteAdapter = new PlacesAutoCompleteAdapter(this, R.layout.list_item_location, mPlacesClient, latLongLocal);
 
+
                     LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
                     locationsRv.setLayoutManager(mLinearLayoutManager);
                     locationsRv.setAdapter(mAutoCompleteAdapter);

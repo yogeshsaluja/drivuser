@@ -181,14 +181,15 @@
             android:orientation="horizontal"
             android:paddingStart="-7dp"
             android:paddingEnd="0dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="MALE   "
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="12dp"
                 android:fontFamily="@font/clanpro_narrnews"
                 android:gravity="end"
+                android:text="MALE   "
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_12" />
 

@@ -19,16 +19,42 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Unnamed-0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a67e73-0cca-4d93-9747-c9874674a13b" name="Default Changelist" comment="" />
+    <list default="true" id="33a67e73-0cca-4d93-9747-c9874674a13b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/onclickexpressuser.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/android_user_2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/register/RegisterPhoneActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/register/RegisterPhoneActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/adapter/PlacesAutoCompleteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/adapter/PlacesAutoCompleteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_ride.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_book_ride.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="DRGID18101103576" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.0.100:5555" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -37,7 +63,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -49,6 +80,9 @@
         <option value="resourceFile" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1dj9O7SC8a4EB3iXNWriQjPIqhy" />
   <component name="ProjectViewState">
@@ -62,10 +96,12 @@
     <property name="DEBUGGABLE_PROCESS" value="com.thinkincab.app" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../thinkincabuser" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
@@ -172,7 +208,32 @@
       <option name="presentableId" value="Default" />
       <updated>1592927599441</updated>
     </task>
+    <task id="LOCAL-00001" summary="* worked on playstorebugs">
+      <created>1593466094600</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1593466094600</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="* worked on playstorebugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="* worked on playstorebugs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="120" key="#com.intellij.ide.util.MemberChooser" timestamp="1592931886097">
@@ -199,26 +260,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="624" y="177" key="AndroidProcessChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1592929161103" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1592928359420">
+    <state x="424" y="6" key="CommitChangelistDialog2" timestamp="1593466085047">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592928359420" />
-    <state width="1491" height="330" key="GridCell.Tab.0.bottom" timestamp="1593373871737">
+    <state x="424" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593466085047" />
+    <state x="100" y="100" width="1336" height="624" key="DiffContextDialog" timestamp="1593464524440">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="330" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593373871737" />
-    <state width="1491" height="330" key="GridCell.Tab.0.center" timestamp="1593373871737">
+    <state x="100" y="100" width="1336" height="624" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1593464524440" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1593515183879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="330" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593373871737" />
-    <state width="1491" height="330" key="GridCell.Tab.0.left" timestamp="1593373871737">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593515183879" />
+    <state width="1476" height="71" key="GridCell.Tab.0.bottom" timestamp="1593539646170">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="330" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593373871737" />
-    <state width="1491" height="330" key="GridCell.Tab.0.right" timestamp="1593373871737">
+    <state width="1476" height="71" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593539646170" />
+    <state width="1476" height="71" key="GridCell.Tab.0.center" timestamp="1593539646170">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1491" height="330" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593373871737" />
+    <state width="1476" height="71" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593539646170" />
+    <state width="1476" height="71" key="GridCell.Tab.0.left" timestamp="1593539646169">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1476" height="71" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593539646169" />
+    <state width="1476" height="71" key="GridCell.Tab.0.right" timestamp="1593539646170">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1476" height="71" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593539646170" />
     <state width="1491" height="260" key="GridCell.Tab.1.bottom" timestamp="1592929225405">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -271,37 +340,41 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="206" y="0" key="ScreenshotViewer.Dimensions/0.0.1536.824@0.0.1536.824" timestamp="1593371432065" />
-    <state width="498" height="558" key="SwitcherDM" timestamp="1593371526451">
+    <state width="498" height="578" key="SwitcherDM" timestamp="1593792683571">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="498" height="558" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1593371526451" />
+    <state width="498" height="578" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1593792683571" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1593501121410">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1593501121410" />
     <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592932083653">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1592932083653" />
-    <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions" timestamp="1592929119313">
+    <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions" timestamp="1593464853665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions/0.0.1536.824@0.0.1536.824" timestamp="1592929119313" />
-    <state x="462" y="145" width="611" height="534" key="find.popup" timestamp="1593372159565">
+    <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions/0.0.1536.824@0.0.1536.824" timestamp="1593464853665" />
+    <state x="462" y="145" width="611" height="534" key="find.popup" timestamp="1593792667909">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="462" y="145" width="611" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1593372159565" />
-    <state width="516" height="88" key="javadoc.popup.new" timestamp="1593370952948">
+    <state x="462" y="145" width="611" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1593792667909" />
+    <state width="516" height="88" key="javadoc.popup.new" timestamp="1593465142809">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="516" height="88" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1593370952948" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1593372145455">
+    <state width="516" height="88" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1593465142809" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1593795498644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1593372145455" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1593795498644" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java</url>
-          <line>332</line>
+          <line>333</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
