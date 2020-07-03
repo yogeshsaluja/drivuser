@@ -14,10 +14,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
+import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.Datum;
 import com.thinkincab.app.data.network.model.Payment;
 import com.thinkincab.app.data.network.model.Provider;
 import com.thinkincab.app.data.network.model.Rating;
+import com.thinkincab.app.ui.activity.passbook.WalletHistoryActivity;
 import com.thinkincab.app.ui.fragment.InvoiceDialogFragment;
 import com.thinkincab.app.ui.fragment.dispute.DisputeCallBack;
 import com.thinkincab.app.ui.fragment.dispute.DisputeFragment;
@@ -219,7 +221,7 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
 
             Payment payment = datum.getPayment();
             if (payment != null)
-                payable.setText(getNumberFormat().format(payment.getTotal()));
+                payable.setText(SharedHelper.getKey(PastTripDetailActivity.this, "currency")+""+payment.getTotal());
         }
     }
 

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.thinkincab.app.R;
 import com.thinkincab.app.common.Constants;
+import com.thinkincab.app.data.SharedHelper;
 
 import java.util.Calendar;
 
@@ -176,7 +177,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     }
 
     protected String getNewNumberFormat(double d) {
-        return BaseActivity.getNumberFormat().format(d);
+        return SharedHelper.getKey(mBaseActivity, "currency")+d;
     }
 
 }

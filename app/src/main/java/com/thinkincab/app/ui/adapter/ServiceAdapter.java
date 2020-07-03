@@ -22,6 +22,7 @@ import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.EstimateFare;
 import com.thinkincab.app.data.network.model.Service;
 import com.thinkincab.app.ui.activity.main.MainActivity;
+import com.thinkincab.app.ui.activity.past_trip_detail.PastTripDetailActivity;
 import com.thinkincab.app.ui.fragment.RateCardFragment;
 import com.thinkincab.app.ui.fragment.service.ServiceTypesFragment;
 
@@ -75,7 +76,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         if (estimateFare != null) {
             holder.estimated_fixed.setVisibility(View.VISIBLE);
             holder.price.setVisibility(View.VISIBLE);
-            holder.estimated_fixed.setText(getNumberFormat().format(Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()))));
+            holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
             if (SharedHelper.getKey(context, "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
                 if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0) {
                     holder.price.setText(estimateFare.getDistance() + " " + context.getString(R.string.kms));
@@ -115,7 +116,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                     else
                         holder.price.setText(estimateFare.getDistance() + " " + context.getString(R.string.mile));
                 }
-                holder.estimated_fixed.setText(getNumberFormat().format(Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()))));
+                holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
 
             }
             holder.itemView.startAnimation(zoomIn);

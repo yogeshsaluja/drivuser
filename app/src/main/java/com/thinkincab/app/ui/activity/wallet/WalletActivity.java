@@ -23,6 +23,7 @@ import com.thinkincab.app.common.Constants;
 import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.AddWallet;
 import com.thinkincab.app.data.network.model.BrainTreeResponse;
+import com.thinkincab.app.ui.activity.past_trip_detail.PastTripDetailActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 
 import java.util.HashMap;
@@ -85,7 +86,7 @@ public class WalletActivity extends BaseActivity implements WalletIView {
         _1099.setText(SharedHelper.getKey(this, "currency") + " " + getString(R.string._1099));
         amount.setTag(SharedHelper.getKey(this, "currency"));
 
-        walletBalance.setText(getNumberFormat().format(Double.parseDouble(SharedHelper.getKey(this, "walletBalance", "0"))));
+        walletBalance.setText(SharedHelper.getKey(WalletActivity.this, "currency")+""+(Double.parseDouble(SharedHelper.getKey(this, "walletBalance", "0"))));
 
         if (!isCard && !isBraintree && !isPaytm && !isPayumoney) {
             //cvAddMoneyContainer.setVisibility(View.GONE);
@@ -266,7 +267,7 @@ public class WalletActivity extends BaseActivity implements WalletIView {
         amount.setText("");
 
 //        SharedHelper.putKey(this, "walletBalance", String.valueOf(wallet.getBalance()));
-        walletBalance.setText(getNumberFormat().format(Double.parseDouble(SharedHelper.getKey(this, "walletBalance", "0"))));
+        walletBalance.setText(SharedHelper.getKey(WalletActivity.this, "currency")+""+Double.parseDouble(SharedHelper.getKey(this, "walletBalance", "0")));
     }
 
     @Override

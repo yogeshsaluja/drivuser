@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.common.EqualSpacingItemDecoration;
+import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.Wallet;
 import com.thinkincab.app.data.network.model.WalletResponse;
 
@@ -103,8 +104,8 @@ public class WalletHistoryActivity extends BaseActivity implements WalletHistory
             holder.tvBalanceVal.setText(String.format("%s %s", SharedHelper.getKey(WalletHistoryActivity.this, "currency"),
                     getNewNumberFormat(item.getCloseBalance())));*/
 
-            holder.tvAmountVal.setText(getNumberFormat().format(item.getAmount()));
-            holder.tvBalanceVal.setText(getNumberFormat().format(item.getCloseBalance()));
+            holder.tvAmountVal.setText(SharedHelper.getKey(WalletHistoryActivity.this, "currency")+""+item.getAmount());
+            holder.tvBalanceVal.setText(SharedHelper.getKey(WalletHistoryActivity.this, "currency")+""+item.getCloseBalance());
         }
 
         @Override

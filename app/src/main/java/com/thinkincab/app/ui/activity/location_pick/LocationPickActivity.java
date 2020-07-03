@@ -445,15 +445,21 @@ public class LocationPickActivity extends BaseActivity
             }
 
         } else {
-            isEditable = false;
+                isEditable = false;
             selectedEditText.setText("");
             locationsRv.setVisibility(View.GONE);
             isEditable = true;
 
-            if (selectedEditText.getTag().equals("source")) {
+
+            if (selectedEditText.getTag().equals("source"))
+            {
+                s_address = address;
+                s_latitude = latLng.latitude;
+                s_longitude = latLng.longitude;
                 RIDE_REQUEST.remove(SRC_ADD);
                 RIDE_REQUEST.remove(SRC_LAT);
                 RIDE_REQUEST.remove(SRC_LONG);
+
             }
             if (selectedEditText.getTag().equals("destination")) {
                 RIDE_REQUEST.remove(DEST_ADD);

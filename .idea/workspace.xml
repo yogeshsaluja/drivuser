@@ -23,22 +23,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33a67e73-0cca-4d93-9747-c9874674a13b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/onelcikback.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_phone.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_phone.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/base/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/base/BaseFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/passbook/WalletHistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/passbook/WalletHistoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/past_trip_detail/PastTripDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/past_trip_detail/PastTripDetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/wallet/WalletActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/wallet/WalletActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/adapter/ServiceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/adapter/ServiceAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.0.100:5555" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_26" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -205,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593466094600</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="* worked on playstorebugs">
+      <created>1593798462997</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1593798462997</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,10 +261,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="624" y="177" key="AndroidProcessChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1592929161103" />
-    <state x="424" y="6" key="CommitChangelistDialog2" timestamp="1593466085047">
+    <state x="424" y="6" key="CommitChangelistDialog2" timestamp="1593798458324">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593466085047" />
+    <state x="424" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593798458324" />
     <state x="100" y="100" width="1336" height="624" key="DiffContextDialog" timestamp="1593464524440">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -326,14 +337,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1491" height="260" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1592929225406" />
+    <state x="481" y="127" key="MultipleFileMergeDialog" timestamp="1593798499062">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="481" y="127" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1593798499062" />
     <state x="206" y="0" key="ScreenshotViewer.Dimensions" timestamp="1593371432065">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="206" y="0" key="ScreenshotViewer.Dimensions/0.0.1536.824@0.0.1536.824" timestamp="1593371432065" />
-    <state width="498" height="578" key="SwitcherDM" timestamp="1593792683571">
+    <state width="498" height="578" key="SwitcherDM" timestamp="1593804194514">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="498" height="578" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1593792683571" />
+    <state width="498" height="578" key="SwitcherDM/0.0.1536.824@0.0.1536.824" timestamp="1593804194514" />
     <state x="584" y="190" key="chooseDestDirectoryDialog" timestamp="1593798146508">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -342,30 +357,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1593501121410" />
-    <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1592932083653">
+    <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593804245763">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1592932083653" />
+    <state x="406" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1593804245763" />
     <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions" timestamp="1593464853665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="537" y="256" key="edit.logcat.filter.dialog.dimensions/0.0.1536.824@0.0.1536.824" timestamp="1593464853665" />
-    <state x="462" y="145" width="611" height="534" key="find.popup" timestamp="1593792667909">
+    <state x="462" y="145" width="611" height="534" key="find.popup" timestamp="1593803770209">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="462" y="145" width="611" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1593792667909" />
-    <state x="465" y="202" key="git4idea.merge.GitPullDialog" timestamp="1593798430214">
+    <state x="462" y="145" width="611" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1593803770209" />
+    <state x="465" y="202" key="git4idea.merge.GitPullDialog" timestamp="1593798473700">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="202" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1593798430214" />
-    <state width="516" height="88" key="javadoc.popup.new" timestamp="1593465142809">
+    <state x="465" y="202" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1593798473700" />
+    <state width="516" height="88" key="javadoc.popup.new" timestamp="1593804242281">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="516" height="88" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1593465142809" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1593798109624">
+    <state width="516" height="88" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1593804242281" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1593803549605">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1593798109624" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1593803549605" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
