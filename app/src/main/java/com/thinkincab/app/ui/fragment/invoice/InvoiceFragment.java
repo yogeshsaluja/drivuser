@@ -6,11 +6,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
+
+import android.media.Image;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +27,8 @@ import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.PayPal;
 import com.braintreepayments.api.exceptions.InvalidArgumentException;
 import com.braintreepayments.api.models.PayPalRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.thinkincab.app.BuildConfig;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
@@ -33,6 +39,7 @@ import com.thinkincab.app.data.network.model.CheckSumData;
 import com.thinkincab.app.data.network.model.Datum;
 import com.thinkincab.app.data.network.model.Message;
 import com.thinkincab.app.data.network.model.Payment;
+import com.thinkincab.app.data.network.model.Rating;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 
 import java.util.HashMap;
@@ -67,6 +74,23 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
     Button done;
     @BindView(R.id.booking_id)
     TextView bookingId;
+    @BindView(R.id.text_provider_name)
+    TextView providername;
+    @BindView(R.id.text_provider_lastname)
+    TextView providerlastname;
+    @BindView(R.id.text_provider_phone)
+    TextView providerphone;
+
+    @BindView(R.id.ratingBarprovider)
+    RatingBar ratingBarprovider;
+
+
+    @BindView(R.id.img_provider)
+    ImageView imgprovider;
+
+
+
+
     @BindView(R.id.distance)
     TextView distance;
     @BindView(R.id.travel_time)
@@ -161,7 +185,23 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
 
     @SuppressLint("StringFormatInvalid")
     private void initView(@NonNull Datum datum) {
-        bookingId.setText(datum.getBookingId());
+        try {
+            bookingId.setText(datum.getBookingId());
+            providername.setText(datum.getProvider().getFirstName());
+            providerlastname.setText(datum.getProvider().getLastName());
+            providerphone.setVisibility(View.GONE);
+            ratingBarprovider.setRating(Float.parseFloat(datum.getProvider().getRating()));
+            Glide.with(InvoiceFragment.this)
+                    .load(BuildConfig.BASE_IMAGE_URL + datum.getProvider().getAvatar())
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder)
+                            .dontAnimate()
+                            .error(R.drawable.ic_user_placeholder))
+                    .into(imgprovider);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         if (SharedHelper.getKey(getContext(), "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
             if (datum.getDistance() > 1 || datum.getDistance() > 1.0)
                 distance.setText(String.format("%s %s", datum.getDistance(), Constants.MeasurementType.KM));
