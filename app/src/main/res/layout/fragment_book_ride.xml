@@ -29,8 +29,8 @@
             android:textSize="@dimen/text_14" />
 
         <FrameLayout
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:background="@drawable/circle_transparent">
 
@@ -40,7 +40,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:padding="@dimen/_5sdp"
+
                 app:srcCompat="@drawable/ic_car" />
 
         </FrameLayout>

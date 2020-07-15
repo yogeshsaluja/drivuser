@@ -20,6 +20,20 @@ public class BookRidePresenter<V extends BookRideIView> extends BasePresenter<V>
                 .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
     }
 
+
+     @Override
+    public void rideOther(HashMap<String, Object> obj) {
+        getCompositeDisposable().add(APIClient
+                .getAPIClient()
+                .sendOtherRequest(obj)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+    }
+
+
+
+
     @Override
     public void getCouponList() {
         getCompositeDisposable().add(APIClient

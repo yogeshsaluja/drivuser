@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 public interface BookRideIPresenter<V extends BookRideIView> extends MvpPresenter<V> {
     void rideNow(HashMap<String, Object> obj);
+    void rideOther(HashMap<String, Object> obj);
 
     void getCouponList();
+
 }

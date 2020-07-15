@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_invoice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,126 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+
         android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="16dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/clanpro_narrnews"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/provider"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/text_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_provider_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="24dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Name"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/img_provider"
+                app:layout_constraintTop_toBottomOf="@+id/img_provider" />
+
+            <TextView
+                android:id="@+id/text_provider_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_name"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_provider_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Lastname"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintStart_toStartOf="@+id/tv_provider_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_provider_name" />
+
+            <TextView
+                android:id="@+id/text_provider_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_lastname"
+                app:layout_constraintEnd_toEndOf="@+id/text_provider_name" />
+
+            <TextView
+                android:id="@+id/tv_provider_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Phone"
+                android:textColor="@color/colorPrimaryText"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/tv_provider_lastname"
+                app:layout_constraintTop_toBottomOf="@+id/tv_provider_lastname" />
+
+            <TextView
+                android:id="@+id/text_provider_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_phone"
+                app:layout_constraintEnd_toEndOf="@+id/text_provider_lastname" />
+
+            <RatingBar
+                android:id="@+id/ratingBarprovider"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="@color/yellow"
+                android:rating="5"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintEnd_toEndOf="@+id/text_provider_lastname"
+                app:layout_constraintTop_toTopOf="@+id/textView8"
+                tools:ignore="UnusedAttribute" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_provider"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/ic_user_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Rating"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintStart_toStartOf="@+id/tv_provider_lastname"
+                app:layout_constraintTop_toBottomOf="@+id/tv_provider_lastname" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -28,11 +148,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:contentDescription="@string/app_name"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_invoice_100" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -540,16 +662,16 @@
                     android:textSize="@dimen/text_14" />
 
                 <!--<TextView-->
-                    <!--android:id="@+id/tvChange"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:drawablePadding="8dp"-->
-                    <!--android:ellipsize="end"-->
-                    <!--android:gravity="start"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@string/change"-->
-                    <!--android:textColor="@color/blue"-->
-                    <!--android:textSize="@dimen/text_14" />-->
+                <!--android:id="@+id/tvChange"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:drawablePadding="8dp"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="start"-->
+                <!--android:singleLine="true"-->
+                <!--android:text="@string/change"-->
+                <!--android:textColor="@color/blue"-->
+                <!--android:textSize="@dimen/text_14" />-->
 
             </LinearLayout>
 

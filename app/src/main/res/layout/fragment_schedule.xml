@@ -13,9 +13,80 @@
         android:fontFamily="@font/clanpro_medium"
         android:gravity="center"
         android:padding="16dp"
-        android:text="@string/schedule_a_ride"
+        android:text="Book for Others"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_18" />
+
+    <EditText
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter name"
+        android:padding="12dp"
+        android:singleLine="true"
+
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_18" />
+
+    <EditText
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Mobile Number"
+        android:padding="12dp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:singleLine="true"
+
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_18" />
+
+    <LinearLayout
+        android:id="@+id/ll_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:paddingStart="-7dp"
+        android:paddingEnd="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:gravity="end"
+            android:text="MALE   "
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_12" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/genderr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:gravity="end"
+            android:text=" FEMALE"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_12" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/date"
@@ -28,6 +99,7 @@
         android:singleLine="true"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/text_18" />
+
 
     <TextView
         android:id="@+id/time"

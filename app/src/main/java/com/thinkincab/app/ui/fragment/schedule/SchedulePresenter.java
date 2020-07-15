@@ -20,4 +20,14 @@ public class SchedulePresenter<V extends ScheduleIView> extends BasePresenter<V>
                 .subscribe(sendReqResponse -> getMvpView().onSuccess(sendReqResponse),
                         throwable -> getMvpView().onError(throwable)));
     }
+
+    @Override
+    public void rideOther(HashMap<String, Object> obj) {
+        getCompositeDisposable().add(APIClient
+                .getAPIClient()
+                .sendOtherRequest(obj)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+    }
 }

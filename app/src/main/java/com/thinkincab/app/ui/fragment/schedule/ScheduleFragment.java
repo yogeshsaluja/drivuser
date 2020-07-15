@@ -4,8 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
@@ -34,15 +37,18 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     TextView date;
     @BindView(R.id.time)
     TextView time;
-
+    @BindView(R.id.tv_name)
+    TextView otherName;
+    @BindView(R.id.tv_phone)
+    TextView otherPhone;
+    @BindView(R.id.genderr)
+    SwitchCompat gender;
     private String selectedScheduledTime;
     private String selectedScheduledHour;
     private String AM_PM;
     private String selectedTime;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-
     private SchedulePresenter<ScheduleFragment> presenter = new SchedulePresenter<>();
-
     public ScheduleFragment() {
 
         dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
@@ -95,7 +101,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     }
 
     private void sendRequest() {
-        if (date.getText().toString().isEmpty() || time.getText().toString().isEmpty()) {
+        if (date.getText().toString().isEmpty() || time.getText().toString().isEmpty()||otherName.getText().toString().isEmpty()||otherPhone.getText().toString().isEmpty()) {
             Toast.makeText(baseActivity(), R.string.please_select_date_time, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -103,9 +109,17 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("schedule_date", date.getText().toString());
         map.put("schedule_time", selectedTime);
+        map.put("first_name",otherName.getText().toString());
+        map.put("mobile", otherPhone.getText().toString());
+        if (gender.isChecked())
+            map.put("gender", "FEMALE");
+        else
+            map.put("gender", "MALE");
+
         showLoading();
         presenter.sendRequest(map);
     }
+
 
     @Override
     public void onSuccess(Object object) {

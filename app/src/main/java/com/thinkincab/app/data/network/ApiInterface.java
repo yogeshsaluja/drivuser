@@ -134,6 +134,14 @@ public interface ApiInterface {
     @POST("api/user/send/request")
     Observable<Object> sendRequest(@FieldMap HashMap<String, Object> params);
 
+
+    @FormUrlEncoded
+    @POST("api/user/send/otherrequest")
+    Observable<Object> sendOtherRequest(@FieldMap HashMap<String, Object> params);
+
+
+
+
     @FormUrlEncoded
     @POST("api/user/cancel/request")
     Observable<Object> cancelRequest(@FieldMap HashMap<String, Object> params);

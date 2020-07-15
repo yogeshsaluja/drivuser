@@ -43,6 +43,7 @@ import com.thinkincab.app.data.network.model.Service;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 import com.thinkincab.app.ui.adapter.CouponAdapter;
+import com.thinkincab.app.ui.fragment.schedule.ScheduleFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,8 +68,8 @@ import static com.thinkincab.app.ui.activity.payment.PaymentActivity.PICK_PAYMEN
 public class BookRideFragment extends BaseFragment implements BookRideIView {
 
     Unbinder unbinder;
-//    @BindView(R.id.schedule_ride)
-//    Button scheduleRide;
+    @BindView(R.id.schedule_ride)
+    Button scheduleRide;
     @BindView(R.id.ride_now)
     Button rideNow;
     @BindView(R.id.gender)
@@ -188,13 +189,13 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         super.onDestroyView();
     }
 
-//    @OnClick({R.id.schedule_ride, R.id.ride_now, R.id.view_coupons, R.id.tv_change})
-    @OnClick({R.id.ride_now, R.id.view_coupons, R.id.tv_change})
+    @OnClick({R.id.schedule_ride, R.id.ride_now, R.id.view_coupons, R.id.tv_change})
+   // @OnClick({R.id.ride_now, R.id.view_coupons, R.id.tv_change})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-//            case R.id.schedule_ride:
-//                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(new ScheduleFragment());
-//                break;
+            case R.id.schedule_ride:
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(new ScheduleFragment());
+                break;
             case R.id.ride_now:
                 if (Objects.requireNonNull(RIDE_REQUEST.get(PAYMENT_MODE)).toString()
                         .equals(Constants.PaymentMode.CARD)) {
@@ -269,7 +270,8 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         return couponDialog;
     }
 
-    public void sendRequest() {
+    public void sendRequest()
+    {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
         map.put("promocode_id", lastSelectCoupon);
@@ -287,8 +289,37 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void sendRequestOther()
+    {
+        HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
+        map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
+        map.put("first_name", "Test");
+        map.put("last_name", "Name");
+        map.put("email", "test@gmail.com");
+        map.put("mobile", "8684822400");
+        map.put("promocode_id", lastSelectCoupon);
+        if (gender.isChecked())
+            map.put("gender", "FEMALE");
+        else
+            map.put("gender", "MALE");
+
+        if (paymentMode != null && !paymentMode.equalsIgnoreCase(""))
+            map.put("payment_mode", paymentMode);
+        else map.put("payment_mode", "CASH");
+        showLoading();
+        try {
+            presenter.rideOther(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
+
+
+
 
     @Override
     public void onSuccess(@NonNull Object object) {

@@ -9,4 +9,5 @@ import java.util.HashMap;
  */
 public interface ScheduleIPresenter<V extends ScheduleIView> extends MvpPresenter<V> {
     void sendRequest(HashMap<String, Object> obj);
+    void rideOther(HashMap<String, Object> obj);
 }

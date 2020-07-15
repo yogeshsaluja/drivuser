@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -33,9 +34,9 @@
             android:layout_height="@dimen/_60sdp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
-            android:padding="@dimen/_8sdp"
+            android:padding="@dimen/_2sdp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_user_placeholder" />
+            app:srcCompat="@drawable/ic_user_placeholder" />
 
     </FrameLayout>
 
