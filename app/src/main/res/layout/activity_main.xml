@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:animateLayoutChanges="true"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <include

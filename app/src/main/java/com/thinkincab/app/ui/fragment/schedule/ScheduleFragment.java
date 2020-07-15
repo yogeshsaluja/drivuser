@@ -39,6 +39,13 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     TextView time;
     @BindView(R.id.tv_name)
     TextView otherName;
+
+    @BindView(R.id.tv_lastname)
+    TextView otherlastName;
+
+    @BindView(R.id.tv_emmal)
+    TextView otheremial;
+
     @BindView(R.id.tv_phone)
     TextView otherPhone;
     @BindView(R.id.genderr)
@@ -101,7 +108,13 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     }
 
     private void sendRequest() {
-        if (date.getText().toString().isEmpty() || time.getText().toString().isEmpty()||otherName.getText().toString().isEmpty()||otherPhone.getText().toString().isEmpty()) {
+        if (date.getText().toString().isEmpty() ||
+                time.getText().toString().isEmpty()||
+                otherName.getText().toString().isEmpty()||
+                otherlastName.getText().toString().isEmpty()||
+                otheremial.getText().toString().isEmpty()||
+
+                otherPhone.getText().toString().isEmpty()) {
             Toast.makeText(baseActivity(), R.string.please_select_date_time, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -110,6 +123,8 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
         map.put("schedule_date", date.getText().toString());
         map.put("schedule_time", selectedTime);
         map.put("first_name",otherName.getText().toString());
+        map.put("last_name",otherlastName.getText().toString());
+        map.put("email",otheremial.getText().toString());
         map.put("mobile", otherPhone.getText().toString());
         if (gender.isChecked())
             map.put("gender", "FEMALE");
@@ -117,7 +132,7 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
             map.put("gender", "MALE");
 
         showLoading();
-        presenter.sendRequest(map);
+        presenter.rideOther(map);
     }
 
 

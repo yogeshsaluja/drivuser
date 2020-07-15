@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,12 +26,25 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter name"
-        android:padding="12dp"
-        android:singleLine="true"
-
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:hint="Enter FirstName"
+
+        android:padding="12dp"
+        android:singleLine="true"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_18" />
+
+    <EditText
+        android:id="@+id/tv_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:hint="Enter Last Name"
+
+        android:padding="12dp"
+        android:singleLine="true"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/text_18" />
 
@@ -36,8 +54,23 @@
         android:layout_height="wrap_content"
         android:hint="Enter Mobile Number"
         android:padding="12dp"
+        android:inputType="phone"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:singleLine="true"
+
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/text_18" />
+
+    <EditText
+        android:id="@+id/tv_emmal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:hint="Enter Email ID"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
         android:singleLine="true"
 
         android:textColor="@color/colorSecondaryText"
@@ -119,3 +152,4 @@
         android:text="@string/schedule_request" />
 
 </LinearLayout>
+</ScrollView>
