@@ -5,11 +5,13 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
 import com.thinkincab.app.ui.activity.main.MainActivity;
@@ -39,6 +41,18 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     TextView time;
     @BindView(R.id.tv_name)
     TextView otherName;
+
+
+    @BindView(R.id.ll_for_others)
+    LinearLayout llforothers;
+
+
+    @BindView(R.id.tv_lastname)
+    TextView otherlastName;
+
+    @BindView(R.id.tv_emmal)
+    TextView otheremial;
+
     @BindView(R.id.tv_phone)
     TextView otherPhone;
     @BindView(R.id.genderr)
@@ -50,6 +64,9 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     private SchedulePresenter<ScheduleFragment> presenter = new SchedulePresenter<>();
     public ScheduleFragment() {
+
+
+
 
         dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
             Calendar myCalendar = Calendar.getInstance();
@@ -77,6 +94,14 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
     public View initView(View view) {
         ButterKnife.bind(this, view);
         presenter.attachView(this);
+        if( MvpApplication.isforOthers)
+        {
+
+            llforothers.setVisibility(View.VISIBLE);
+        }
+        else {
+            llforothers.setVisibility(View.GONE);
+        }
         return view;
     }
 
@@ -100,9 +125,17 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
         }
     }
 
-    private void sendRequest() {
-        if (date.getText().toString().isEmpty() || time.getText().toString().isEmpty()||otherName.getText().toString().isEmpty()||otherPhone.getText().toString().isEmpty()) {
-            Toast.makeText(baseActivity(), R.string.please_select_date_time, Toast.LENGTH_SHORT).show();
+    private void sendRequest()
+    {
+        if(MvpApplication.isforOthers){
+        if (date.getText().toString().isEmpty() ||
+                time.getText().toString().isEmpty()||
+                otherName.getText().toString().isEmpty()||
+                otherlastName.getText().toString().isEmpty()||
+                otheremial.getText().toString().isEmpty()||
+
+                otherPhone.getText().toString().isEmpty()) {
+            Toast.makeText(baseActivity(), "Please Fill All Details", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -110,6 +143,8 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
         map.put("schedule_date", date.getText().toString());
         map.put("schedule_time", selectedTime);
         map.put("first_name",otherName.getText().toString());
+        map.put("last_name",otherlastName.getText().toString());
+        map.put("email",otheremial.getText().toString());
         map.put("mobile", otherPhone.getText().toString());
         if (gender.isChecked())
             map.put("gender", "FEMALE");
@@ -117,8 +152,29 @@ public class ScheduleFragment extends BaseFragment implements ScheduleIView {
             map.put("gender", "MALE");
 
         showLoading();
-        presenter.sendRequest(map);
-    }
+        presenter.rideOther(map);}
+        else {
+
+            if (date.getText().toString().isEmpty() || time.getText().toString().isEmpty())
+            {
+                Toast.makeText(baseActivity(), "Please Fill All Details", Toast.LENGTH_SHORT).show();
+                return;
+
+            }
+            else {
+                HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
+                map.put("schedule_date", date.getText().toString());
+                map.put("schedule_time", selectedTime);
+                if (gender.isChecked())
+                    map.put("gender", "FEMALE");
+                else
+                    map.put("gender", "MALE");
+
+                showLoading();
+                presenter.sendRequest(map);}
+            }
+        }
+
 
 
     @Override

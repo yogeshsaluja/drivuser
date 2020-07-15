@@ -751,6 +751,11 @@ public class LocationPickActivity extends BaseActivity
                             RIDE_REQUEST.put(DEST_ADD, address);
                             RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
                             RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
+                            if (!TextUtils.isEmpty(s_address)){
+                                RIDE_REQUEST.put(SRC_ADD, s_address);
+                                RIDE_REQUEST.put(SRC_LAT, s_latitude);
+                                RIDE_REQUEST.put(SRC_LONG, s_longitude);
+                            }
                             setResult(Activity.RESULT_OK, new Intent());
                             finish();
                         } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && RIDE_REQUEST.containsKey(DEST_ADD)) {

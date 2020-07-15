@@ -1,45 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="wrap_content">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:orientation="vertical"
     tools:context=".ui.fragment.schedule.ScheduleFragment">
 
+    <LinearLayout
+        android:id="@+id/ll_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/clanpro_medium"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Book for Others"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_18" />
+
+        <EditText
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:hint="Enter FirstName"
+
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_18" />
+
+        <EditText
+            android:id="@+id/tv_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:hint="Enter Last Name"
+
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_18" />
+
+        <EditText
+            android:id="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:hint="Enter Mobile Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:singleLine="true"
+
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_18" />
+
+        <EditText
+            android:id="@+id/tv_emmal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:hint="Enter Email ID"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:singleLine="true"
+
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/text_18" />
+
+    </LinearLayout>
+
+
     <TextView
+        android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/clanpro_medium"
+        android:ellipsize="end"
         android:gravity="center"
-        android:padding="16dp"
-        android:text="Book for Others"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_18" />
-
-    <EditText
-        android:id="@+id/tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter name"
+        android:hint="@string/choose_a_date"
         android:padding="12dp"
+        android:layout_marginTop="8dp"
         android:singleLine="true"
-
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/text_18" />
 
-    <EditText
-        android:id="@+id/tv_phone"
+
+    <TextView
+        android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Mobile Number"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:hint="@string/choose_a_time"
         android:padding="12dp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
         android:singleLine="true"
-
         android:textColor="@color/colorSecondaryText"
         android:textSize="@dimen/text_18" />
 
@@ -88,34 +156,11 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:hint="@string/choose_a_date"
-        android:padding="12dp"
-        android:singleLine="true"
-        android:textColor="@color/colorSecondaryText"
-        android:textSize="@dimen/text_18" />
-
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:hint="@string/choose_a_time"
-        android:padding="12dp"
-        android:singleLine="true"
-        android:textColor="@color/colorSecondaryText"
-        android:textSize="@dimen/text_18" />
-
     <Button
         android:id="@+id/schedule_request"
         style="@style/MyButton.Primary"
+        android:layout_marginTop="8dp"
         android:text="@string/schedule_request" />
 
 </LinearLayout>
+</ScrollView>

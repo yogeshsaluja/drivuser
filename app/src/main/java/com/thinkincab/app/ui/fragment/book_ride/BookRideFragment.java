@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
 import com.thinkincab.app.common.Constants;
@@ -68,12 +69,23 @@ import static com.thinkincab.app.ui.activity.payment.PaymentActivity.PICK_PAYMEN
 public class BookRideFragment extends BaseFragment implements BookRideIView {
 
     Unbinder unbinder;
-    @BindView(R.id.schedule_ride)
+
+    @BindView(R.id.buttonschdeule)
     Button scheduleRide;
+
     @BindView(R.id.ride_now)
     Button rideNow;
+
+    @BindView(R.id.button3)
+    Button bookforothers;
+
+
+
     @BindView(R.id.gender)
     SwitchCompat gender;
+
+
+
     @BindView(R.id.tvEstimatedFare)
     TextView tvEstimatedFare;
     @BindView(R.id.use_wallet)
@@ -189,13 +201,19 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.schedule_ride, R.id.ride_now, R.id.view_coupons, R.id.tv_change})
+    @OnClick({R.id.buttonschdeule, R.id.ride_now, R.id.view_coupons, R.id.tv_change,R.id.button3})
    // @OnClick({R.id.ride_now, R.id.view_coupons, R.id.tv_change})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.schedule_ride:
+            case R.id.buttonschdeule:
+                MvpApplication.isforOthers = false;
                 ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(new ScheduleFragment());
                 break;
+            case R.id.button3:
+                MvpApplication.isforOthers = true;
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(new ScheduleFragment());
+                break;
+
             case R.id.ride_now:
                 if (Objects.requireNonNull(RIDE_REQUEST.get(PAYMENT_MODE)).toString()
                         .equals(Constants.PaymentMode.CARD)) {

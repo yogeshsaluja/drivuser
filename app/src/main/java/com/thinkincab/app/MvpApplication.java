@@ -51,8 +51,12 @@ public class MvpApplication extends Application {
     public static String mobileno;
 
 
+
+
+
     //TODO ALLAN - Alterações débito na máquina e voucher
     public static boolean isDebitMachine;
+    public static boolean isforOthers;
     public static boolean isVoucher;
     public static HashMap<String, Object> RIDE_REQUEST = new HashMap<>();
     public static Datum DATUM = null;
