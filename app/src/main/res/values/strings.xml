@@ -338,4 +338,5 @@
     <string name="share_link">#</string>
     <string name="otp_sent_on_your_number_please_verify">Otp Sent on your number, Please verify</string>
     <string name="provider">Provider</string>
+    <string name="driver">Driver</string>
 </resources>

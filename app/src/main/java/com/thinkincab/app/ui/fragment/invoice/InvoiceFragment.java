@@ -192,7 +192,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
             providerphone.setVisibility(View.GONE);
             ratingBarprovider.setRating(Float.parseFloat(datum.getProvider().getRating()));
             Glide.with(InvoiceFragment.this)
-                    .load(BuildConfig.BASE_IMAGE_URL + datum.getProvider().getAvatar())
+                    .load(datum.getProvider().getAvatar())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder)
                             .dontAnimate()
                             .error(R.drawable.ic_user_placeholder))
@@ -575,7 +575,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
 
         switch (paymentMode) {
             case Constants.PaymentMode.CASH:
-                tvPaymentMode.setText("DINHEIRO");
+                tvPaymentMode.setText("CASH");
                 break;
             case Constants.PaymentMode.DEBIT_MACHINE:
                 tvPaymentMode.setText("DÉBITO NA MÁQUINA");

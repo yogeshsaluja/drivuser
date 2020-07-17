@@ -27,7 +27,7 @@
                 android:fontFamily="@font/clanpro_narrnews"
                 android:gravity="center"
                 android:padding="12dp"
-                android:text="@string/provider"
+                android:text="@string/driver"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,13 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="Name"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/img_provider"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_provider" />
 
             <TextView
@@ -113,13 +114,11 @@
                 android:id="@+id/img_provider"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
-                app:srcCompat="@drawable/ic_user_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:srcCompat="@drawable/ic_user_placeholder" />
 
             <TextView
                 android:id="@+id/textView8"
