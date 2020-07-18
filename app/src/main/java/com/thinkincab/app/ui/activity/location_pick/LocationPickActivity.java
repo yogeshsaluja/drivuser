@@ -343,10 +343,13 @@ public class LocationPickActivity extends BaseActivity
                     if (mAutoCompleteAdapter.getItemCount() == 0) return;
                     final PlacesAutoCompleteAdapter.PlaceAutocomplete item = mAutoCompleteAdapter.getItem(position);
                     Log.i("LocationPickActivity", "Get place details for place id: " + item.placeId + " address: " + item.address);
-                    fetchPlace(item.placeId.toString(), response -> {
-                        isLocationRvClick = true;
-                        isSettingLocationClick = true;
-                        setLocationText(response.getPlace().getAddress(), response.getPlace().getLatLng(), isLocationRvClick, isSettingLocationClick);
+                    fetchPlace(item.placeId.toString(), new OnSuccessListener<FetchPlaceResponse>() {
+                        @Override
+                        public void onSuccess(FetchPlaceResponse response) {
+                            isLocationRvClick = true;
+                            isSettingLocationClick = true;
+                            LocationPickActivity.this.setLocationText(response.getPlace().getAddress(), response.getPlace().getLatLng(), isLocationRvClick, isSettingLocationClick);
+                        }
                     });
                 })
         );
