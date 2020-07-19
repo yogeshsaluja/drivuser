@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: lk.payhere.sdk:android-payment-sdk:2.0.11@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-android-payment-sdk-2.0.11.aar/3a36377eefd0f69e4d7940002b9a8a6b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-android-payment-sdk-2.0.11.aar/3a36377eefd0f69e4d7940002b9a8a6b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-android-payment-sdk-2.0.11.aar/aef5dd97cc0722f5473114f965459f00/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-android-payment-sdk-2.0.11.aar/aef5dd97cc0722f5473114f965459f00/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

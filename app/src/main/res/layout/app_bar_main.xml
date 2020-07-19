@@ -84,6 +84,7 @@
                     android:id="@+id/change_location"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:layout_gravity="center|end"
                     android:padding="@dimen/_5sdp"
                     android:background="@color/colorPrimary"

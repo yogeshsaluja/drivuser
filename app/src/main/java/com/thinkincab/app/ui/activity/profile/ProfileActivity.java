@@ -290,7 +290,7 @@ public class ProfileActivity extends BaseActivity implements ProfileIView {
         MvpApplication.showOTP = user.getRide_otp().equals("1");
 
         qrCodeUrl = !TextUtils.isEmpty(user.getQrcode_url()) ? BuildConfig.BASE_URL + user.getQrcode_url() : null;
-        ivQrScan.setVisibility(TextUtils.isEmpty(qrCodeUrl) ? View.INVISIBLE : View.VISIBLE);
+    //    ivQrScan.setVisibility(TextUtils.isEmpty(qrCodeUrl) ? View.INVISIBLE : View.VISIBLE);
     }
 
     @Override

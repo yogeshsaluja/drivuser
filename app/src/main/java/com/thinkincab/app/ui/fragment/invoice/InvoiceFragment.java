@@ -72,6 +72,9 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
     Button payNow;
     @BindView(R.id.done)
     Button done;
+
+    @BindView(R.id.main)
+    TextView main;
     @BindView(R.id.booking_id)
     TextView bookingId;
     @BindView(R.id.text_provider_name)
@@ -330,6 +333,8 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
                 Toast.makeText(getActivity().getApplicationContext(), "Pagamento não identificado",
                         Toast.LENGTH_SHORT).show();
             }
+
+            main.setVisibility(View.VISIBLE);
         } catch (Exception e) {
             e.printStackTrace();
         }

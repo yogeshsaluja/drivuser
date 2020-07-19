@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/layout/activity_create_user_account.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/layout/activity_login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/layout/activity_reset_password.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/layout/activity_role_selection.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/Hanydman/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/google-services.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/location_pick/LocationPickActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/past_trip_detail/PastTripDetailActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/activity/profile/ProfileActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/fragment/InvoiceDialogFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/thinkincab/app/ui/fragment/invoice/InvoiceFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_invoice.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/local.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/build/generated/source/apt/debug/com/thinkincab/partner/ui/activity/help/HelpActivity_ViewBinding.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/google-services.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/java/com/thinkincab/partner/ui/activity/help/HelpActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/java/com/thinkincab/partner/ui/activity/profile/ProfileActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/java/com/thinkincab/partner/ui/activity/your_trips/YourTripActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/layout/activity_profile.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/layout/activity_register_phone.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/layout/activity_splash.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/layout/activity_your_trip.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/menu/activity_main_drawer.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressrider/app/src/main/res/menu/trip_help_menu.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="G:/zoompoom/onclickexpressuser/app/src/main/java/com/thinkincab/app/ui/activity/main/MainActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

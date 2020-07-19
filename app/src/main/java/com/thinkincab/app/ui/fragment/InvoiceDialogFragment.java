@@ -109,50 +109,50 @@ public class InvoiceDialogFragment extends BaseBottomSheetDialogFragment {
 
             Payment payment = datum.getPayment();
             if (payment != null) {
-                fixed.setText(getNewNumberFormat(payment.getFixed()));
-                tax.setText(getNewNumberFormat(payment.getTax()));
+                fixed.setText( SharedHelper.getKey(getContext(), "currency")+payment.getFixed());
+                tax.setText( SharedHelper.getKey(getContext(), "currency")+payment.getTax());
                 double pastTripTotal = payment.getTotal() + payment.getTips();
-                total.setText(getNewNumberFormat(pastTripTotal));
+                total.setText( SharedHelper.getKey(getContext(), "currency")+pastTripTotal);
                 Double payableValue = payment.getTotal() - (payment.getWallet() + payment.getDiscount());
                 double pastTripPayable = payableValue + payment.getTips();
-                payable.setText(getNewNumberFormat(pastTripPayable));
+                payable.setText( SharedHelper.getKey(getContext(), "currency")+pastTripPayable);
 
                 if (payment.getTips() == 0 || payment.getTips() == 0.0)
                     tipsLayout.setVisibility(View.GONE);
                 else {
                     tipsLayout.setVisibility(View.VISIBLE);
-                    tips.setText(getNewNumberFormat(payment.getTips()));
+                    tips.setText( SharedHelper.getKey(getContext(), "currency")+payment.getTips());
                 }
 
                 if (payment.getWallet() == 0 || payment.getWallet() == 0.0)
                     walletLayout.setVisibility(View.GONE);
                 else {
                     walletLayout.setVisibility(View.VISIBLE);
-                    walletDeduction.setText(getNewNumberFormat(payment.getWallet()));
+                    walletDeduction.setText( SharedHelper.getKey(getContext(), "currency")+payment.getWallet());
                 }
                 if (payment.getDiscount() == 0 || payment.getDiscount() == 0.0)
                     discountLayout.setVisibility(View.GONE);
                 else {
                     discountLayout.setVisibility(View.VISIBLE);
-                    discount.setText(getNewNumberFormat(payment.getDiscount()));
+                    discount.setText( SharedHelper.getKey(getContext(), "currency")+payment.getDiscount());
                 }
                 if (payment.getWaitingAmount() == 0 || payment.getWaitingAmount() == 0.0)
                     llWaitingAmountContainer.setVisibility(View.GONE);
                 else {
                     llWaitingAmountContainer.setVisibility(View.VISIBLE);
-                    tvWaitingAmount.setText(getNewNumberFormat(payment.getWaitingAmount()));
+                    tvWaitingAmount.setText( SharedHelper.getKey(getContext(), "currency")+payment.getWaitingAmount());
                 }
 
                 if (payment.getToll_charge() <= 0) {
                     llTolleChargeContainer.setVisibility(View.GONE);
                 } else {
                     llTolleChargeContainer.setVisibility(View.VISIBLE);
-                    tvTollCharges.setText(getNewNumberFormat(payment.getToll_charge()));
+                    tvTollCharges.setText( SharedHelper.getKey(getContext(), "currency")+payment.getToll_charge());
                 }
 
                 if (payment.getRoundOf() != 0) {
                     llRoundOffContainer.setVisibility(View.VISIBLE);
-                    tvRoundOff.setText(getNewNumberFormat(payment.getRoundOf()));
+                    tvRoundOff.setText( SharedHelper.getKey(getContext(), "currency")+payment.getRoundOf());
                 } else llRoundOffContainer.setVisibility(View.GONE);
 
                 ServiceType serviceType = datum.getServiceType();
@@ -162,12 +162,12 @@ public class InvoiceDialogFragment extends BaseBottomSheetDialogFragment {
                         case Constants.InvoiceFare.MINUTE:
                             distanceConstainer.setVisibility(View.GONE);
                             timeContainer.setVisibility(View.VISIBLE);
-                            timeFare.setText(getNewNumberFormat(payment.getMinute()));
+                            timeFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getMinute());
                             break;
                         case Constants.InvoiceFare.HOUR:
                             distanceConstainer.setVisibility(View.GONE);
                             timeContainer.setVisibility(View.VISIBLE);
-                            timeFare.setText(getNewNumberFormat(payment.getHour()));
+                            timeFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getHour());
                             break;
                         case Constants.InvoiceFare.DISTANCE:
                             timeContainer.setVisibility(View.GONE);
@@ -175,27 +175,27 @@ public class InvoiceDialogFragment extends BaseBottomSheetDialogFragment {
                                 distanceConstainer.setVisibility(View.GONE);
                             else {
                                 distanceConstainer.setVisibility(View.VISIBLE);
-                                distanceFare.setText(getNewNumberFormat(payment.getDistance()));
+                                distanceFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getDistance());
                             }
                             break;
                         case Constants.InvoiceFare.DISTANCE_MIN:
                             timeContainer.setVisibility(View.VISIBLE);
-                            timeFare.setText(getNewNumberFormat(payment.getMinute()));
+                            timeFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getMinute());
                             if (payment.getDistance() == 0.0 || payment.getDistance() == 0)
                                 distanceConstainer.setVisibility(View.GONE);
                             else {
                                 distanceConstainer.setVisibility(View.VISIBLE);
-                                distanceFare.setText(getNewNumberFormat(payment.getDistance()));
+                                distanceFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getDistance());
                             }
                             break;
                         case Constants.InvoiceFare.DISTANCE_HOUR:
                             timeContainer.setVisibility(View.VISIBLE);
-                            timeFare.setText(getNewNumberFormat(payment.getHour()));
+                            timeFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getHour());
                             if (payment.getDistance() == 0.0 || payment.getDistance() == 0)
                                 distanceConstainer.setVisibility(View.GONE);
                             else {
                                 distanceConstainer.setVisibility(View.VISIBLE);
-                                distanceFare.setText(getNewNumberFormat(payment.getDistance()));
+                                distanceFare.setText( SharedHelper.getKey(getContext(), "currency")+payment.getDistance());
                             }
                             break;
                         default:

@@ -35,6 +35,12 @@ public class RateCardFragment extends BaseFragment {
     TextView fareType;
     @BindView(R.id.fare_km)
     TextView fareKm;
+
+
+    @BindView(R.id.text_desc)
+    TextView textDesc;
+
+
     @BindView(R.id.tvFareDistance)
     TextView tvFareDistance;
     Unbinder unbinder;
@@ -59,6 +65,16 @@ public class RateCardFragment extends BaseFragment {
         capacity.setText(String.valueOf(service.getCapacity()));
         baseFare.setText(getNewNumberFormat(service.getFixed()));
         fareKm.setText(getNewNumberFormat(service.getPrice()));
+        if(service.getDescription()!=null) {
+
+            textDesc.setText(service.getDescription());
+            textDesc.setVisibility(View.VISIBLE);
+        }
+
+        else{
+
+            textDesc.setVisibility(View.GONE);
+        }
 
         //      MIN,    HOUR,   DISTANCE,   DISTANCEMIN,    DISTANCEHOUR
         switch (service.getCalculator()) {

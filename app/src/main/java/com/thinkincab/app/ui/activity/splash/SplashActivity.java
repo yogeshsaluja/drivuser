@@ -66,8 +66,31 @@ public class SplashActivity extends BaseActivity implements SplashIView,
     public int getLayoutId() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+
+
         return R.layout.activity_splash;
+
     }
+
+    private void sharedRide() {
+        try {
+            //String link="http://maps.google.com/maps/22.668940,75.790122?q=26.012778,77.429832";
+            String link="http://maps.google.com/maps?saddr=22.668940,75.790122&daddr=26.012778,77.429832";
+            String appName = getString(R.string.app_name) + " " + getString(R.string.share_ride);
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            //sendIntent.putExtra(Intent.EXTRA_TEXT,Uri.parse("geo:" + "22.668940, 75.790122?q=26.012778, 77.429832"));
+            sendIntent.putExtra(Intent.EXTRA_TEXT,link);
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        } catch (Exception e) {
+            Toast.makeText(baseActivity(), "applications not found!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public void initView() {
@@ -112,6 +135,7 @@ public class SplashActivity extends BaseActivity implements SplashIView,
         }
 
         Log.d("FCM", "FCM Token: " + SharedHelper.getKey(baseActivity(), "device_token"));
+        //sharedRide();
     }
 
     private void checkVersion() {

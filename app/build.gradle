@@ -14,7 +14,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         resConfigs "en","ar"
-        applicationId "com.thinkincab"
+        applicationId "com.oneexpress"
         minSdkVersion 20
         targetSdkVersion 29
         versionCode 4

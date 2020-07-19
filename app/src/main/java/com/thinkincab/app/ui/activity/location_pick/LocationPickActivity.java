@@ -94,7 +94,7 @@ public class LocationPickActivity extends BaseActivity
         GoogleApiClient.OnConnectionFailedListener,
         LocationPickIView {
 
-    private static final LatLngBounds BOUNDS_BRASIL = new LatLngBounds(new LatLng(-14.235, -51.9253), new LatLng(-14.235, -51.9253));
+    //private static final LatLngBounds BOUNDS_BRASIL = new LatLngBounds(new LatLng(-14.235, -51.9253), new LatLng(-14.235, -51.9253));
     private Location mLastKnownLocation;
     protected GoogleApiClient mGoogleApiClient;
 
@@ -287,13 +287,12 @@ public class LocationPickActivity extends BaseActivity
                     //passando apenas resultados do place local do usuário
                     mAutoCompleteAdapter = new PlacesAutoCompleteAdapter(this, R.layout.list_item_location, mPlacesClient, latLongLocal);
 
-
                     LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
                     locationsRv.setLayoutManager(mLinearLayoutManager);
                     locationsRv.setAdapter(mAutoCompleteAdapter);
                 } else {
                     Log.d("Map", "Current location is null. Using defaults.");
-                    mAutoCompleteAdapter = new PlacesAutoCompleteAdapter(this, R.layout.list_item_location, mPlacesClient, BOUNDS_BRASIL);
+                    //mAutoCompleteAdapter = new PlacesAutoCompleteAdapter(this, R.layout.list_item_location, mPlacesClient, BOUNDS_BRASIL);
                 }
             });
 
@@ -329,28 +328,35 @@ public class LocationPickActivity extends BaseActivity
 
         ORIGINAL_RIDE_REQUEST = new HashMap<>(RIDE_REQUEST);
 
+        source.setText(RIDE_REQUEST.containsKey(SRC_ADD)
+                ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString())
+                ? ""
+                : String.valueOf(RIDE_REQUEST.get(SRC_ADD))
+                : "");
 
-
-         if(SRC_ADD!=null)
-
-        source.setText(RIDE_REQUEST.containsKey(SRC_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString()) ? "" : String.valueOf(RIDE_REQUEST.get(SRC_ADD)) : "");
-
-         if(DEST_ADD!=null)
-        destination.setText(RIDE_REQUEST.containsKey(DEST_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(DEST_ADD)).toString()) ? "" : String.valueOf(RIDE_REQUEST.get(DEST_ADD)) : "");
+        destination.setText(RIDE_REQUEST.containsKey(DEST_ADD)
+                ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(DEST_ADD)).toString())
+                ? ""
+                : String.valueOf(RIDE_REQUEST.get(DEST_ADD))
+                : "");
 
 
         locationsRv.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {
-                    if (mAutoCompleteAdapter.getItemCount() == 0) return;
-                    final PlacesAutoCompleteAdapter.PlaceAutocomplete item = mAutoCompleteAdapter.getItem(position);
-                    Log.i("LocationPickActivity", "Get place details for place id: " + item.placeId + " address: " + item.address);
-                    fetchPlace(item.placeId.toString(), new OnSuccessListener<FetchPlaceResponse>() {
-                        @Override
-                        public void onSuccess(FetchPlaceResponse response) {
+                    try {
+                        if (mAutoCompleteAdapter.getItemCount() == 0) return;
+                        final PlacesAutoCompleteAdapter.PlaceAutocomplete item = mAutoCompleteAdapter.getItem(position);
+                        Log.i("LocationPickActivity", "Get place details for place id: " + item.placeId + " address: " + item.address);
+                        fetchPlace(item.placeId.toString(), response -> {
                             isLocationRvClick = true;
                             isSettingLocationClick = true;
-                            LocationPickActivity.this.setLocationText(response.getPlace().getAddress(), response.getPlace().getLatLng(), isLocationRvClick, isSettingLocationClick);
-                        }
-                    });
+                            setLocationText(response.getPlace().getAddress(), response.getPlace().getLatLng(), isLocationRvClick, isSettingLocationClick);
+                        });
+
+                    }catch (Exception e){
+
+                        e.printStackTrace();
+                    }
+
                 })
         );
 
@@ -373,24 +379,21 @@ public class LocationPickActivity extends BaseActivity
                 setLocationText(null, null, isLocationRvClick, isSettingLocationClick);
             } else if (!TextUtils.isEmpty(actionName) && actionName.equals(Constants.LocationActions.CHANGE_DESTINATION)) {
                 llSource.setVisibility(View.GONE);
-                source.setHint(getString(R.string.select_location));
+                source.setHint("Service location?");
                 selectedEditText = destination;
             } else if (!TextUtils.isEmpty(actionName) && (actionName.equals(Constants.LocationActions.SELECT_HOME) || actionName.equals(Constants.LocationActions.SELECT_WORK))) {
                 destinationLayout.setVisibility(View.GONE);
-                selectedEditText = destination;
+                selectedEditText = source;
                 source.setText("");
-                source.setHint(getString(R.string.select_location));
+                source.setHint("Service location?");
             } else {
                 destinationLayout.setVisibility(View.VISIBLE);
                 llSource.setVisibility(View.VISIBLE);
-                source.setHint(getString(R.string.pickup_location));
+                source.setHint("Service location?");
                 selectedEditText = source;
             }
 
         }
-
-
-        presenter.address();
     }
 
     /**
@@ -411,7 +414,7 @@ public class LocationPickActivity extends BaseActivity
         mPlacesClient.fetchPlace(request)
                 .addOnSuccessListener(response)
                 .addOnFailureListener((exception) -> {
-                    Toast.makeText(getApplicationContext(), "Local não encontrado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Location not found", Toast.LENGTH_SHORT).show();
                     Log.e("[PLACE DETAIL]", "Place not found: " + exception.getMessage());
                 });
     }
@@ -448,21 +451,15 @@ public class LocationPickActivity extends BaseActivity
             }
 
         } else {
-                isEditable = false;
+            isEditable = false;
             selectedEditText.setText("");
             locationsRv.setVisibility(View.GONE);
             isEditable = true;
 
-
-            if (selectedEditText.getTag().equals("source"))
-            {
-                s_address = address;
-                s_latitude = latLng.latitude;
-                s_longitude = latLng.longitude;
+            if (selectedEditText.getTag().equals("source")) {
                 RIDE_REQUEST.remove(SRC_ADD);
                 RIDE_REQUEST.remove(SRC_LAT);
                 RIDE_REQUEST.remove(SRC_LONG);
-
             }
             if (selectedEditText.getTag().equals("destination")) {
                 RIDE_REQUEST.remove(DEST_ADD);
@@ -590,13 +587,9 @@ public class LocationPickActivity extends BaseActivity
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        mLastKnownLocation = task.getResult();
-                        if(mLastKnownLocation!=null)
-                        LocationPickActivity.this.moveCamera(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
-                    }
+                locationResult.addOnCompleteListener(this, task -> {
+                    mLastKnownLocation = task.getResult();
+                    moveCamera(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
                 });
             }
         } catch (SecurityException e) {
@@ -605,7 +598,7 @@ public class LocationPickActivity extends BaseActivity
     }
 
     /**
-     * Move camera do no mapa da google para uma determinada localizacao
+     * Move camera do no mapa da g oogle para uma determinada localizacao
      *
      * @param latLng Localizacao
      */
@@ -715,6 +708,9 @@ public class LocationPickActivity extends BaseActivity
             RIDE_REQUEST.put(DEST_ADD, address);
             RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
             RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
+            RIDE_REQUEST.put(SRC_ADD, address);
+            RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
+            RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
             setResult(Activity.RESULT_OK, new Intent());
             finish();
         } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && RIDE_REQUEST.containsKey(DEST_ADD)) {
@@ -722,10 +718,13 @@ public class LocationPickActivity extends BaseActivity
             RIDE_REQUEST.put(SRC_ADD, address);
             RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
             RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
+            RIDE_REQUEST.put(DEST_ADD, address);
+            RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
+            RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
             setResult(Activity.RESULT_OK, new Intent());
             finish();
         } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && !RIDE_REQUEST.containsKey(DEST_ADD)) {
-            showAlert("Aviso", "Sua viajem está incompleta. Por favor, escolha um local da lista de sugestões ao digitar.");
+            showAlert("Warning", "Your Request is incomplete. Please choose a location from the list of suggestions as you type.");
         }
     }
 
@@ -738,6 +737,15 @@ public class LocationPickActivity extends BaseActivity
                     intent.putExtra(SRC_ADD, s_address);
                     intent.putExtra(SRC_LAT, s_latitude);
                     intent.putExtra(SRC_LONG, s_longitude);
+                    intent.putExtra(DEST_ADD, s_address);
+                    intent.putExtra(DEST_LAT, s_latitude);
+                    intent.putExtra(DEST_LONG, s_longitude);
+                    RIDE_REQUEST.put(SRC_ADD, s_address);
+                    RIDE_REQUEST.put(SRC_LAT, s_latitude);
+                    RIDE_REQUEST.put(SRC_LONG, s_longitude);
+                    RIDE_REQUEST.put(DEST_ADD, s_address);
+                    RIDE_REQUEST.put(DEST_LAT, s_latitude);
+                    RIDE_REQUEST.put(DEST_LONG, s_longitude);
                     setResult(Activity.RESULT_OK, intent);
                     finish();
                 } else {
@@ -751,6 +759,9 @@ public class LocationPickActivity extends BaseActivity
                             finish();
                         } else if (RIDE_REQUEST.containsKey(SRC_ADD) && !RIDE_REQUEST.containsKey(DEST_ADD)) {
                             String address = getAddress(latLng);
+                            RIDE_REQUEST.put(SRC_ADD, address);
+                            RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
                             RIDE_REQUEST.put(DEST_ADD, address);
                             RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
                             RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
@@ -766,10 +777,13 @@ public class LocationPickActivity extends BaseActivity
                             RIDE_REQUEST.put(SRC_ADD, address);
                             RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
                             RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
+                            RIDE_REQUEST.put(DEST_ADD, address);
+                            RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
                             setResult(Activity.RESULT_OK, new Intent());
                             finish();
                         } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && !RIDE_REQUEST.containsKey(DEST_ADD)) {
-                            showAlert("Aviso", "Sua viajem está incompleta. Por favor, escolha um local da lista de sugestões ao digitar.");
+                            showAlert("Warning", "Your Request is incomplete. Please choose a location from the list of suggestions as you type.");
                         }
 
 
@@ -787,7 +801,7 @@ public class LocationPickActivity extends BaseActivity
     }
 
     /**
-     * Exibe alert dialog com a devida aparencia do app
+     * Exibe alert dialog com a devida aparencia do com.kilien.app
      *
      * @param title   Titulo
      * @param message Messagem
@@ -806,19 +820,7 @@ public class LocationPickActivity extends BaseActivity
 
     @Override
     public void onSuccess(AddressResponse address) {
-        if (address.getHome().isEmpty()) homeAddressLayout.setVisibility(View.GONE);
-        else {
-            home = address.getHome().get(address.getHome().size() - 1);
-            homeAddress.setText(home.getAddress());
-            homeAddressLayout.setVisibility(View.VISIBLE);
-        }
 
-        if (address.getWork().isEmpty()) workAddressLayout.setVisibility(View.GONE);
-        else {
-            work = address.getWork().get(address.getWork().size() - 1);
-            workAddress.setText(work.getAddress());
-            workAddressLayout.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override

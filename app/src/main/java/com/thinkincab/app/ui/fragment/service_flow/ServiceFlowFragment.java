@@ -185,10 +185,14 @@ public class ServiceFlowFragment extends BaseFragment
         otp.setText(getString(R.string.otp_, datum.getOtp()));
         otp.setVisibility(showOTP ? View.VISIBLE : View.GONE);
 
-        shareRideText = getString(R.string.app_name) + ": "
-                + datum.getUser().getFirstName() + " " + datum.getUser().getLastName() + " is traveling with "
-                + datum.getServiceType().getName() + ". and the current location "
-                + "http://maps.google.com/maps?q=loc:" + datum.getDLatitude() + "," + datum.getDLongitude();
+
+
+
+
+
+
+
+
 
         switch (datum.getStatus()) {
             case STARTED:
@@ -238,16 +242,28 @@ public class ServiceFlowFragment extends BaseFragment
         }
     }
 
+
     private void sharedRide() {
         try {
+            if(DATUM!=null){
             String appName = getString(R.string.app_name) + " " + getString(R.string.share_ride);
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, shareRideText);
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName);
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-        } catch (Exception e) {
+
+            LatLng myloc= new LatLng((Double) RIDE_REQUEST.get(SRC_LAT), (Double) RIDE_REQUEST.get(SRC_LONG));
+
+            if(myloc!=null) {
+                shareRideText = getString(R.string.app_name) + ": "
+                        + DATUM.getUser().getFirstName() + " " + DATUM.getUser().getLastName() + " is traveling with "
+                        + DATUM.getServiceType().getName() + ". and the current location "
+                        + "http://maps.google.com/maps?saddr=" + myloc.latitude + "," + myloc.longitude + "&daddr=" + DATUM.getDLatitude() + "," + DATUM.getDLongitude() + "";
+                sendIntent.putExtra(Intent.EXTRA_TEXT, shareRideText);
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        } }
+        catch (Exception e) {
             Toast.makeText(baseActivity(), "applications not found!", Toast.LENGTH_SHORT).show();
         }
     }

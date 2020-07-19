@@ -110,12 +110,8 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.trip_help_menu, menu);
-        return true;
-    }
 
+/*
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem disputeMenuItem = menu.findItem(R.id.action_dispute);
@@ -128,8 +124,9 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
         else lostMenuItem.setTitle(getString(R.string.lost_item));
 
         return true;
-    }
+    }*/
 
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -159,6 +156,7 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
                 return super.onOptionsItemSelected(item);
         }
     }
+*/
 
     @SuppressLint("SetTextI18n")
     @Override

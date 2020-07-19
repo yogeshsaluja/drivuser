@@ -40,9 +40,12 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="20dp"
+            android:layout_width="15dp"
             android:layout_gravity="right|bottom"
-            android:layout_height="20dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="6dp"
+               android:tint="@color/blue_grey"
             app:srcCompat="@android:drawable/ic_dialog_info" />
 
     </FrameLayout>

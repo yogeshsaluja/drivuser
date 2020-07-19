@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="onclickexpressuser/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" filepath="$PROJECT_DIR$/.idea/modules/braintreepayment/braintreepayment.iml" group="onclickexpressuser/braintreepayment" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" filepath="$PROJECT_DIR$/.idea/modules/nativechekoutpaypal/nativechekoutpaypal.iml" group="onclickexpressuser/nativechekoutpaypal" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/onclickexpressuser.iml" filepath="$PROJECT_DIR$/.idea/modules/onclickexpressuser.iml" group="onclickexpressuser" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" filepath="$PROJECT_DIR$/.idea/modules/paytmpayment/paytmpayment.iml" group="onclickexpressuser/paytmpayment" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" filepath="$PROJECT_DIR$/.idea/modules/stripepayment/stripepayment.iml" group="onclickexpressuser/stripepayment" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="onclickexpressuser/app" />
+      <module fileurl="file://$PROJECT_DIR$/braintreepayment/braintreepayment.iml" filepath="$PROJECT_DIR$/braintreepayment/braintreepayment.iml" group="onclickexpressuser/braintreepayment" />
+      <module fileurl="file://$PROJECT_DIR$/nativechekoutpaypal/nativechekoutpaypal.iml" filepath="$PROJECT_DIR$/nativechekoutpaypal/nativechekoutpaypal.iml" group="onclickexpressuser/nativechekoutpaypal" />
+      <module fileurl="file://$PROJECT_DIR$/onclickexpressuser.iml" filepath="$PROJECT_DIR$/onclickexpressuser.iml" group="onclickexpressuser" />
+      <module fileurl="file://$PROJECT_DIR$/paytmpayment/paytmpayment.iml" filepath="$PROJECT_DIR$/paytmpayment/paytmpayment.iml" group="onclickexpressuser/paytmpayment" />
+      <module fileurl="file://$PROJECT_DIR$/stripepayment/stripepayment.iml" filepath="$PROJECT_DIR$/stripepayment/stripepayment.iml" group="onclickexpressuser/stripepayment" />
     </modules>
   </component>
 </project>
