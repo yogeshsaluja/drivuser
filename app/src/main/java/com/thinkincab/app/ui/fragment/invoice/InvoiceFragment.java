@@ -74,7 +74,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
     Button done;
 
     @BindView(R.id.main)
-    TextView main;
+    LinearLayout main;
     @BindView(R.id.booking_id)
     TextView bookingId;
     @BindView(R.id.text_provider_name)
