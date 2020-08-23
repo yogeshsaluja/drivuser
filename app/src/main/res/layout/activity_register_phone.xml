@@ -3,10 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/newlogin"
-    tools:context="com.thinkincab.app.ui.activity.register.RegisterPhoneActivity">
+    android:layout_height="match_parent">
 
+    <View
+        android:background="@color/colorPrimary"
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:background="@color/white"
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/clanpro_narrnews"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="0dp"
+        android:text="@string/phone_verification"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/l_mobile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65999997" />
+
+    <RelativeLayout
+        android:id="@+id/l_mobile"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:background="@drawable/shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="0dp"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/enter_phone_number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorSecondaryText" />
+
+
+        <EditText
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+
+            android:hint="Enter mobile number"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_below="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@color/grey_material"
+            android:gravity="center" />
+
+
+
+    </RelativeLayout>
     <ImageView
         android:id="@+id/image"
         android:layout_width="@dimen/_150sdp"
@@ -44,86 +130,42 @@
         app:layout_constraintStart_toStartOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/tv_quick" />
 
-    <LinearLayout
-        android:id="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/backgroud_shape_rec"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/_5sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65999997"
-        tools:layout_editor_absoluteX="13dp">
 
-        <ImageView
-            android:id="@+id/countryImage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:src="@drawable/flag_lk" />
-
-        <TextView
-            android:id="@+id/countryNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="@dimen/_5sdp"
-            android:text="+94"
-            android:textColor="@color/colorPrimaryText" />
-
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:background="@color/grey_material"
-            android:gravity="center" />
-
-        <EditText
-            android:id="@+id/number"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="center|left"
-            android:hint="Enter mobile number"
-            android:inputType="phone"
-            android:paddingLeft="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </LinearLayout>
-
-    <Button
+    <TextView
         android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@color/black"
+        android:background="@drawable/shape_button_grad"
         android:drawableTint="@color/white"
-        android:padding="@dimen/_10sdp"
-        android:text="Login/SignUp "
+
+        android:text="New User "
 
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/input"
-        app:layout_constraintStart_toStartOf="@+id/input"
-        app:layout_constraintTop_toBottomOf="@+id/input" />
+        app:layout_constraintStart_toStartOf="@+id/l_mobile"
+        app:layout_constraintTop_toBottomOf="@+id/l_mobile" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:background="@mipmap/ic_launcher_foreground"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+    <TextView
+        android:id="@+id/bt_login"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_5sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/shape_button_grad"
+        android:drawableTint="@color/white"
+
+        android:text="Sign in"
+
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/l_mobile"
+        app:layout_constraintTop_toBottomOf="@+id/l_mobile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

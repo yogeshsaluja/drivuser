@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#FF0011FF</color>
+    <color name="colorPrimary">#23E5DB</color>
     <color name="colorPrimaryDark">#FF0011FF</color>
     <color name="colorAccent">#888888</color>
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#888888</color>
     <color name="window_background">#F7F7F8</color>
+    <color name="ripple_color">#13aee7</color>
 
     <color name="white">#FFFFFF</color>
     <color name="blue">#2B65EC</color>

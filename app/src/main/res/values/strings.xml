@@ -339,4 +339,6 @@
     <string name="otp_sent_on_your_number_please_verify">Otp Sent on your number, Please verify</string>
     <string name="provider">Provider</string>
     <string name="driver">Driver</string>
+    <string name="phone_verification">Phone Verification</string>
+    <string name="enter_phone_number">Enter phone verification</string>
 </resources>

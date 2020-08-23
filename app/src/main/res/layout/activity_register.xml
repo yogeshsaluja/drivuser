@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".ui.activity.register.RegisterActivity">
 
@@ -22,6 +23,7 @@
             android:padding="20dp">
 
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/clanpro_narrnews"
@@ -30,20 +32,27 @@
                 android:textSize="@dimen/text_16" />
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:orientation="vertical">
 
                 <TextView
+
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:text="@string/email"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_14" />
 
                 <EditText
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/shape_edit"
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,6 +85,10 @@
                         android:textSize="@dimen/text_14" />
 
                     <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/shape_edit"
+                        android:layout_marginTop="@dimen/_5sdp"
+
                         android:id="@+id/first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -101,6 +114,10 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/shape_edit"
+                        android:layout_marginTop="@dimen/_5sdp"
+
                         android:id="@+id/last_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,6 +153,7 @@
 
 
                     <ImageView
+                        android:visibility="gone"
                         android:id="@+id/countryImage"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
@@ -144,6 +162,7 @@
                         android:src="@drawable/flag_lk" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/countryNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -155,6 +174,9 @@
                         android:textSize="@dimen/_15sdp" />
 
                     <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/shape_edit"
+
                         android:id="@+id/phoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -164,9 +186,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLines="1"
-                        android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp" />
+                         android:textSize="@dimen/_15sdp" />
                 </RelativeLayout>
 
 
@@ -288,18 +308,21 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/next"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        android:background="@drawable/shape_button_grad"
+        android:text="Next"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.63"
         app:srcCompat="@drawable/ic_right" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

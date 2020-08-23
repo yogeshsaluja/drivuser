@@ -31,7 +31,7 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
     @BindView(R.id.number)
     EditText phone;
     @BindView(R.id.submit)
-    Button submit;
+    TextView submit;
     private String countryDialCode = "+60";
     private CountryPicker mCountryPicker;
     @BindView(R.id.countryImage)

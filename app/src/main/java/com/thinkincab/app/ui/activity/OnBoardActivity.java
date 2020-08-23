@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
+import com.thinkincab.app.common.swipe_button.OnStateChangeListener;
+import com.thinkincab.app.common.swipe_button.SwipeButton;
 import com.thinkincab.app.ui.activity.login.EmailActivity;
 import com.thinkincab.app.ui.activity.register.RegisterActivity;
 import com.thinkincab.app.data.network.model.WalkThrough;
@@ -37,6 +39,10 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
     private MyViewPagerAdapter adapter;
     private int dotsCount;
     private ImageView[] dots;
+    @BindView(R.id.swipeBtnSignin)
+    SwipeButton swipeBtnSignIn;
+    @BindView(R.id.swipeBtnSignup)
+    SwipeButton swipeBtnSignUp;
 
     @Override
     public int getLayoutId() {
@@ -60,7 +66,29 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
         viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(this);
         addBottomDots();
+        swipeBtnSignIn.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
 
+                if (active){
+                    swipeBtnSignIn.toggleState();
+                    startActivity(new Intent(OnBoardActivity.this, RegisterPhoneActivity.class));
+
+                }
+
+            }
+        });
+        swipeBtnSignUp.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                if (active){
+                    swipeBtnSignUp.toggleState();
+                    startActivity(new Intent(OnBoardActivity.this, RegisterActivity.class));
+
+                }
+
+            }
+        });
     }
 
     @Override
@@ -106,20 +134,6 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
         dots[0].setImageDrawable(getResources().getDrawable(R.drawable.ic_dot_selected));
     }
 
-    @OnClick({R.id.sign_in, R.id.sign_up, R.id.social_login})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.sign_in:
-                startActivity(new Intent(this, RegisterPhoneActivity.class));
-                break;
-            case R.id.sign_up:
-                startActivity(new Intent(this, RegisterPhoneActivity.class));
-                break;
-            case R.id.social_login:
-                startActivity(new Intent(this, SocialLoginActivity.class));
-                break;
-        }
-    }
 
 
     public class MyViewPagerAdapter extends PagerAdapter {

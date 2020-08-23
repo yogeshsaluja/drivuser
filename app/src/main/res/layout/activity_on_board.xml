@@ -1,65 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activity.OnBoardActivity">
+    android:background="@color/white"
+    android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22000003"
+        app:srcCompat="@drawable/drive" />
     <LinearLayout
+        android:id="@+id/layout"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="@dimen/_120sdp"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
 
         <LinearLayout
             android:id="@+id/layoutDots"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="8dp" />
+            android:padding="8dp"
+            tools:ignore="ObsoleteLayoutParam" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="65dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:srcCompat="@drawable/ic_car_horizental" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Trabaja con driv puerta a puerta \n
+         o por horas"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
 
-            <Button
-                android:id="@+id/sign_in"
-                style="@style/MyButton.Primary"
-                android:text="@string/sign_in" />
+    <com.thinkincab.app.common.swipe_button.SwipeButton
+        android:id="@+id/swipeBtnSignin"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_60sdp"
+        app:button_background="@drawable/shape_button"
+        an_bottom_padding="25dp"
+        app:button_left_padding="25dp"
+        app:button_right_padding="25dp"
+        app:button_top_padding="25dp"
+        app:button_trail_enabled="false"
+        app:initial_state="disabled"
+        app:inner_text="@string/sign_in"
+        app:inner_text_background="@drawable/shape_dark"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_color="@color/white"
+        app:inner_text_size="15sp"
+        app:inner_text_top_padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+    <com.thinkincab.app.common.swipe_button.SwipeButton
+        android:id="@+id/swipeBtnSignup"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:button_background="@drawable/shape_button"
+        app:button_bottom_padding="25dp"
+        app:button_left_padding="25dp"
+        app:button_right_padding="25dp"
+        app:button_top_padding="25dp"
+        app:button_trail_enabled="false"
+        app:initial_state="disabled"
+        app:inner_text="@string/sign_up"
+        app:inner_text_background="@drawable/shape_dark"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_color="@color/white"
+        app:inner_text_size="15sp"
+        app:inner_text_top_padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipeBtnSignin" />
 
-            <Button
-                android:id="@+id/sign_up"
-                style="@style/MyButton.Accent"
-                android:text="@string/sign_up" />
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="80dp"
+        android:background="#000000"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
 
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/social_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="12dp"
-            android:text="@string/or_connect_with_social"
-            android:textColor="@color/colorPrimary" />
-
-    </LinearLayout>
-
-</LinearLayout>
