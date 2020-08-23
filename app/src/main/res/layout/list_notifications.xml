@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -8,30 +10,27 @@
 
     <ImageView
         android:id="@+id/ivNotificationImg"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="5dp"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_document_placeholder" />
 
     <TextView
         android:id="@+id/ivNotificationDesc"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_toEndOf="@+id/ivNotificationImg"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/app_name"
-        android:textColor="@color/colorPrimaryText" />
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/ivNotificationImg"
+        app:layout_constraintStart_toEndOf="@+id/ivNotificationImg"
+        app:layout_constraintTop_toTopOf="@+id/ivNotificationImg" />
 
-    <TextView
-        android:id="@+id/tvShowMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivNotificationDesc"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:gravity="end"
-        android:text="@string/show_more"
-        android:textColor="@color/colorPrimary" />
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

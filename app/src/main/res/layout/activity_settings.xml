@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,117 +26,145 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_18" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:background="@drawable/border_bottom_stroke"
+                app:layout_constraintBottom_toTopOf="@+id/textView25"
+                app:layout_constraintTop_toTopOf="@+id/textView25">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="16dp"
+                    android:drawableStart="@drawable/ic_home"
+                    android:drawablePadding="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/clanpro_narrnews"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:text="@string/home"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintBottom_toTopOf="@+id/home_address"
+                    app:layout_constraintEnd_toStartOf="@+id/home_status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_home"
-                        android:drawablePadding="8dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/clanpro_narrnews"
-                        android:gravity="center_vertical"
-                        android:padding="8dp"
-                        android:singleLine="true"
-                        android:text="@string/home"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_14" />
+                <TextView
+                    android:id="@+id/home_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/clanpro_narrnews"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:text="@string/add"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView25"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/home_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/clanpro_narrnews"
-                        android:gravity="center_vertical"
-                        android:padding="8dp"
-                        android:singleLine="true"
-                        android:text="@string/add"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_14" />
-
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/home_address"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="9dp"
                     android:ellipsize="end"
                     android:maxLines="2"
+
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_14" />
+                    android:textSize="@dimen/_6ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView25"
+                    tools:text="Paso lateral, Quito, Ecuador" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:paddingBottom="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/border_bottom_stroke">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="16dp"
+                    android:drawableStart="@drawable/ic_work"
+                    android:drawablePadding="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/clanpro_narrnews"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:text="@string/work"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintEnd_toStartOf="@+id/work_status"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/ic_work"
-                        android:drawablePadding="8dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/clanpro_narrnews"
-                        android:gravity="center_vertical"
-                        android:padding="8dp"
-                        android:singleLine="true"
-                        android:text="@string/work"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_14" />
+                <TextView
+                    android:id="@+id/work_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/clanpro_narrnews"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:text="@string/add"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/text_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView26"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/work_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/clanpro_narrnews"
-                        android:gravity="center_vertical"
-                        android:padding="8dp"
-                        android:singleLine="true"
-                        android:text="@string/add"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorPrimaryText"
-                        android:textSize="@dimen/text_14" />
-
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/work_address"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_14" />
+                    android:textSize="@dimen/text_14"
+                    android:textSize="@dimen/_6ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView26"
+                    app:layout_constraintTop_toBottomOf="@+id/textView26"
+                    tools:text="Paso lateral, Quito, Ecuador" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

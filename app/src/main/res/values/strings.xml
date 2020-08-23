@@ -341,4 +341,9 @@
     <string name="driver">Driver</string>
     <string name="phone_verification">Phone Verification</string>
     <string name="enter_phone_number">Enter phone verification</string>
+    <string name="not_code">Not code</string>
+    <string name="enterverifcation">Enter verification</string>
+    <string name="enter_verification_code">Enter verification code</string>
+    <string name="accept">Accept</string>
+    <string name="add_time">Add time</string>
 </resources>

@@ -12,6 +12,13 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="18dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/img_help" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,13 +27,6 @@
             android:text="@string/support"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="18dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/img_help" />
 
         <LinearLayout
             android:layout_width="wrap_content"
