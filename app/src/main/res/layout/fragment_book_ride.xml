@@ -1,253 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/llEstimatedFareContainer"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#EEE"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:text="@string/pick_up"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_7ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/text_pickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        tools:text="AV. La prensa y Juan montalvo" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_pickup" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="@string/dropoff"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_7ssp"
+        app:layout_constraintStart_toStartOf="@+id/text_pickup"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <EditText
+        android:id="@+id/ed_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="@+id/text_pickup"
+        app:layout_constraintTop_toBottomOf="@+id/textView29"
+        tools:text="A donde vamos" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_destination" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/favorite_location"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_marginEnd="@dimen/_45sdp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/_18sdp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="@+id/divider4"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/divider4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider4"
+        app:layout_constraintTop_toTopOf="@+id/divider4"
+        app:srcCompat="@drawable/ic_marker" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_marker"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/divider5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/divider5"
+        app:layout_constraintTop_toTopOf="@+id/divider5" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/ed_destination"
+        app:layout_constraintTop_toBottomOf="@+id/textView30"
+        app:srcCompat="@drawable/ic_gift_card" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:srcCompat="@drawable/ic_gift_card" />
+
+    <TextView
+        android:id="@+id/text_fav1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12"
+        tools:text="casa" />
+
+    <TextView
+        android:id="@+id/text_fav2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        tools:text="Trabajo" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="0dp"
+
+        android:layout_height="7dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_fav2" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/select_category"
+
+        android:textColor="@color/pink"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+    <View
+
+        android:id="@+id/divider8"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="@dimen/_90sdp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7"
+        app:layout_goneMarginTop="@dimen/_90sdp" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:text="@string/rent_by_hours"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="15dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="8dp">
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/divider8"
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#EEE"
-            android:fontFamily="@font/clanpro_medium"
-            android:gravity="start"
-            android:text="@string/estimated_fare"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_14" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7"
+        tools:listitem="@layout/row_time" />
 
-        <FrameLayout
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_transparent">
-
-            <ImageView
-                android:id="@+id/estimated_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-
-                app:srcCompat="@drawable/ic_car" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tvEstimatedFare"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#EEE"
-            android:fontFamily="@font/clanpro_medium"
-            android:gravity="end"
-            android:textAllCaps="false"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_12" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grp_fav"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:visibility="visible"
+        app:constraint_referenced_ids="divider6,textView30,text_fav2,divider3,text_fav1,imageView13,imageView12" />
 
-        <Button
-            android:id="@+id/button3"
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/grp_rent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="divider7,recyclerView,textView28,divider8" />
 
-            style="@style/MyButton.Primary"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        tools:itemCount="5"
+        tools:listitem="@layout/row_car" />
 
-            android:layout_weight="1"
-            android:text="Book For Other" />
+    <TextView
+        android:id="@+id/tv_request"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="start"
-                android:text="@string/coupon"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:id="@+id/view_coupons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button_round_accent"
-                android:fontFamily="@font/clanpro_medium"
-                android:gravity="end"
-                android:padding="@dimen/_5sdp"
-                android:text="@string/view_coupon"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_12" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:text="@string/estimated_payment"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:id="@+id/estimated_payment_mode"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_weight="3"
-                android:ellipsize="end"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:maxLines="1"
-                android:text="@string/cash"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:id="@+id/tv_change"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.2"
-                android:fontFamily="@font/clanpro_medium"
-                android:gravity="end"
-                android:padding="@dimen/_5sdp"
-                android:text="@string/change"
-                android:textAllCaps="true"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_12" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:orientation="horizontal"
-            android:paddingStart="-7dp"
-            android:paddingEnd="0dp">
-
-            <CheckBox
-                android:id="@+id/use_wallet"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:ellipsize="end"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="@string/use_wallet_amount"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:id="@+id/wallet_balance"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="end"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_12" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:orientation="horizontal"
-            android:paddingStart="-7dp"
-            android:paddingEnd="0dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="12dp"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="end"
-                android:text="MALE   "
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_12" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text=" FEMALE"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:gravity="end"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_12" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!--<Button-->
-                <!--android:id="@+id/schedule_ride"-->
-                <!--style="@style/MyButton.Primary"-->
-                <!--android:text="@string/schedule_ride" />-->
-
-            <Button
-                android:id="@+id/buttonschdeule"
-                style="@style/MyButton.Primary"
-                android:layout_weight="1"
-                android:text="@string/schedule_a_ride" />
-
-            <Button
-                android:id="@+id/ride_now"
-                android:layout_weight="1"
-                style="@style/MyButton.Primary"
-                android:text="@string/ride_now" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+        android:background="@drawable/button_round_gray"
+        android:text="@string/request_offers"
+        android:textSize="@dimen/_18ssp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
