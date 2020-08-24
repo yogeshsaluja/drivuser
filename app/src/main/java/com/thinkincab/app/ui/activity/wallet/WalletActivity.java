@@ -157,7 +157,7 @@ public class WalletActivity extends BaseActivity implements WalletIView {
         Intent intent = new Intent(this, PHMainActivity.class);
         intent.putExtra(PHConstants.INTENT_EXTRA_DATA, req);
         PHConfigs.setBaseUrl(PHConfigs.SANDBOX_URL);
-        startActivityForResult(intent, PAYHERE_REQUEST); //unique request ID like private final static int PAYHERE_REQUEST = 11010;
+        startActivityForResult(intent, PAYHERE_REQUEST); //unique hours ID like private final static int PAYHERE_REQUEST = 11010;
     }
 
 

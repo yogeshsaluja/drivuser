@@ -24,7 +24,7 @@ android {
         applicationIdSuffix '.app'
         vectorDrawables.useSupportLibrary = true
 
-        resValue "string", "app_name", "oneexpress"
+        resValue "string", "app_name", "Driv"
         resValue "string", "google_map_key", "AIzaSyDgpFmgv4ibu_txD_rbCboIkD86D044Kjs"
         resValue "string", "FACEBOOK_APP_ID", "2207585522827752"
         resValue "string", "ACCOUNT_KIT_CLIENT_TOKEN", "539f9500a16dda53d26461f5cb002188"
@@ -32,9 +32,9 @@ android {
         resValue "string", "google_signin_server_client_id", "57912751053-p7r9pk8g6vc1bki29l5vavquj7ogn1b3.apps.googleusercontent.com"
 
         //Demo credentials
-        buildConfigField "String", "BASE_URL", '"http://oneexpress.net/"'
-        buildConfigField "String", "BASE_IMAGE_URL", '"http://oneexpress.net/storage/"'
-        buildConfigField "String", "TERMS_CONDITIONS", '"http://oneexpress.net/privacy"'
+        buildConfigField "String", "BASE_URL", '"http://phplaravel-341895-1415523.cloudwaysapps.com/"'
+        buildConfigField "String", "BASE_IMAGE_URL", '"http://phplaravel-341895-1415523.cloudwaysapps.com/storage/"'
+        buildConfigField "String", "TERMS_CONDITIONS", '"http://phplaravel-341895-1415523.cloudwaysapps.com/privacy"'
 
 
         buildConfigField "String", "DRIVER_PACKAGE", '"com.thinkincab.driver"'
@@ -109,6 +109,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     //      DI (Butter knife)
     implementation 'com.jakewharton:butterknife:10.0.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     //      Image processing (Glide, Lottie, circular image & Image picker)
     implementation 'com.github.bumptech.glide:glide:4.8.0'

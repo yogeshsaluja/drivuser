@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_60sdp"
         app:button_background="@drawable/shape_button"
-        an_bottom_padding="25dp"
+        app:button_bottom_padding="25dp"
         app:button_left_padding="25dp"
         app:button_right_padding="25dp"
         app:button_top_padding="25dp"

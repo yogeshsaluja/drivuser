@@ -108,7 +108,7 @@ public interface ApiInterface {
     @POST("api/user/change/password")
     Observable<Object> changePassword(@FieldMap HashMap<String, Object> params);
 
-    @GET("api/user/request/check")
+    @GET("api/user/hours/check")
     Observable<DataResponse> checkStatus();
 
     @GET("api/user/show/providers")
@@ -131,7 +131,7 @@ public interface ApiInterface {
     Call<EstimateFare> estimateFare(@QueryMap Map<String, Object> params);
 
     @FormUrlEncoded
-    @POST("api/user/send/request")
+    @POST("api/user/send/hours")
     Observable<Object> sendRequest(@FieldMap HashMap<String, Object> params);
 
 
@@ -143,11 +143,11 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
-    @POST("api/user/cancel/request")
+    @POST("api/user/cancel/hours")
     Observable<Object> cancelRequest(@FieldMap HashMap<String, Object> params);
 
     @FormUrlEncoded
-    @POST("/api/user/update/request")
+    @POST("/api/user/update/hours")
     Observable<Object> updateRequest(@FieldMap HashMap<String, Object> params);
 
     @FormUrlEncoded

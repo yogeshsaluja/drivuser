@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +23,7 @@ import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.ForgotResponse;
 import com.thinkincab.app.data.network.model.Token;
+import com.thinkincab.app.ui.activity.home.HomePageActivity;
 import com.thinkincab.app.ui.activity.login.LoginIView;
 import com.thinkincab.app.ui.activity.login.loginPresenter;
 import com.thinkincab.app.ui.activity.main.MainActivity;
@@ -38,7 +40,7 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.next)
-    FloatingActionButton next;
+    TextView next;
     private String email;
 
     private loginPresenter<OtpVerifyActivity> presenter = new loginPresenter();
@@ -132,7 +134,7 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
         SharedHelper.putKey(this, "refresh_token", token.getRefreshToken());
         SharedHelper.putKey(this, "logged_in", true);
         finishAffinity();
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, HomePageActivity.class));
 
     }
 

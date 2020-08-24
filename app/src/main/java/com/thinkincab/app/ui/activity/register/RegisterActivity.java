@@ -30,6 +30,7 @@ import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.data.SharedHelper;
 import com.thinkincab.app.data.network.model.RegisterResponse;
 import com.thinkincab.app.data.network.model.SettingsResponse;
+import com.thinkincab.app.ui.activity.home.HomePageActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.countrypicker.Country;
 import com.thinkincab.app.ui.countrypicker.CountryPicker;
@@ -266,7 +267,7 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
         SharedHelper.putKey(this, "access_token", "Bearer " + response.getAccessToken());
         SharedHelper.putKey(this, "logged_in", true);
         finishAffinity();
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, HomePageActivity.class));
     }
 
     @Override
@@ -334,6 +335,9 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
     @Override
     public void onSuccess(SettingsResponse response) {
         lnrReferralCode.setVisibility(response.getReferral().getReferral().equalsIgnoreCase("1") ? View.VISIBLE : View.GONE);
+
+
+
     }
 }
 

@@ -80,7 +80,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
             ivNotificationDesc = view.findViewById(R.id.ivNotificationDesc);
             ivNotificationImg = view.findViewById(R.id.ivNotificationImg);
-            tvShowMore = view.findViewById(R.id.tvShowMore);
+            //tvShowMore = view.findViewById(R.id.tvShowMore);
         }
     }
 }

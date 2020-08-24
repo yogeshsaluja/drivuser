@@ -169,7 +169,7 @@ public class LocationPickActivity extends BaseActivity
         private boolean userIsTyping;
 
         public void afterTextChanged(Editable editable) {
-            // se o usuario esta digitando ele faz o request, caso contrario ele não faz
+            // se o usuario esta digitando ele faz o hours, caso contrario ele não faz
             //requestPlacesByCharactersLimit(editable, userIsTyping);
             requestPlacesByDelay(editable);
         }
@@ -404,7 +404,7 @@ public class LocationPickActivity extends BaseActivity
      */
     private void fetchPlace(String placeId, OnSuccessListener<FetchPlaceResponse> response) {
 
-        // Construct a request object, passing the place ID and fields array.
+        // Construct a hours object, passing the place ID and fields array.
         FetchPlaceRequest request = FetchPlaceRequest
                 .builder(placeId, filterType)
                 .setSessionToken(sessionToken)

@@ -93,7 +93,7 @@ public class PayuMoneyActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result Code is -1 send from Payumoney activity
-        Log.d(TAG, "request code " + requestCode + " resultcode " + resultCode);
+        Log.d(TAG, "hours code " + requestCode + " resultcode " + resultCode);
         Intent intent = new Intent();
         intent.putExtra("payu_txnid", payu_txnid);
         intent.putExtra("payu_orderid", payu_orderid);

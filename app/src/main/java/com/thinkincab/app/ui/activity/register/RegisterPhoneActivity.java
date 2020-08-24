@@ -32,12 +32,10 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
     EditText phone;
     @BindView(R.id.submit)
     TextView submit;
-    private String countryDialCode = "+60";
-    private CountryPicker mCountryPicker;
-    @BindView(R.id.countryImage)
-    ImageView countryImage;
-    @BindView(R.id.countryNumber)
-    TextView countryNumber;
+    @BindView(R.id.bt_login)
+    TextView bt_login;
+
+     private CountryPicker mCountryPicker;
 
     CustomDialog dialog;
     @Override
@@ -45,43 +43,16 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
         return R.layout.activity_register_phone;
     }
 
-    private void setListener() {
-        mCountryPicker.setListener((name, code, dialCode, flagDrawableResID) -> {
-            countryNumber.setText(dialCode);
-            countryDialCode = dialCode;
-            countryImage.setImageResource(flagDrawableResID);
-            mCountryPicker.dismiss();
-        });
-
-       // countryImage.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
-
-       // countryNumber.setOnClickListener(v -> mCountryPicker.show(getSupportFragmentManager(), "COUNTRY_PICKER"));
-
-      //  getUserCountryInfo();
-    }
-    private void getUserCountryInfo() {
-        Country country = getDeviceCountry(RegisterPhoneActivity.this);
-        countryImage.setImageResource(country.getFlag());
-        countryNumber.setText(country.getDialCode());
-        countryDialCode = country.getDialCode();
-    }
 
 
-    private void setCountryList() {
-        mCountryPicker = CountryPicker.newInstance("Select Country");
-        List<Country> countryList = Country.getAllCountries();
-        Collections.sort(countryList, (s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName()));
-        mCountryPicker.setCountriesList(countryList);
 
-        setListener();
-    }
 
     @Override
     protected void initView() {
         ButterKnife.bind(this);
         registerPresenter.attachView(this);
         dialog=new CustomDialog(this);
-        setCountryList();
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

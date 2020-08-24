@@ -42,6 +42,7 @@ import com.thinkincab.app.data.network.model.CheckVersion;
 import com.thinkincab.app.data.network.model.Service;
 import com.thinkincab.app.data.network.model.User;
 import com.thinkincab.app.ui.activity.OnBoardActivity;
+import com.thinkincab.app.ui.activity.home.HomePageActivity;
 import com.thinkincab.app.ui.activity.login.EmailActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.register.RegisterPhoneActivity;
@@ -66,9 +67,6 @@ public class SplashActivity extends BaseActivity implements SplashIView,
     public int getLayoutId() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
-
 
         return R.layout.activity_splash;
 
@@ -184,7 +182,7 @@ public class SplashActivity extends BaseActivity implements SplashIView,
         if (SharedHelper.getBoolKey(SplashActivity.this, "logged_in", false))
             presenter.profile();
         else {
-            Intent nextScreen = new Intent(SplashActivity.this, RegisterPhoneActivity.class);
+            Intent nextScreen = new Intent(SplashActivity.this, OnBoardActivity.class);
             nextScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(nextScreen);
             finishAffinity();
@@ -210,7 +208,7 @@ public class SplashActivity extends BaseActivity implements SplashIView,
         putKey(this, "referral_code", user.getReferral_unique_id());
         putKey(this, "referral_count", user.getReferral_count());
         MvpApplication.showOTP = (user.getRide_otp() != null) && (user.getRide_otp().equals("1"));
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, HomePageActivity.class));
         finish();
     }
 

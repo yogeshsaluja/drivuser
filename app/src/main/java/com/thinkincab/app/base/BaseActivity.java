@@ -554,7 +554,7 @@ public abstract class BaseActivity extends AppCompatActivity
         MvpApplication.RIDE_REQUEST.clear();
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
-        startActivity(new Intent(this, RegisterPhoneActivity.class));
+        startActivity(new Intent(this, OnBoardActivity.class));
         finishAffinity();
     }
 

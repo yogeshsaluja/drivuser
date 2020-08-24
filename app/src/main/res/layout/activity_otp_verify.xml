@@ -137,7 +137,7 @@
         android:src="@drawable/shape_button_grad"
         android:text="@string/continue_app"
         android:textColor="@color/white"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -156,7 +156,7 @@
         android:text="@string/not_code"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="@+id/next"
 
         app:layout_constraintEnd_toStartOf="@+id/next"
