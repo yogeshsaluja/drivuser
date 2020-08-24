@@ -346,4 +346,10 @@
     <string name="enter_verification_code">Enter verification code</string>
     <string name="accept">Accept</string>
     <string name="add_time">Add time</string>
+    <string name="pick_up">Pick up</string>
+    <string name="dropoff">Dropoff</string>
+    <string name="favorite_location">Favorite Location</string>
+    <string name="select_category">Select Category</string>
+    <string name="rent_by_hours">Rent by hours</string>
+    <string name="request_offers">Request offers</string>
 </resources>
