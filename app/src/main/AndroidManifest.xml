@@ -269,7 +269,8 @@
         <activity
             android:name=".ui.activity.register.RegisterPhoneActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.register.OtpVerifyActivity" />
+        <activity android:name=".ui.activity.register.OtpVerifyActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

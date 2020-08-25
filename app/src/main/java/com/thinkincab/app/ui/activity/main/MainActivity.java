@@ -236,7 +236,7 @@ public class MainActivity extends BaseActivity implements
     private LatLng start = null, end = null;
     private Location mLastKnownLocation;
 
-    private DataResponse checkStatusResponse = new DataResponse();
+    public DataResponse checkStatusResponse = new DataResponse();
     private UserAddress home = null, work = null;
 
     private Runnable r;

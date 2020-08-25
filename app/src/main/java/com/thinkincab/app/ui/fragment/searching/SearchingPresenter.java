@@ -20,4 +20,17 @@ public class SearchingPresenter<V extends SearchingIView> extends BasePresenter<
                 .subscribeOn(Schedulers.io())
                 .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
     }
+
+    @Override
+    public void acceptRequest(@FieldMap HashMap<String, Object> params) {
+        getCompositeDisposable().add(APIClient
+                .getAPIClient()
+                .acceptRequest(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+    }
+
+
+
 }

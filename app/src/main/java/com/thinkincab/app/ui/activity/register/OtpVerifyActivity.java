@@ -54,9 +54,9 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
     protected void initView() {
         ButterKnife.bind(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      /*  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);*/
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -108,6 +108,7 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
             HashMap<String, Object> map = new HashMap<>();
             map.put("grant_type", "password");
             map.put("username", MvpApplication.Otpresponse.getUser().getEmail());
+
             map.put("password",  MvpApplication.Otpresponse.getUser().getMobile());
             map.put("client_secret", BuildConfig.CLIENT_SECRET);
             map.put("client_id", BuildConfig.CLIENT_ID);

@@ -42,6 +42,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -78,8 +79,9 @@ public interface ApiInterface {
     Observable<Token> loginFacebook(@FieldMap HashMap<String, Object> params);
 
     @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     @POST("api/user/oauth/token")
-    Observable<Token> login(@FieldMap HashMap<String, Object> params);
+    Observable<Token> login( @FieldMap HashMap<String, Object> params);
 
     @FormUrlEncoded
     @POST("/oauth/token")
@@ -145,6 +147,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("api/user/cancel/request")
     Observable<Object> cancelRequest(@FieldMap HashMap<String, Object> params);
+    @FormUrlEncoded
+    @POST("/acceptbid")
+    Observable<Object> acceptRequest(@FieldMap HashMap<String, Object> params);
+
+
 
     @FormUrlEncoded
     @POST("/api/user/update/request")

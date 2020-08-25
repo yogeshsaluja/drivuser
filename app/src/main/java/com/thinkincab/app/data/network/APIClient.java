@@ -61,9 +61,10 @@ public class APIClient {
         public Response intercept(@NonNull Chain chain) throws IOException {
             Request.Builder builder = chain.request().newBuilder();
             builder.addHeader("X-Requested-With", "XMLHttpRequest");
+
             builder.addHeader("Authorization",
                     SharedHelper.getKey(MvpApplication.getInstance(), "access_token", ""));
-            Log.d("TTT access_token", SharedHelper.getKey(MvpApplication.getInstance(), "access_token", ""));
+             Log.d("TTT access_token", SharedHelper.getKey(MvpApplication.getInstance(), "access_token", ""));
             return chain.proceed(builder.build());
         }
     }

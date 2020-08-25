@@ -11,6 +11,11 @@ public class DataResponse {
     @SerializedName("data")
     @Expose
     private List<Datum> data = new ArrayList<>();
+    @SerializedName("bids")
+    @Expose
+    private List<BidModel> bids = new ArrayList<>();
+
+
     @SerializedName("sos")
     @Expose
     private String sos;
@@ -150,5 +155,14 @@ public class DataResponse {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+
+    public List<BidModel> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<BidModel> bids) {
+        this.bids = bids;
     }
 }

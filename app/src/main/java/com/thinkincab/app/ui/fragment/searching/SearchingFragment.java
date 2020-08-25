@@ -6,17 +6,27 @@ import android.os.Bundle;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseBottomSheetDialogFragment;
+import com.thinkincab.app.data.network.model.DataResponse;
 import com.thinkincab.app.data.network.model.Datum;
 import com.thinkincab.app.ui.activity.main.MainActivity;
+import com.thinkincab.app.ui.adapter.BiddingAdapter;
 
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,31 +40,61 @@ import static com.thinkincab.app.common.Constants.Status.EMPTY;
 public class SearchingFragment extends BaseBottomSheetDialogFragment implements SearchingIView {
 
     private SearchingPresenter<SearchingFragment> presenter = new SearchingPresenter<>();
-
+    @BindView(R.id.rv_request)
+    RecyclerView bidding;
     public SearchingFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+       // setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_searching;
+        return R.layout.activity_offer;
     }
 
     @Override
     public void initView(View view) {
         setCancelable(false);
-        getDialog().setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-            View bottomSheetInternal = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            BottomSheetBehavior.from(bottomSheetInternal).setState(BottomSheetBehavior.STATE_EXPANDED);
-        });
+
         ButterKnife.bind(this, view);
         presenter.attachView(this);
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+                                      @Override
+                                      public void run() {
+
+                                          populateAdapter();
+                                        }
+                                  },
+                3*1000, 1000 * 1 );
+
+
+
+    }
+
+    private void populateAdapter() {
+        DataResponse dataResponse=((MainActivity) Objects.requireNonNull(getContext())).checkStatusResponse;
+        if (dataResponse!=null){
+            bidding.setAdapter(new BiddingAdapter(dataResponse.getBids(),this));
+
+        }
+    }
+
+    public void callAccept(Double amount,Integer id){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("request_id", DATUM.getId());
+
+        map.put("provider_id", id);
+        map.put("amount", amount);
+
+
+        presenter.acceptRequest(map);
     }
 
 
@@ -63,11 +103,11 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
         super.onDestroyView();
     }
 
-    @OnClick(R.id.cancel)
+   /* @OnClick(R.id.cancel)
     public void onViewClicked() {
         alertCancel();
     }
-
+*/
     private void alertCancel() {
         new AlertDialog.Builder(getContext())
                 .setMessage(R.string.are_sure_you_want_to_cancel_the_request)

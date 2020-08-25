@@ -11,4 +11,6 @@ import retrofit2.http.FieldMap;
  */
 public interface SearchingIPresenter<V extends SearchingIView> extends MvpPresenter<V> {
     void cancelRequest(@FieldMap HashMap<String, Object> params);
+    void acceptRequest(@FieldMap HashMap<String, Object> params);
+
 }
