@@ -101,6 +101,65 @@
         android:background="@color/white"
         android:clipToPadding="false"
         android:orientation="vertical">
+        <TextView
+            android:textSize="@dimen/_14ssp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Favorite Location" />
+
+        <LinearLayout
+            android:layout_margin="@dimen/_5sdp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                card_view:srcCompat="@drawable/ic_gift_card" />
+
+
+            <TextView
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_14ssp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center|left"
+                android:text="Casa" />
+
+        </LinearLayout>
+        <View
+            android:background=" #D7D7D7"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"/>
+        <LinearLayout
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                card_view:srcCompat="@drawable/ic_gift_card" />
+
+            <TextView
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_14ssp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center|left"
+                android:text="Trabajo" />
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/service_rv"
@@ -196,33 +255,42 @@
 
             <Button
                 android:id="@+id/get_pricing"
-                style="@style/MyButton.Primary"
-                android:fontFamily="@font/clanpro_narrnews"
-                android:text="@string/get_pricing"
+                android:layout_height="@dimen/_30sdp"
+                android:visibility="gone"
+                android:background="@drawable/shape_rounded"
+                 android:fontFamily="@font/clanpro_narrnews"
+                android:text="@string/request_offers"
                 android:textAllCaps="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:layout_width="match_parent" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/schedule_ride"
                 style="@style/MyButton.Primary"
                 android:ellipsize="end"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text="@string/schedule_ride" />
 
             <Button
                 android:id="@+id/ride_now"
-                style="@style/MyButton.Accent"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/ride_now" />
+                android:layout_height="@dimen/_30sdp"
+                android:visibility="visible"
+                android:background="@drawable/shape_rounded"
+                android:fontFamily="@font/clanpro_narrnews"
+                android:text="@string/request_offers"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"  />
 
         </LinearLayout>
 

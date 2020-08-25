@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.stripe:stripe-android:8.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/a683552b26efc5a9f6f466dac618594e/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/f51d821e9cde7f5cd1c01a2aac0e6df5/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/a683552b26efc5a9f6f466dac618594e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/a683552b26efc5a9f6f466dac618594e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/f51d821e9cde7f5cd1c01a2aac0e6df5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-stripe-android-8.0.0.aar/f51d821e9cde7f5cd1c01a2aac0e6df5/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.stripe/stripe-android/8.0.0/2cd521ec02cd98a24ff3b1bd64d1b20fa464e569/stripe-android-8.0.0-javadoc.jar!/" />

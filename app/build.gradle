@@ -25,7 +25,7 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         resValue "string", "app_name", "Driv"
-        resValue "string", "google_map_key", "AIzaSyDgpFmgv4ibu_txD_rbCboIkD86D044Kjs"
+        resValue "string", "google_map_key", "AIzaSyCTqkLaD6R1dVRNs73HO0EtvYwpOH16Z6I"
         resValue "string", "FACEBOOK_APP_ID", "2207585522827752"
         resValue "string", "ACCOUNT_KIT_CLIENT_TOKEN", "539f9500a16dda53d26461f5cb002188"
         resValue "string", "default_notification_channel_id", "fcm_default_channel"

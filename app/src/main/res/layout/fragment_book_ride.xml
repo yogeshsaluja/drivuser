@@ -269,7 +269,7 @@
         tools:listitem="@layout/row_car" />
 
     <TextView
-        android:id="@+id/tv_request"
+        android:id="@+id/ride_now"
         android:layout_width="0dp"
         android:layout_height="@dimen/_28sdp"
         android:layout_marginStart="16dp"

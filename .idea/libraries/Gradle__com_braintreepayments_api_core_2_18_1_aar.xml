@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.braintreepayments.api:core:2.18.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-core-2.18.1.aar/06b75931a3fd05d205751a30ffba9098/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-core-2.18.1.aar/06b75931a3fd05d205751a30ffba9098/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-core-2.18.1.aar/0d8a4730322c709fbf955759fbd77709/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-core-2.18.1.aar/0d8a4730322c709fbf955759fbd77709/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.braintreepayments.api/core/2.18.1/b22632c920938db3687bf564e2f6d58d200cf4f6/core-2.18.1-javadoc.jar!/" />

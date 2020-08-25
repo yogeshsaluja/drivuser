@@ -3,46 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:id="@+id/item_view"
+
     android:paddingStart="@dimen/_5sdp"
     android:paddingEnd="@dimen/_5sdp"
     android:layout_height="wrap_content">
 
     <View
         android:id="@+id/imageView14"
-        android:layout_width="@dimen/_60sdp"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_100sdp"
-        android:background="@drawable/button_round_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="@dimen/_33sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginBottom="52dp"
-        android:background="@drawable/car_icon_2"
+        android:id="@+id/image"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_100sdp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-        app:layout_constraintEnd_toEndOf="@+id/imageView14"
-        app:layout_constraintStart_toStartOf="@+id/imageView14" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/estimated_fixed" />
 
     <TextView
-        android:id="@+id/text_no"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/estimated_fixed"
         android:layout_width="wrap_content"
+        android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/imageView15"
-        app:layout_constraintEnd_toEndOf="@+id/imageView15"
-        app:layout_constraintStart_toStartOf="@+id/imageView15"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="@+id/image"
+        app:layout_constraintStart_toStartOf="@+id/image"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="21" />
-
     <TextView
-        android:id="@+id/text_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/price"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textColor="@color/black"
         android:textSize="@dimen/_12ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
+        app:layout_constraintEnd_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        tools:text="Driv" />
+    <FrameLayout
+        android:id="@+id/frame_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
+        app:layout_constraintEnd_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+       />
+
+    <TextView
+        android:id="@+id/service_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView14"
         app:layout_constraintEnd_toEndOf="@+id/imageView14"
         app:layout_constraintStart_toStartOf="@+id/imageView14"

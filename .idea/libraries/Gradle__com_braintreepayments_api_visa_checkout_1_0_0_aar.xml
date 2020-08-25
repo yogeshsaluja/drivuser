@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.braintreepayments.api:visa-checkout:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-visa-checkout-1.0.0.aar/2b3693e3f93eaad1adacd2c5af1c13aa/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-visa-checkout-1.0.0.aar/2b3693e3f93eaad1adacd2c5af1c13aa/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-visa-checkout-1.0.0.aar/80a41b8eb2adc668f204d1ba7f1dbbbd/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-visa-checkout-1.0.0.aar/80a41b8eb2adc668f204d1ba7f1dbbbd/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.braintreepayments.api/visa-checkout/1.0.0/1044f00d502b2aff3a56450dc1e6b82e2332ecfc/visa-checkout-1.0.0-javadoc.jar!/" />

@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.braintreepayments.api:braintree:2.18.1@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/6f8c1e1323e5c01a9c5b7e1f3b195192/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/01d3d17b111a655a988139fd24aac8e6/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/6f8c1e1323e5c01a9c5b7e1f3b195192/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/6f8c1e1323e5c01a9c5b7e1f3b195192/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/01d3d17b111a655a988139fd24aac8e6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-braintree-2.18.1.aar/01d3d17b111a655a988139fd24aac8e6/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.braintreepayments.api/braintree/2.18.1/7e75d031446fc431f1ffd413c845ef370a04e949/braintree-2.18.1-javadoc.jar!/" />

@@ -3,7 +3,14 @@ package com.thinkincab.app.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +70,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_service, parent, false));
+                .inflate(R.layout.row_car, parent, false));
     }
 
     @SuppressLint({"StringFormatMatches", "SetTextI18n"})
@@ -75,7 +82,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
             holder.serviceName.setText(obj.getName());
         if (estimateFare != null) {
             holder.estimated_fixed.setVisibility(View.VISIBLE);
-            holder.price.setVisibility(View.VISIBLE);
+            //holder.price.setVisibility(View.VISIBLE);
             holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
             if (SharedHelper.getKey(context, "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
                 if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0) {
@@ -96,12 +103,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_car).dontAnimate().error(R.drawable.ic_car))
                 .into(holder.image);
 
+
+
         if (position == lastCheckedPos && canNotifyDataSetChanged) {
             canNotifyDataSetChanged = false;
             capacity.setText(String.valueOf(obj.getCapacity()));
             holder.mFrame_service.setBackground(context.getResources().getDrawable(R.drawable.circle_background));
             holder.serviceName.setTextColor(context.getResources().getColor(R.color.colorAccent));
-            holder.price.setVisibility(View.VISIBLE);
+            //holder.price.setVisibility(View.VISIBLE);
             holder.itemView.setAlpha(1);
             holder.estimated_fixed.setVisibility(View.VISIBLE);
             if (estimateFare != null) {
@@ -148,14 +157,29 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
     public int getItemCount() {
         return list.size();
     }
+    public Bitmap toGrayscale(Bitmap bmpOriginal)
+    {
+        int width, height;
+        height = bmpOriginal.getHeight();
+        width = bmpOriginal.getWidth();
 
+        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmpGrayscale);
+        Paint paint = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+        paint.setColorFilter(f);
+        c.drawBitmap(bmpOriginal, 0, 0, paint);
+        return bmpGrayscale;
+    }
     public Service getSelectedService() {
         if (list.size() > 0) return list.get(lastCheckedPos);
         else return null;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        private LinearLayout itemView;
+        private ConstraintLayout itemView;
         private TextView serviceName, price, estimated_fixed;
         private ImageView image;
         private FrameLayout mFrame_service;

@@ -3,14 +3,15 @@
     android:id="@+id/pick_location_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/shape_white"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="@dimen/_10sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="#FFF"
         android:elevation="1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -20,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_marker"
             android:ellipsize="end"
             android:fontFamily="@font/clanpro_narrnews"
             android:gravity="center_vertical"
@@ -36,7 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:background="#FFF"
         android:elevation="1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -46,6 +47,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_marker"
+            android:drawableTint="@color/colorPrimary"
             android:ellipsize="end"
             android:fontFamily="@font/clanpro_narrnews"
             android:gravity="center_vertical"

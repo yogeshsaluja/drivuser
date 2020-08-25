@@ -8,7 +8,6 @@
     <ImageView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-
         android:id="@+id/menu"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -50,7 +49,7 @@
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:background="@color/colorSecondaryText"
-                android:text="@string/request_a_drive"
+                android:text="@string/request_drive"
                 android:textSize="@dimen/_14ssp" />
         </LinearLayout>
 
@@ -119,11 +118,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-
                 android:textColor="@color/white"
                 android:padding="@dimen/_5sdp"
                 android:background="@color/colorPrimary"
-                android:text="@string/request_a_drive"
+                android:text="@string/request_drive"
                 android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 

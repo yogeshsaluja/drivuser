@@ -70,12 +70,13 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
 
     Unbinder unbinder;
 
-    @BindView(R.id.buttonschdeule)
+ /*   @BindView(R.id.buttonschdeule)
     Button scheduleRide;
-
+*/
     @BindView(R.id.ride_now)
     Button rideNow;
 
+/*
     @BindView(R.id.button3)
     Button bookforothers;
 
@@ -83,6 +84,7 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
 
     @BindView(R.id.gender)
     SwitchCompat gender;
+*/
 
 
 
@@ -90,23 +92,24 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
     TextView tvEstimatedFare;
     @BindView(R.id.use_wallet)
     CheckBox useWallet;
-    @BindView(R.id.estimated_image)
+ /*   @BindView(R.id.estimated_image)
     ImageView estimatedImage;
     @BindView(R.id.view_coupons)
-    TextView viewCoupons;
-    @BindView(R.id.estimated_payment_mode)
-    TextView estimatedPaymentMode;
-    @BindView(R.id.tv_change)
-    TextView tvChange;
+    TextView viewCoupons;*/
+   /* @BindView(R.id.estimated_payment_mode)
+    TextView estimatedPaymentMode;*/
+  /*  @BindView(R.id.tv_change)
+    TextView tvChange;*/
     @BindView(R.id.wallet_balance)
     TextView walletBalance;
-    @BindView(R.id.llEstimatedFareContainer)
-    LinearLayout llEstimatedFareContainer;
+   /* @BindView(R.id.llEstimatedFareContainer)
+    LinearLayout llEstimatedFareContainer;*/
     private int lastSelectCoupon = 0;
     private String mCouponStatus;
     private String paymentMode;
     private Double estimatedFare;
     private BookRidePresenter<BookRideFragment> presenter = new BookRidePresenter<>();
+/*
     private CouponListener mCouponListener = new CouponListener() {
         @Override
         public void couponClicked(int pos, PromoList promoList, String promoStatus) {
@@ -133,6 +136,7 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
             }
         }
     };
+*/
 
     public BookRideFragment() {
 
@@ -154,9 +158,9 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
             Service service = (Service) args.getSerializable("mService");
             EstimateFare estimateFare = (EstimateFare) args.getSerializable("estimate_fare");
             double walletAmount = Objects.requireNonNull(estimateFare).getWalletBalance();
+/*
             if (serviceName != null && !serviceName.isEmpty()) {
-                Glide
-                        .with(Objects.requireNonNull(getContext()))
+                Glide.with(Objects.requireNonNull(getContext()))
                         .load(Objects.requireNonNull(service).getImage())
                         .apply(RequestOptions
                                 .placeholderOf(R.drawable.ic_car)
@@ -178,8 +182,9 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
                 }
                 RIDE_REQUEST.put(DISTANCE_VAL, estimateFare.getDistance());
             }
+*/
         }
-        scaleView(viewCoupons, 0f, 0.9f);
+        //scaleView(viewCoupons, 0f, 0.9f);
 
         return view;
     }
@@ -201,6 +206,7 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         super.onDestroyView();
     }
 
+/*
     @OnClick({R.id.buttonschdeule, R.id.ride_now, R.id.view_coupons, R.id.tv_change,R.id.button3})
    // @OnClick({R.id.ride_now, R.id.view_coupons, R.id.tv_change})
     public void onViewClicked(View view) {
@@ -245,7 +251,9 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
                 break;
         }
     }
+*/
 
+/*
     private Dialog couponDialog(PromoResponse promoResponse) {
         BottomSheetDialog couponDialog = new BottomSheetDialog(Objects.requireNonNull(getContext()), R.style.SheetDialog);
         couponDialog.setCanceledOnTouchOutside(true);
@@ -255,6 +263,8 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         RecyclerView couponView = couponDialog.findViewById(R.id.coupon_rv);
         IndefinitePagerIndicator indicator = couponDialog.findViewById(R.id.recyclerview_pager_indicator);
         List<PromoList> couponList = promoResponse.getPromoList();
+*/
+/*
         if (couponList != null && !couponList.isEmpty()) {
             CouponAdapter couponAdapter = new CouponAdapter(getActivity(), couponList,
                     mCouponListener, couponDialog, lastSelectCoupon, mCouponStatus);
@@ -268,6 +278,8 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
             couponView.setAdapter(couponAdapter);
             couponAdapter.notifyDataSetChanged();
         }
+*//*
+
         couponDialog.setOnKeyListener((dialogInterface, keyCode, keyEvent) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 new BottomSheetDialog(getContext()).dismiss();
@@ -287,17 +299,18 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         return couponDialog;
     }
+*/
 
     public void sendRequest()
     {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
         map.put("promocode_id", lastSelectCoupon);
-        if (gender.isChecked())
+        /*if (gender.isChecked())
             map.put("gender", "FEMALE");
         else
             map.put("gender", "MALE");
-
+*/
         if (paymentMode != null && !paymentMode.equalsIgnoreCase(""))
             map.put("payment_mode", paymentMode);
         else map.put("payment_mode", "CASH");
@@ -319,11 +332,11 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         map.put("email", "test@gmail.com");
         map.put("mobile", "8684822400");
         map.put("promocode_id", lastSelectCoupon);
-        if (gender.isChecked())
+       /* if (gender.isChecked())
             map.put("gender", "FEMALE");
         else
             map.put("gender", "MALE");
-
+*/
         if (paymentMode != null && !paymentMode.equalsIgnoreCase(""))
             map.put("payment_mode", paymentMode);
         else map.put("payment_mode", "CASH");
@@ -361,10 +374,10 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        if (promoResponse != null && promoResponse.getPromoList() != null
+       /* if (promoResponse != null && promoResponse.getPromoList() != null
                 && !promoResponse.getPromoList().isEmpty()) couponDialog(promoResponse).show();
         else Toast.makeText(baseActivity(), "Cupons Indisponíveis", Toast.LENGTH_SHORT).show();
-    }
+   */ }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -379,16 +392,16 @@ public class BookRideFragment extends BaseFragment implements BookRideIView {
                 RIDE_REQUEST.put(CARD_ID, data.getStringExtra("card_id"));
                 RIDE_REQUEST.put(CARD_LAST_FOUR, data.getStringExtra("card_last_four"));
             }
-            initPayment(estimatedPaymentMode);
+           // initPayment(estimatedPaymentMode);
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initPayment(estimatedPaymentMode);
+      /*  initPayment(estimatedPaymentMode);
         tvChange.setVisibility((!isCard && !isDebitMachine) && isCash ? View.GONE : View.VISIBLE);
-    }
+ */   }
 
     public interface CouponListener {
         void couponClicked(int pos, PromoList promoList, String promoStatus);
