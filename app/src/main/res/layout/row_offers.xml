@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/_7sdp"
+    android:paddingBottom="@dimen/_21sdp"
+
     android:background="@color/white">
 
     <View
@@ -116,6 +117,7 @@
         android:layout_height="wrap_content"
         android:text="driv: $13"
         android:textSize="@dimen/_17ssp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/imageView4" />
