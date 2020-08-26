@@ -338,7 +338,8 @@ public class HomePageActivity   extends BaseActivity implements
     public void mainRental(View view) {
         Intent intent=new Intent(this,MainActivity.class);
         intent.putExtra("type","RENTAL");
-        startActivity(intent);    }
+        startActivity(intent);
+    }
     public void mainMoto(View view) {
 
         Intent intent=new Intent(this,MainActivity.class);

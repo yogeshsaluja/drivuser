@@ -53,6 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thinkincab.app.MvpApplication.DATUM;
 import static com.thinkincab.app.MvpApplication.RIDE_REQUEST;
 import static com.thinkincab.app.common.Constants.BroadcastReceiver.INTENT_FILTER;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_ID;
@@ -81,6 +82,14 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     EditText ed_note;
     @BindView(R.id.tv_title)
     TextView tv_title;
+
+
+    @BindView(R.id.tv_two_hour)
+    TextView tv_two_hour;
+    @BindView(R.id.tv_four_hour)
+    TextView tv_four_hour;
+    @BindView(R.id.tv_eight_hour)
+    TextView tv_eight_hour;
 
 
 
@@ -169,7 +178,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         return view;
     }
 
-    @OnClick({R.id.payment_type, R.id.get_pricing, R.id.schedule_ride, R.id.ride_now})
+    @OnClick({R.id.payment_type, R.id.get_pricing, R.id.schedule_ride, R.id.ride_now,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.payment_type:
@@ -188,6 +197,34 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                         }
                     }
                 }
+                break;
+            case R.id.tv_two_hour:
+                RIDE_REQUEST.put("rental_hours","120");
+
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+
+
+                break;
+            case R.id.tv_four_hour:
+                RIDE_REQUEST.put("rental_hours","240");
+
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+
+
+                break;
+            case R.id.tv_eight_hour:
+                RIDE_REQUEST.put("rental_hours","480");
+
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+
+
+
                 break;
             case R.id.schedule_ride:
                 ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(new ScheduleFragment());
@@ -351,10 +388,13 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     private void sendRequest() {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
-        if (MainActivity.type.equalsIgnoreCase("RENTAL")){
-            map.put("rental_hours","120");
+          if (MainActivity.type.equalsIgnoreCase("DELIVERY")){
 
-        }
+            map.put("description",ed_note.getText().toString());
+              map.remove("rental_hours");
+        }else if (MainActivity.type.equalsIgnoreCase("NORMAL")){
+              map.remove("rental_hours");
+          }
         showLoading();
         presenter.rideNow(map);
     }

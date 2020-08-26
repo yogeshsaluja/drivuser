@@ -266,7 +266,7 @@
                 android:id="@+id/ed_note"
 
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_height="@dimen/_100sdp"
 
                 android:background="@drawable/shape_edit"
                 android:gravity="center"

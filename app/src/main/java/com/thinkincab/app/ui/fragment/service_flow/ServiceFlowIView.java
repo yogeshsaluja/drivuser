@@ -4,4 +4,5 @@ import com.thinkincab.app.base.MvpView;
 
 public interface ServiceFlowIView extends MvpView {
 
+    void onSuccess(Object o);
 }

@@ -274,6 +274,10 @@ public interface ApiInterface {
     @POST("api/user/extend/trip")
     Observable<Object> extendTrip(@FieldMap HashMap<String, Object> params);
 
+    @FormUrlEncoded
+    @POST("api/user/extend/time")
+    Observable<Object> extendTime(@FieldMap HashMap<String, Object> params);
+
 
     @FormUrlEncoded
     @POST("api/user/payu/response")

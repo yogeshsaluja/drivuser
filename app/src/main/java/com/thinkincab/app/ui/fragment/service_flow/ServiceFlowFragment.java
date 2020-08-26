@@ -10,9 +10,13 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.core.app.ActivityCompat;
+
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +42,11 @@ import com.thinkincab.app.data.network.model.ServiceType;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.fragment.cancel_ride.CancelRideDialogFragment;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -60,6 +69,19 @@ public class ServiceFlowFragment extends BaseFragment
 
     @BindView(R.id.otp)
     TextView otp;
+    @BindView(R.id.add_time)
+    TextView add_time;
+    @BindView(R.id.tv_two_hour)
+    TextView tv_two_hour;
+    @BindView(R.id.tv_four_hour)
+    TextView tv_four_hour;
+    @BindView(R.id.tv_eight_hour)
+    TextView tv_eight_hour;
+
+    @BindView(R.id.ll_hours)
+    LinearLayout ll_hours;
+
+
     @BindView(R.id.avatar)
     CircleImageView avatar;
     @BindView(R.id.first_name)
@@ -86,6 +108,8 @@ public class ServiceFlowFragment extends BaseFragment
     ImageView chat;
     @BindView(R.id.provider_eta)
     TextView providerEta;
+    @BindView(R.id.tvTimer)
+    TextView tvTimer;
 
     private Runnable runnable;
     private Handler handler;
@@ -96,6 +120,18 @@ public class ServiceFlowFragment extends BaseFragment
     private String shareRideText = "";
     private ServiceFlowPresenter<ServiceFlowFragment> presenter = new ServiceFlowPresenter<>();
     private CancelRequestInterface callback;
+    private boolean loaded = false;
+
+
+    private Handler customHandler = new Handler();
+    private long timerInHandler = 0L;
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            timerInHandler++;
+            secondSplitUp(timerInHandler, tvTimer);
+            customHandler.postDelayed(this, 1000);
+        }
+    };
 
     public ServiceFlowFragment() {
     }
@@ -121,7 +157,7 @@ public class ServiceFlowFragment extends BaseFragment
         super.onDestroyView();
     }
 
-    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call, R.id.chat})
+    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call, R.id.chat,R.id.add_time,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sos:
@@ -136,6 +172,46 @@ public class ServiceFlowFragment extends BaseFragment
                 break;
             case R.id.call:
                 callPhoneNumber(providerPhoneNumber);
+                break;
+            case R.id.add_time:
+
+                ll_hours.setVisibility(View.VISIBLE);
+
+                 break;
+            case R.id.tv_two_hour:
+                HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
+                map.put("request_id", DATUM.getId());
+                map.put("rental_hours",15 );
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+
+                presenter.extendTime(map);
+
+
+                break;
+            case R.id.tv_four_hour:
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+
+                HashMap<String, Object> mapfour = new HashMap<>(RIDE_REQUEST);
+                mapfour.put("request_id", DATUM.getId());
+                mapfour.put("rental_hours",30 );
+                presenter.extendTime(mapfour);
+
+                break;
+            case R.id.tv_eight_hour:
+                tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
+                tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
+
+                HashMap<String, Object> mapeight = new HashMap<>(RIDE_REQUEST);
+                mapeight.put("request_id", DATUM.getId());
+                mapeight.put("rental_hours",120 );
+                presenter.extendTime(mapeight);
+
                 break;
             case R.id.chat:
                 if (DATUM != null) {
@@ -202,9 +278,24 @@ public class ServiceFlowFragment extends BaseFragment
                 status.setText(R.string.driver_has_arrived_your_location);
                 break;
             case PICKED_UP:
+                add_time.setVisibility(View.VISIBLE);
                 status.setText(R.string.you_are_on_ride);
                 cancel.setVisibility(View.GONE);
                 sharedRide.setVisibility(View.VISIBLE);
+
+                if (!TextUtils.isEmpty(datum.getStartedAt())&&!loaded){
+                    String startDate=getTimestampFromdate(datum.getStartedAt());
+                    Log.e("TAG", "initView: "+startDate );
+                    tvTimer.setVisibility(View.VISIBLE);
+                    Date myDate = new Date(Long.parseLong(startDate));
+                    Date dateNew = new Date(System.currentTimeMillis());
+                    timerInHandler = timerInHandler + getUpdatedTime(myDate, dateNew);
+                    Log.e("TAG", "initView: "+timerInHandler );
+                    secondSplitUp(timerInHandler, tvTimer);
+                    customHandler.postDelayed(updateTimerThread, 1000);
+                    loaded=true;
+
+                }
                 break;
             default:
                 break;
@@ -221,6 +312,25 @@ public class ServiceFlowFragment extends BaseFragment
         }
 
     }
+
+    public String getTimestampFromdate(String dateandtime) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = formatter.parse(dateandtime);
+            return String.valueOf(date.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+    private long getUpdatedTime(Date d1, Date d2) {
+        long seconds = (d2.getTime() - d1.getTime()) / 1000;
+
+        return seconds;
+    }
+
 
     private void sos() {
         new AlertDialog.Builder(getContext())
@@ -296,6 +406,21 @@ public class ServiceFlowFragment extends BaseFragment
     public void onResume() {
         System.out.println("RRR ServiceFlowFragment.onResume");
         super.onResume();
+
+        if (!TextUtils.isEmpty(DATUM.getStartedAt())&&DATUM.getStatus().equalsIgnoreCase(PICKED_UP)&&!loaded){
+            String startDate=getTimestampFromdate(DATUM.getStartedAt());
+            Log.e("TAG", "initView: "+startDate );
+
+            Date myDate = new Date(Long.parseLong(startDate));
+            Date dateNew = new Date(System.currentTimeMillis());
+            timerInHandler = timerInHandler + getUpdatedTime(myDate, dateNew);
+            Log.e("TAG", "initView: "+timerInHandler );
+            secondSplitUp(timerInHandler, tvTimer);
+            customHandler.postDelayed(updateTimerThread, 1000);
+            loaded=true;
+
+        }
+
         handler = new Handler();
         runnable = () -> {
             try {
@@ -354,4 +479,21 @@ public class ServiceFlowFragment extends BaseFragment
         };
         handler.postDelayed(runnable, 100);
     }
+
+    @Override
+    public void onSuccess(Object o) {
+
+    }
+
+    public void secondSplitUp(long biggy, TextView tvTimer) {
+        int hours = (int) biggy / 3600;
+        int sec = (int) biggy - hours * 3600;
+        int mins = sec / 60;
+        sec = sec - mins * 60;
+        tvTimer.setText(String.format("%02d:", hours)
+                + String.format("%02d:", mins)
+                + String.format("%02d", sec));
+    }
+
+
 }
