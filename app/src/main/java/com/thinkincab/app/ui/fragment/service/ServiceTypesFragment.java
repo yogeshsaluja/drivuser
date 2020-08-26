@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +69,21 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
     @BindView(R.id.service_rv)
     RecyclerView serviceRv;
+    @BindView(R.id.ll_hours)
+    LinearLayout ll_hours;
+    @BindView(R.id.ll_home)
+    LinearLayout ll_home;
+    @BindView(R.id.ll_work)
+    LinearLayout ll_work;
+    @BindView(R.id.ll_moto)
+    LinearLayout ll_moto;
+    @BindView(R.id.ed_note)
+    EditText ed_note;
+    @BindView(R.id.tv_title)
+    TextView tv_title;
+
+
+
     @BindView(R.id.capacity)
     TextView capacity;
     @BindView(R.id.payment_type)
@@ -132,6 +149,23 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         unbinder = ButterKnife.bind(this, view);
         presenter.attachView(this);
         presenter.services();
+        if (MainActivity.type.equalsIgnoreCase("NORMAL")){
+            ll_hours.setVisibility(View.GONE);
+        }else if (MainActivity.type.equalsIgnoreCase("RENTAL")){
+            ll_home.setVisibility(View.GONE);
+            ll_work.setVisibility(View.GONE);
+            tv_title.setText("Rent By Hours");
+
+
+        }else {
+            tv_title.setText("Moto Express");
+            tv_title.setTextColor(getActivity().getColor(R.color.pink));
+            ll_home.setVisibility(View.GONE);
+            ll_work.setVisibility(View.GONE);
+            ll_hours.setVisibility(View.GONE);
+            ll_moto.setVisibility(View.VISIBLE);
+
+        }
         return view;
     }
 
@@ -241,7 +275,12 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
             if (services != null && !services.isEmpty()) {
                 RIDE_REQUEST.put(SERVICE_TYPE, 1);
                 mServices.clear();
-                mServices.addAll(services);
+                for (Service service : services) {
+                    if (MainActivity.type.equalsIgnoreCase(service.getType())){
+                        mServices.add(service);
+                    }
+                }
+               // mServices.addAll(services);
 
                 try {
                     AsyncTask.execute(new Runnable() {
@@ -312,6 +351,10 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     private void sendRequest() {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
+        if (MainActivity.type.equalsIgnoreCase("RENTAL")){
+            map.put("rental_hours","120");
+
+        }
         showLoading();
         presenter.rideNow(map);
     }

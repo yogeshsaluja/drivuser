@@ -252,6 +252,7 @@ public class MainActivity extends BaseActivity implements
         }
     };
     private LatLngBounds.Builder builder;
+    public static String type="";
 
     @Override
     public int getLayoutId() {
@@ -270,7 +271,7 @@ public class MainActivity extends BaseActivity implements
         // Configura o google places
         Places.initialize(getApplicationContext(), getString(R.string.google_map_key));
         mPlacesClient = Places.createClient(this);
-
+         type=  getIntent().getStringExtra("type");
         registerReceiver(myReceiver, new IntentFilter(INTENT_FILTER));
         builder = new LatLngBounds.Builder();
 

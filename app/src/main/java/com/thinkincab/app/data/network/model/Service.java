@@ -21,6 +21,9 @@ public class Service implements Serializable {
     @SerializedName("marker")
     @Expose
     private String marker;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("capacity")
     @Expose
     private int capacity;
@@ -170,5 +173,13 @@ public class Service implements Serializable {
 
     public void setEstimatedTime(String estimatedFare) {
         this.estimatedFare = estimatedFare;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
