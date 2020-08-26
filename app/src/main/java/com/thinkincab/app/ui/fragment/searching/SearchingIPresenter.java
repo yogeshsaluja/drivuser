@@ -13,4 +13,9 @@ public interface SearchingIPresenter<V extends SearchingIView> extends MvpPresen
     void cancelRequest(@FieldMap HashMap<String, Object> params);
     void acceptRequest(@FieldMap HashMap<String, Object> params);
 
+    void getRequest();
+
+
+
+
 }

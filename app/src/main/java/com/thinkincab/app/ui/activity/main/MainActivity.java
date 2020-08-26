@@ -107,6 +107,7 @@ import com.thinkincab.app.ui.activity.help.HelpActivity;
 import com.thinkincab.app.ui.activity.invite_friend.InviteFriendActivity;
 import com.thinkincab.app.ui.activity.location_pick.LocationPickActivity;
 import com.thinkincab.app.ui.activity.notification_manager.NotificationManagerActivity;
+import com.thinkincab.app.ui.activity.offeers.OfferActivity;
 import com.thinkincab.app.ui.activity.passbook.WalletHistoryActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 import com.thinkincab.app.ui.activity.profile.ProfileActivity;
@@ -382,6 +383,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void onSuccess(DataResponse dataResponse) {
         this.checkStatusResponse = dataResponse;
+        MvpApplication.checkResp=checkStatusResponse;
         updatePaymentEntities();
         SharedHelper.putKey(this, SOS_NUMBER, checkStatusResponse.getSos());
         if (!Objects.requireNonNull(dataResponse.getData()).isEmpty()) {
@@ -452,8 +454,9 @@ public class MainActivity extends BaseActivity implements
             case SEARCHING:
                 pickLocationLayout.setVisibility(View.GONE);
                 updatePaymentEntities();
-                SearchingFragment searchingFragment = new SearchingFragment();
-                searchingFragment.show(getSupportFragmentManager(), SEARCHING);
+                startActivity(new Intent(MainActivity.this, OfferActivity.class));
+               /* SearchingFragment searchingFragment = new SearchingFragment();
+                searchingFragment.show(getSupportFragmentManager(), SEARCHING);*/
                 break;
             case STARTED:
                 mGoogleMap.clear();
@@ -913,9 +916,12 @@ public class MainActivity extends BaseActivity implements
             canCarAnim = false;
             float v = valueAnimator1.getAnimatedFraction();
             LatLng newPos = latLngInterpolator.interpolate(v, start, end);
-            marker.setPosition(newPos);
-            marker.setAnchor(0.5f, 0.5f);
-            marker.setRotation(bearingBetweenLocations(start, end));
+            if (marker!=null&&newPos!=null){
+                marker.setPosition(newPos);
+                marker.setAnchor(0.5f, 0.5f);
+                marker.setRotation(bearingBetweenLocations(start, end));
+            }
+
         });
         animator.addListener(new AnimatorListenerAdapter() {
             @Override

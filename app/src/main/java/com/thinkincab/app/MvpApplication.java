@@ -9,6 +9,7 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.facebook.stetho.Stetho;
 import com.thinkincab.app.common.ConnectivityReceiver;
 import com.thinkincab.app.common.LocaleHelper;
+import com.thinkincab.app.data.network.model.DataResponse;
 import com.thinkincab.app.data.network.model.Datum;
 import com.thinkincab.app.data.network.model.PhoneOtpResponse;
 
@@ -22,6 +23,8 @@ import io.fabric.sdk.android.Fabric;
 public class MvpApplication extends Application {
 
     public static String marker;
+    public static DataResponse checkResp=null;
+    public static String estFare="";
     private static MvpApplication mInstance;
 
     public static boolean canGoToChatScreen;

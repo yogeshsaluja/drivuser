@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
+    android:layout_margin="@dimen/_20sdp"
     android:focusable="true"
     android:orientation="vertical"
     tools:context=".ui.fragment.service_flow.ServiceFlowFragment">
@@ -12,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom|center_vertical"
+        android:gravity="right"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -24,6 +25,7 @@
             android:background="@drawable/round"
             android:backgroundTint="#000"
             android:elevation="2dp"
+            android:layout_gravity="right"
             android:fontFamily="@font/clanpro_medium"
             android:gravity="center"
             android:padding="12dp"
@@ -31,18 +33,12 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_14" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/chat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:padding="8dp"
-            app:srcCompat="@drawable/ic_chat" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:visibility="gone"
             android:gravity="end">
 
             <TextView
@@ -69,64 +65,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
+        android:background="@drawable/shape_white_border"
         android:orientation="vertical"
         android:padding="12dp">
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
-            android:drawableStart="@drawable/ic_circle"
-            android:drawablePadding="8dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:padding="8dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_14" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:orientation="horizontal">
-
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/avatar"
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:padding="8dp"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="2dp"
                     app:srcCompat="@drawable/ic_user_placeholder" />
 
                 <TextView
                     android:id="@+id/first_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:ellipsize="end"
+                    android:gravity="center|left"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:singleLine="true"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_14" />
 
-                <RatingBar
+                <TextView
                     android:id="@+id/rating"
+                    android:drawablePadding="5dp"
                     style="?android:attr/ratingBarStyleSmall"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:progressTint="@color/yellow"
-                    android:rating="5"
-                    tools:ignore="UnusedAttribute" />
+                    android:layout_height="match_parent"
+                      android:drawableRight="@drawable/ic_star"
+
+                      />
 
                 <TextView
                     android:id="@+id/otp"
@@ -142,10 +126,19 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/quantum_black_100" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -200,28 +193,75 @@
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/text_12" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
+                android:layout_alignParentLeft="true"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:id="@+id/cancel"
-                style="@style/MyButton.Primary"
-                android:text="@string/cancel" />
+                app:srcCompat="@drawable/ic_cancel"
+                 android:text="@string/cancel" />
 
-            <Button
-                android:id="@+id/call"
-                style="@style/MyButton.Accent"
-                android:text="@string/call" />
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/chat"
+                android:background="@drawable/shape_button_grad"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
 
-            <Button
+                android:layout_marginStart="@dimen/fab_margin"
+                android:padding="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_chat" />
+
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                 android:id="@+id/call"
+                android:padding="@dimen/_10sdp"
+                android:tint="@color/white"
+                android:background="@drawable/shape_button_grad"
+                android:src="@drawable/ic_call"
+                 android:text="@string/call" />
+
+            <ImageView
                 android:id="@+id/share_ride"
-                style="@style/MyButton.Primary"
-                android:text="@string/share_ride"
-                android:visibility="gone" />
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                 android:text="@string/share_ride"
+                app:srcCompat="@drawable/ic_share"
+                android:padding="@dimen/_10sdp"
+                  android:visibility="gone" />
 
-        </LinearLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/quantum_black_100" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+              android:drawablePadding="8dp"
+            android:ellipsize="end"
+
+            android:gravity="center"
+            android:maxLines="2"
+            android:padding="8dp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_14" />
+
 
     </LinearLayout>
 

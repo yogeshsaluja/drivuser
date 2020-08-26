@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.common.Constants;
 import com.thinkincab.app.data.SharedHelper;
@@ -83,6 +84,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         if (estimateFare != null) {
             holder.estimated_fixed.setVisibility(View.VISIBLE);
             //holder.price.setVisibility(View.VISIBLE);
+            MvpApplication.estFare=SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()));
             holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
             if (SharedHelper.getKey(context, "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
                 if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0) {

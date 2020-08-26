@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
     android:paddingBottom="@dimen/_21sdp"
 
     android:background="@color/white">
@@ -11,7 +12,7 @@
     <View
         android:id="@+id/view4"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/roundshape"
@@ -21,11 +22,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img"
-        android:layout_width="@dimen/_33sdp"
-        android:layout_height="@dimen/_33sdp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_4sdp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorPrimary"
+
         android:layout_marginTop="@dimen/_3sdp"
         app:layout_constraintStart_toStartOf="@+id/view4"
 
@@ -38,6 +42,8 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_6sdp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
-        android:text="@string/continue_app"
+        android:drawableRight="@drawable/ic_star"
+        android:drawablePadding="@dimen/_5sdp"
+        android:gravity="center"
         android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_username"
         app:layout_constraintStart_toEndOf="@+id/tv_username"
         app:layout_constraintTop_toTopOf="@+id/tv_username" />
 
@@ -61,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_9sdp"
+        android:textStyle="bold"
         android:text="@string/continue_app"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/tv_username"
@@ -92,10 +102,11 @@
         android:layout_width="@dimen/_66sdp"
         android:layout_height="@dimen/_34sdp"
         android:layout_marginEnd="@dimen/_8sdp"
+        android:src="@drawable/carr"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view4"
-        tools:srcCompat="@drawable/carr" />
+       />
 
     <TextView
         android:id="@+id/tv_accept"
@@ -104,9 +115,11 @@
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/shape_button"
         android:gravity="center"
+
         android:text="@string/accept"
         android:textColor="@color/black"
         android:textSize="@dimen/_18ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/view4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,6 +132,7 @@
         android:text="driv: $13"
         android:textSize="@dimen/_17ssp"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_accept"
         app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/tv_accept" />

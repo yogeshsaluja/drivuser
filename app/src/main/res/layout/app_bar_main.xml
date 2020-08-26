@@ -18,6 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
             <ImageView
@@ -26,6 +27,7 @@
                 android:layout_height="50dp"
                 android:contentDescription="@string/app_name"
                 android:padding="12dp"
+                android:tint="@color/white"
                 app:srcCompat="@drawable/ic_menu" />
 
             <ImageView
@@ -45,7 +47,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/gps" />
+                android:src="@drawable/drive" />
 
         </RelativeLayout>
 

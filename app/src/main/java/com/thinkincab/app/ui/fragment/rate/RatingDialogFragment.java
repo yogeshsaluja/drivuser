@@ -44,7 +44,7 @@ public class RatingDialogFragment extends BaseBottomSheetDialogFragment implemen
     EditText comment;
     @BindView(R.id.submit)
     Button submit;
-    @BindView(R.id.ratings_name)
+    @BindView(R.id.rate_with_txt)
     TextView ratingsName;
     private RatingPresenter<RatingDialogFragment> presenter = new RatingPresenter<>();
 

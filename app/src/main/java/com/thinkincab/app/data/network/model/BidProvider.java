@@ -1,10 +1,12 @@
 package com.thinkincab.app.data.network.model;
 
-import com.thinkincab.app.BuildConfig;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.thinkincab.app.BuildConfig;
 
-public class Provider {
+import java.util.List;
+
+public class BidProvider {
     @SerializedName("id")
     @Expose
     private int id;
@@ -31,7 +33,7 @@ public class Provider {
     private String avatar;
     @SerializedName("rating")
     @Expose
-    private String rating;
+    private List<RatingModel> rating;
     @SerializedName("status")
     @Expose
     private String status;
@@ -168,11 +170,11 @@ public class Provider {
         this.avatar = avatar;
     }
 
-    public String getRating() {
+    public List<RatingModel> getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(List<RatingModel> rating) {
         this.rating = rating;
     }
 
@@ -359,5 +361,6 @@ public class Provider {
     public void setProviderService(ProviderService providerService) {
         this.providerService = providerService;
     }
+
 
 }

@@ -134,8 +134,9 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
         SharedHelper.putKey(this, "access_token", accessToken);
         SharedHelper.putKey(this, "refresh_token", token.getRefreshToken());
         SharedHelper.putKey(this, "logged_in", true);
-        finishAffinity();
+
         startActivity(new Intent(this, HomePageActivity.class));
+        finish();
 
     }
 

@@ -120,7 +120,7 @@ public class HomePageActivity   extends BaseActivity implements
         });
 
 
-        presenter.checkStatus();
+
 
 
     }
@@ -323,6 +323,12 @@ public class HomePageActivity   extends BaseActivity implements
 
 
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.checkStatus();
     }
 
     public void mainAct(View view) {

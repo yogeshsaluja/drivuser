@@ -2,6 +2,7 @@ package com.thinkincab.app.ui.fragment.searching;
 
 import com.thinkincab.app.base.BasePresenter;
 import com.thinkincab.app.data.network.APIClient;
+import com.thinkincab.app.data.network.model.DataResponse;
 
 import java.util.HashMap;
 
@@ -29,6 +30,15 @@ public class SearchingPresenter<V extends SearchingIView> extends BasePresenter<
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+    }
+    @Override
+    public void getRequest() {
+        getCompositeDisposable().add(APIClient
+                .getAPIClient()
+                .getBid()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(getMvpView()::onSuccessData, getMvpView()::onError));
     }
 
 

@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/shape_white_border"
+android:elevation="@dimen/_4sdp"
+android:padding="@dimen/activity_vertical_margin"
+android:layout_margin="@dimen/_20sdp"
+
+android:paddingTop="@dimen/_2sdp"
+tools:ignore="UnusedAttribute">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    tools:ignore="UselessParent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
-
         <TextView
-            android:id="@+id/ratings_name"
+            android:id="@+id/rate_with_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_7sdp"
             android:fontFamily="@font/clanpro_medium"
             android:gravity="center"
-            android:padding="16dp"
-            android:text="@string/ratings"
-            android:textColor="@color/colorPrimaryText"
+            android:padding="@dimen/_10sdp"
+             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/_14ssp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/avatar"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginBottom="8dp"
-                android:padding="8dp"
+                android:id="@+id/user_img"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:src="@drawable/ic_user_placeholder" />
 
             <RatingBar
@@ -44,34 +58,36 @@
                 android:layout_height="wrap_content"
                 android:isIndicator="false"
                 android:numStars="5"
-                android:progressTint="@color/yellow"
-                android:rating="5"
+                android:layout_gravity="center"
+                 android:rating="5"
                 android:stepSize="1" />
 
-            <EditText
-                android:id="@+id/comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/button_border"
-                android:gravity="top|start"
-                android:hint="@string/write_your_comment"
-                android:inputType="textMultiLine|textPersonName|textCapWords"
-                android:lines="3"
-                android:maxLength="250"
-                android:maxLines="3"
-                android:padding="16dp"
-                android:scrollbars="vertical"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_14" />
-
-            <Button
-                android:id="@+id/submit"
-                style="@style/MyButton.Primary"
-                android:text="@string/submit" />
 
         </LinearLayout>
 
+
+
+        <EditText
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="start"
+            android:hint="@string/write_your_comment"
+            android:inputType="text"
+            android:padding="@dimen/_8sdp"
+            android:textSize="@dimen/text_14" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/button_round_primary"
+            android:text="@string/submit"
+            android:textColor="#FFF" />
+
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>
+
+</FrameLayout>

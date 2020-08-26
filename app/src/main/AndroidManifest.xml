@@ -32,7 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.offeers.OfferActivity"></activity>
+        <activity android:name=".ui.activity.offeers.OfferActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -268,6 +270,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.register.RegisterPhoneActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.home.HomePageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.register.OtpVerifyActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

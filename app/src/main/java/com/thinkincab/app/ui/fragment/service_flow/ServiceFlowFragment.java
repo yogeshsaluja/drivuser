@@ -67,11 +67,11 @@ public class ServiceFlowFragment extends BaseFragment
     @BindView(R.id.status)
     TextView status;
     @BindView(R.id.rating)
-    RatingBar rating;
+    TextView rating;
     @BindView(R.id.cancel)
-    Button cancel;
+    ImageView cancel;
     @BindView(R.id.share_ride)
-    Button sharedRide;
+    ImageView sharedRide;
     @BindView(R.id.image)
     ImageView image;
     @BindView(R.id.service_type_name)
@@ -81,9 +81,9 @@ public class ServiceFlowFragment extends BaseFragment
     @BindView(R.id.service_model)
     TextView serviceModel;
     @BindView(R.id.call)
-    Button call;
+    ImageView call;
     @BindView(R.id.chat)
-    FloatingActionButton chat;
+    ImageView chat;
     @BindView(R.id.provider_eta)
     TextView providerEta;
 
@@ -152,7 +152,7 @@ public class ServiceFlowFragment extends BaseFragment
         Provider provider = datum.getProvider();
         if (provider != null) {
             firstName.setText(String.format("%s %s", provider.getFirstName(), provider.getLastName()));
-            rating.setRating(Float.parseFloat(provider.getRating()));
+            rating.setText(""+Float.parseFloat(provider.getRating()));
             Glide.with(baseActivity())
                     .load(provider.getAvatar())
                     .apply(RequestOptions

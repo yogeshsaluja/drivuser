@@ -23,6 +23,41 @@ public class ProviderService {
     @Expose
     private String serviceModel;
 
+
+    @SerializedName("base_fare")
+    @Expose
+    private String baseFare;
+    @SerializedName("per_kms")
+    @Expose
+    private String perKms;
+    @SerializedName("per_mins")
+    @Expose
+    private String perMins;
+
+    public String getBaseFare() {
+        return baseFare;
+    }
+
+    public void setBaseFare(String baseFare) {
+        this.baseFare = baseFare;
+    }
+
+    public String getPerKms() {
+        return perKms;
+    }
+
+    public void setPerKms(String perKms) {
+        this.perKms = perKms;
+    }
+
+    public String getPerMins() {
+        return perMins;
+    }
+
+    public void setPerMins(String perMins) {
+        this.perMins = perMins;
+    }
+
     public int getId() {
         return id;
     }

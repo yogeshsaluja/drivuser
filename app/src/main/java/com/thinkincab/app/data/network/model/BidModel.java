@@ -24,6 +24,9 @@ public class BidModel {
     @Expose
     private Provider provider;
 
+
+
+
     public Integer getId() {
         return id;
     }

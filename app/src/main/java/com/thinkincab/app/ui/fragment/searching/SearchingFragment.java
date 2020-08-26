@@ -48,7 +48,7 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+     setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }
 
     @Override
@@ -59,17 +59,15 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
     @Override
     public void initView(View view) {
         setCancelable(false);
-
         ButterKnife.bind(this, view);
         presenter.attachView(this);
-
         Timer timer = new Timer();
 
         timer.scheduleAtFixedRate(new TimerTask() {
                                       @Override
                                       public void run() {
 
-                                          populateAdapter();
+                                        //  populateAdapter();
                                         }
                                   },
                 3*1000, 1000 * 1 );
@@ -78,6 +76,7 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
 
     }
 
+/*
     private void populateAdapter() {
         DataResponse dataResponse=((MainActivity) Objects.requireNonNull(getContext())).checkStatusResponse;
         if (dataResponse!=null){
@@ -85,6 +84,7 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
 
         }
     }
+*/
 
     public void callAccept(Double amount,Integer id){
         HashMap<String, Object> map = new HashMap<>();
@@ -139,6 +139,11 @@ public class SearchingFragment extends BaseBottomSheetDialogFragment implements 
         baseActivity().sendBroadcast(new Intent(INTENT_FILTER));
         ((MainActivity) Objects.requireNonNull(getContext())).changeFlow(EMPTY);
         dismissAllowingStateLoss();
+    }
+
+    @Override
+    public void onSuccessData(DataResponse object) {
+
     }
 
     @Override

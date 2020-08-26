@@ -148,8 +148,13 @@ public interface ApiInterface {
     @POST("api/user/cancel/request")
     Observable<Object> cancelRequest(@FieldMap HashMap<String, Object> params);
     @FormUrlEncoded
-    @POST("/acceptbid")
+    @POST("api/user/acceptbid")
     Observable<Object> acceptRequest(@FieldMap HashMap<String, Object> params);
+
+
+
+    @GET("api/user/showbids")
+    Observable<DataResponse> getBid();
 
 
 

@@ -4,33 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_invoice"
     android:layout_width="match_parent"
+    android:layout_margin="@dimen/_20sdp"
+    android:padding="@dimen/_10sdp"
 
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/shape_white_border">
 
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:paddingBottom="16dp"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/clanpro_narrnews"
                 android:gravity="center"
                 android:padding="12dp"
                 android:text="@string/driver"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +50,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="Name"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_provider" />
@@ -56,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_name"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -66,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Lastname"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintStart_toStartOf="@+id/tv_provider_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_provider_name" />
 
@@ -74,7 +78,7 @@
                 android:id="@+id/text_provider_lastname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_lastname"
                 app:layout_constraintEnd_toEndOf="@+id/text_provider_name" />
 
@@ -84,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Phone"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/tv_provider_lastname"
                 app:layout_constraintTop_toBottomOf="@+id/tv_provider_lastname" />
@@ -93,7 +97,7 @@
                 android:id="@+id/text_provider_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_provider_phone"
                 app:layout_constraintEnd_toEndOf="@+id/text_provider_lastname" />
 
@@ -128,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Rating"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintStart_toStartOf="@+id/tv_provider_lastname"
                 app:layout_constraintTop_toBottomOf="@+id/tv_provider_lastname" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,7 +144,7 @@
             android:gravity="center"
             android:padding="12dp"
             android:text="@string/invoice"
-            android:textColor="@color/colorPrimaryText"
+            android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/text_18" />
 
         <ImageView
@@ -172,7 +176,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/booking_id"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -183,7 +187,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/text_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -202,7 +206,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/distance_travelled"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -213,7 +217,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/distance_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -233,7 +237,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/time_taken"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -244,7 +248,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/time_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -263,7 +267,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/base_fare"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -274,7 +278,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -293,7 +297,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/time_fare"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -304,7 +308,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -323,7 +327,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/distance_fare"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -334,7 +338,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -352,7 +356,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/tax"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -363,7 +367,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -383,7 +387,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/waiting_amount"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -394,7 +398,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -413,7 +417,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/toll_charges"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -424,7 +428,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -489,7 +493,7 @@
                     android:fontFamily="@font/clanpro_narrnews"
                     android:singleLine="true"
                     android:text="@string/total"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/pink"
                     android:textSize="@dimen/text_18" />
 
                 <TextView
@@ -501,7 +505,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/pink"
                     android:textSize="@dimen/text_18" />
 
             </LinearLayout>
@@ -520,7 +524,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/wallet_detection"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -531,7 +535,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -550,7 +554,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/round_off"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -561,7 +565,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -581,7 +585,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/discount"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
@@ -592,7 +596,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/discount"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -613,7 +617,7 @@
                     android:fontFamily="@font/clanpro_narrnews"
                     android:singleLine="true"
                     android:text="@string/payable"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/pink"
                     android:textSize="@dimen/text_18" />
 
                 <TextView
@@ -625,7 +629,7 @@
                     android:gravity="end"
                     android:singleLine="true"
                     android:text="@string/amt_placeholder"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/pink"
                     android:textSize="@dimen/text_18" />
 
             </LinearLayout>
@@ -646,7 +650,7 @@
                     android:gravity="center_vertical"
                     android:singleLine="true"
                     android:text="@string/payment_"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_14" />
 
                 <TextView
