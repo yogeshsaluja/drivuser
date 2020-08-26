@@ -367,11 +367,15 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                 .setMessage("\n" + "We have no services in this region.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.dismiss();
+                        ((MainActivity)getActivity()).finish();
                     }
                 })
                 .show();
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -412,7 +416,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
     @Override
     public void onDestroyView() {
-        presenter.onDetach();
+        //presenter.onDetach();
         super.onDestroyView();
     }
 

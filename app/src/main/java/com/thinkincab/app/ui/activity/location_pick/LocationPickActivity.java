@@ -180,7 +180,7 @@ public class LocationPickActivity extends BaseActivity
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            userIsTyping = before < count; // verifica se o usuário esta digitando ou apagando o texto
+          //  userIsTyping = before < count; // verifica se o usuário esta digitando ou apagando o texto
             //Log.w("MG_TAG", "ON TEXTO  STR :" + s + " START : " + start + " COUNT : " + count + " BEFORE : " + before);
         }
 
@@ -210,7 +210,7 @@ public class LocationPickActivity extends BaseActivity
                 });
             }
         };
-        timer.schedule(timerTask, REQUEST_PLACES_DELAY);
+      //  timer.schedule(timerTask, REQUEST_PLACES_DELAY);
     }
 
 
@@ -328,17 +328,19 @@ public class LocationPickActivity extends BaseActivity
 
         ORIGINAL_RIDE_REQUEST = new HashMap<>(RIDE_REQUEST);
 
-        source.setText(RIDE_REQUEST.containsKey(SRC_ADD)
-                ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString())
-                ? ""
-                : String.valueOf(RIDE_REQUEST.get(SRC_ADD))
-                : "");
-
+        if((RIDE_REQUEST.containsKey(SRC_ADD))&&(RIDE_REQUEST.get(SRC_ADD)!=null))
+        {
+            source.setText(RIDE_REQUEST.containsKey(SRC_ADD) ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(SRC_ADD)).toString())
+                    ? ""
+                    : String.valueOf(RIDE_REQUEST.get(SRC_ADD))
+                    : "");
+        }
+        if((RIDE_REQUEST.containsKey(DEST_ADD))&&(RIDE_REQUEST.get(DEST_ADD)!=null)){
         destination.setText(RIDE_REQUEST.containsKey(DEST_ADD)
                 ? TextUtils.isEmpty(Objects.requireNonNull(RIDE_REQUEST.get(DEST_ADD)).toString())
                 ? ""
                 : String.valueOf(RIDE_REQUEST.get(DEST_ADD))
-                : "");
+                : "");}
 
 
         locationsRv.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {

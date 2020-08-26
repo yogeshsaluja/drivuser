@@ -352,5 +352,5 @@
     <string name="select_category">Select Category</string>
     <string name="rent_by_hours">Rent by hours</string>
     <string name="request_offers">Request offers</string>
-    <string name="request_drive">Request Drive</string>
+    <string name="request_drive">Request a Drive</string>
  </resources>

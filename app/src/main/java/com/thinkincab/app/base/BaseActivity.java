@@ -47,6 +47,7 @@ import com.thinkincab.app.ui.activity.OnBoardActivity;
 import com.thinkincab.app.ui.activity.login.EmailActivity;
 import com.thinkincab.app.ui.activity.login.PasswordActivity;
 
+import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.register.RegisterActivity;
 import com.thinkincab.app.ui.activity.register.RegisterPhoneActivity;
 import com.thinkincab.app.ui.activity.social.SocialLoginActivity;
@@ -157,7 +158,7 @@ public abstract class BaseActivity extends AppCompatActivity
         customDialog = new CustomDialog(this);
 
         presenter.attachView(this);
-
+        MainActivity.type=SharedHelper.getKey(this,"type");
         initView();
         activity = this;
         checkConnection();

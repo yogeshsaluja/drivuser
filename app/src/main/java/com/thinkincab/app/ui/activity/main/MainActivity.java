@@ -272,6 +272,12 @@ public class MainActivity extends BaseActivity implements
         Places.initialize(getApplicationContext(), getString(R.string.google_map_key));
         mPlacesClient = Places.createClient(this);
          type=  getIntent().getStringExtra("type");
+
+         if(type==null)
+         {
+             type=SharedHelper.getKey(this,"type");
+
+         }
         registerReceiver(myReceiver, new IntentFilter(INTENT_FILTER));
         builder = new LatLngBounds.Builder();
 

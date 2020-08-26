@@ -20,9 +20,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemBackground="@drawable/activated_background"
+        app:itemHorizontalPadding="@dimen/_70sdp"
         android:background="@color/white"
         android:fitsSystemWindows="true"
         android:textAlignment="textStart"
+
         app:headerLayout="@layout/nav_header_main"
         app:itemTextAppearance="@style/NavDrawerTextStyle"
         app:itemTextColor="@color/colorAccent"

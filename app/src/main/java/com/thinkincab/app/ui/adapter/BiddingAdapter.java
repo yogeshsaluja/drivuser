@@ -53,6 +53,15 @@ public class BiddingAdapter extends RecyclerView.Adapter<BiddingAdapter.MyViewHo
         holder.tv_username.setText(notifications.get(position).getProvider().getFirstName());
         holder.tv_price.setText("driv : "+notifications.get(position).getAmount());
         holder.tv_address.setText(notifications.get(position).getProvider().getCity());
+
+        if(notifications.get(position).getAmount()==0)
+        {
+            holder.tv_accept.setVisibility(View.GONE);
+
+        }
+        else  holder.tv_accept.setVisibility(View.VISIBLE);
+
+
         //holder.tv_dis.setText(notifications.get(position).getProvider().ge());
         holder.tvRate.setText(notifications.get(position).getProvider().getRating());
         if (pos==position){

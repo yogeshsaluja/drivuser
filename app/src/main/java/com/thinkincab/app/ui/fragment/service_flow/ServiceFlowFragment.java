@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -109,7 +110,12 @@ public class ServiceFlowFragment extends BaseFragment
     @BindView(R.id.provider_eta)
     TextView providerEta;
     @BindView(R.id.tvTimer)
+
+
     TextView tvTimer;
+
+    @BindView(R.id.lefttime)
+    TextView timeleft;
 
     private Runnable runnable;
     private Handler handler;
@@ -125,13 +131,6 @@ public class ServiceFlowFragment extends BaseFragment
 
     private Handler customHandler = new Handler();
     private long timerInHandler = 0L;
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-            timerInHandler++;
-            secondSplitUp(timerInHandler, tvTimer);
-            customHandler.postDelayed(this, 1000);
-        }
-    };
 
     public ServiceFlowFragment() {
     }
@@ -146,6 +145,9 @@ public class ServiceFlowFragment extends BaseFragment
         ButterKnife.bind(this, view);
         callback = this;
         presenter.attachView(this);
+
+
+
 
         if (DATUM != null) initView(DATUM);
         return view;
@@ -261,15 +263,6 @@ public class ServiceFlowFragment extends BaseFragment
         otp.setText(getString(R.string.otp_, datum.getOtp()));
         otp.setVisibility(showOTP ? View.VISIBLE : View.GONE);
 
-
-
-
-
-
-
-
-
-
         switch (datum.getStatus()) {
             case STARTED:
                 status.setText(R.string.driver_accepted_your_request);
@@ -284,15 +277,58 @@ public class ServiceFlowFragment extends BaseFragment
                 sharedRide.setVisibility(View.VISIBLE);
 
                 if (!TextUtils.isEmpty(datum.getStartedAt())&&!loaded){
-                    String startDate=getTimestampFromdate(datum.getStartedAt());
-                    Log.e("TAG", "initView: "+startDate );
+                     startDate=getTimestampFromdate(datum.getStartedAt());
+
+
+                    if(datum.getRentalHours()!=null) {
+
+                        timeleft.setVisibility(View.VISIBLE);
+                        timeleft.setText("Rent for: "+(Integer.parseInt(datum.getRentalHours())/60)+"hrs. ");
+                    startDate=Long.parseLong(startDate)+Integer.parseInt(datum.getRentalHours())*60*1000+"";
+
+                    }
+                    else timeleft.setVisibility(View.GONE);
+
+
                     tvTimer.setVisibility(View.VISIBLE);
-                    Date myDate = new Date(Long.parseLong(startDate));
-                    Date dateNew = new Date(System.currentTimeMillis());
-                    timerInHandler = timerInHandler + getUpdatedTime(myDate, dateNew);
-                    Log.e("TAG", "initView: "+timerInHandler );
-                    secondSplitUp(timerInHandler, tvTimer);
-                    customHandler.postDelayed(updateTimerThread, 1000);
+
+
+                     count = new CountDownTimer(1000000000,1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            if(!isRemoving())
+                            {
+                                if(System.currentTimeMillis() > Long.parseLong(startDate))
+                                {
+                                    secondSplitUp(0, tvTimer);
+                                }
+                                else {
+                                    secondSplitUp((Long.parseLong(startDate)-System.currentTimeMillis())/1000, tvTimer);
+                                }
+
+
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                        }
+                    };
+                    count.start();
+
+
+
+
+
+
+
+
+
+
+
                     loaded=true;
 
                 }
@@ -312,7 +348,8 @@ public class ServiceFlowFragment extends BaseFragment
         }
 
     }
-
+    CountDownTimer count;
+    String startDate;
     public String getTimestampFromdate(String dateandtime) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
@@ -393,6 +430,11 @@ public class ServiceFlowFragment extends BaseFragment
     public void onDestroy() {
         presenter.onDetach();
         if (handler != null) handler.removeCallbacks(runnable);
+        if(count!=null)
+        {
+
+            count.cancel();
+        }
         super.onDestroy();
     }
 
@@ -403,7 +445,22 @@ public class ServiceFlowFragment extends BaseFragment
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
+
+
+        if(MainActivity.type.equals("RENTAL"))
+        {
+            tvTimer.setVisibility(View.VISIBLE);
+            add_time.setVisibility(View.VISIBLE);
+            timeleft.setVisibility(View.VISIBLE);
+        }
+        else { tvTimer.setVisibility(View.GONE);
+            add_time.setVisibility(View.GONE);
+            timeleft.setVisibility(View.GONE);
+
+        }
+
         System.out.println("RRR ServiceFlowFragment.onResume");
         super.onResume();
 
@@ -415,9 +472,9 @@ public class ServiceFlowFragment extends BaseFragment
             Date dateNew = new Date(System.currentTimeMillis());
             timerInHandler = timerInHandler + getUpdatedTime(myDate, dateNew);
             Log.e("TAG", "initView: "+timerInHandler );
-            secondSplitUp(timerInHandler, tvTimer);
-            customHandler.postDelayed(updateTimerThread, 1000);
-            loaded=true;
+
+
+
 
         }
 
@@ -485,6 +542,7 @@ public class ServiceFlowFragment extends BaseFragment
 
     }
 
+
     public void secondSplitUp(long biggy, TextView tvTimer) {
         int hours = (int) biggy / 3600;
         int sec = (int) biggy - hours * 3600;
@@ -493,6 +551,7 @@ public class ServiceFlowFragment extends BaseFragment
         tvTimer.setText(String.format("%02d:", hours)
                 + String.format("%02d:", mins)
                 + String.format("%02d", sec));
+
     }
 
 

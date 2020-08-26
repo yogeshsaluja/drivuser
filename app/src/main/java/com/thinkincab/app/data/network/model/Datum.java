@@ -26,7 +26,7 @@ public class Datum implements Serializable {
     private int serviceTypeId;
     @SerializedName("rental_hours")
     @Expose
-    private Object rentalHours;
+    private String rentalHours;
     @SerializedName("status")
     @Expose
     private String status;
@@ -222,11 +222,11 @@ public class Datum implements Serializable {
         this.serviceTypeId = serviceTypeId;
     }
 
-    public Object getRentalHours() {
+    public String getRentalHours() {
         return rentalHours;
     }
 
-    public void setRentalHours(Object rentalHours) {
+    public void setRentalHours(String rentalHours) {
         this.rentalHours = rentalHours;
     }
 

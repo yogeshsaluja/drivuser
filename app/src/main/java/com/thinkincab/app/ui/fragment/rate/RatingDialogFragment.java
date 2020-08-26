@@ -92,6 +92,8 @@ public class RatingDialogFragment extends BaseBottomSheetDialogFragment implemen
             e1.printStackTrace();
         }
         dismiss();
+        ((MainActivity)getContext()).finish();
+
         Objects.requireNonNull(getActivity()).sendBroadcast(new Intent(INTENT_FILTER));
         ((MainActivity) Objects.requireNonNull(getContext())).changeFlow(EMPTY);
         if (!TextUtils.isEmpty(chatPath))

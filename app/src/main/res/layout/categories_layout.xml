@@ -19,16 +19,24 @@
         android:padding="@dimen/_10sdp"
         app:srcCompat="@drawable/ic_menu" />
 
+    <include
+        android:id="@+id/include6"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.cardview.widget.CardView
 
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="mainAct"
         android:layout_margin="@dimen/_10sdp"
+        android:onClick="mainAct"
         app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include6"
         tools:layout_editor_absoluteX="13dp">
 
         <LinearLayout
@@ -37,19 +45,19 @@
             android:orientation="vertical">
 
             <ImageView
-                android:scaleType="fitXY"
-                android:src="@drawable/map_all"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp" />
+                android:layout_height="@dimen/_100sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/map_all" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:background="@color/colorSecondaryText"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
-                android:background="@color/colorSecondaryText"
                 android:text="@string/request_drive"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp" />
         </LinearLayout>
 
@@ -121,7 +129,7 @@
                 android:textColor="@color/white"
                 android:padding="@dimen/_5sdp"
                 android:background="@color/colorPrimary"
-                android:text="@string/request_drive"
+                android:text="Moto Express"
                 android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 

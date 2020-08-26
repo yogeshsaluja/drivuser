@@ -22,6 +22,8 @@
         android:layout_gravity="start"
         android:background="@color/white"
         android:fitsSystemWindows="true"
+        app:itemBackground="@drawable/activated_background"
+        app:itemHorizontalPadding="@dimen/_70sdp"
         android:textAlignment="textStart"
         app:headerLayout="@layout/nav_header_main"
         app:itemTextAppearance="@style/NavDrawerTextStyle"

@@ -196,6 +196,17 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/text_12" />
 
+            <TextView
+                android:id="@+id/lefttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="@drawable/shape_dark"
+                android:padding="@dimen/_4sdp"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:text="bsdhjdfd"></TextView>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -203,8 +214,9 @@
                 >
 
                 <LinearLayout
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/ll_hours"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/share_ride"
@@ -296,9 +308,11 @@
                     android:gravity="center"
                     android:text="00:00:00"
                     android:maxLines="2"
-                    android:padding="8dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="@dimen/text_14" />
+
+
+                    android:padding="12dp"
+                    android:textColor="@color/pink"
+                    android:textSize="@dimen/_18ssp" />
 
 
                 <ImageView
@@ -309,7 +323,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/share_ride"
                     android:visibility="visible"
-                    app:srcCompat="@drawable/ic_share" />
+                     />
 
             </RelativeLayout>
 

@@ -81,6 +81,11 @@ public class HomePageActivity   extends BaseActivity implements
     @Override
     protected void initView() {
 
+
+
+
+
+
         ButterKnife.bind(this);
         presenter.attachView(this);
         presenter.getUserInfo();
@@ -97,6 +102,8 @@ public class HomePageActivity   extends BaseActivity implements
             startActivity(new Intent(this, ProfileActivity.class), options.toBundle());
         });
 
+
+        ((ImageView)findViewById(R.id.imageView17)).setVisibility(View.GONE);
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View view, float v) {
@@ -334,16 +341,22 @@ public class HomePageActivity   extends BaseActivity implements
     public void mainAct(View view) {
         Intent intent=new Intent(this,MainActivity.class);
         intent.putExtra("type","NORMAL");
-        startActivity(intent);    }
-    public void mainRental(View view) {
+        SharedHelper.putKey(baseActivity(), "type","NORMAL");
+
+        startActivity(intent);
+    }
+    public void mainRental(View view)
+    {
         Intent intent=new Intent(this,MainActivity.class);
         intent.putExtra("type","RENTAL");
+        SharedHelper.putKey(baseActivity(), "type","RENTAL");
         startActivity(intent);
     }
     public void mainMoto(View view) {
 
         Intent intent=new Intent(this,MainActivity.class);
         intent.putExtra("type","DELIVERY");
+        SharedHelper.putKey(baseActivity(), "type","DELIVERY");
         startActivity(intent);
     }
 }
