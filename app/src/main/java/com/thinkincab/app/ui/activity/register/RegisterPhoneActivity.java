@@ -3,11 +3,13 @@ package com.thinkincab.app.ui.activity.register;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.thinkincab.app.MvpApplication;
@@ -53,14 +55,38 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
         registerPresenter.attachView(this);
         dialog=new CustomDialog(this);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if(!TextUtils.isEmpty(phone.getText().toString())){
+                dialog.show();
+
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("device_id", SharedHelper.getKey(RegisterPhoneActivity.this, "device_id"));
+                map.put("mobile",phone.getText().toString());
+                registerPresenter.register(map);
+                }
+                else {
+                    Toast.makeText(RegisterPhoneActivity.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!TextUtils.isEmpty(phone.getText().toString())){
                 dialog.show();
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("device_id", SharedHelper.getKey(RegisterPhoneActivity.this, "device_id"));
                 map.put("mobile",phone .getText().toString());
                 registerPresenter.register(map);
+                }
+                else {
+                    Toast.makeText(RegisterPhoneActivity.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
