@@ -105,6 +105,8 @@ public class ServiceFlowFragment extends BaseFragment
     TextView serviceModel;
     @BindView(R.id.call)
     ImageView call;
+    @BindView(R.id.call_sec)
+    ImageView call_sec;
     @BindView(R.id.chat)
     ImageView chat;
     @BindView(R.id.provider_eta)
@@ -159,7 +161,7 @@ public class ServiceFlowFragment extends BaseFragment
         super.onDestroyView();
     }
 
-    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call, R.id.chat,R.id.add_time,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
+    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call,R.id.call_sec, R.id.chat,R.id.add_time,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sos:
@@ -173,6 +175,9 @@ public class ServiceFlowFragment extends BaseFragment
                 sharedRide();
                 break;
             case R.id.call:
+                callPhoneNumber(providerPhoneNumber);
+                break;
+            case R.id.call_sec:
                 callPhoneNumber(providerPhoneNumber);
                 break;
             case R.id.add_time:
@@ -275,6 +280,8 @@ public class ServiceFlowFragment extends BaseFragment
                 status.setText(R.string.you_are_on_ride);
                 cancel.setVisibility(View.GONE);
                 sharedRide.setVisibility(View.VISIBLE);
+                call.setVisibility(View.GONE);
+                call_sec.setVisibility(View.VISIBLE);
 
                 if (!TextUtils.isEmpty(datum.getStartedAt())&&!loaded){
                      startDate=getTimestampFromdate(datum.getStartedAt());

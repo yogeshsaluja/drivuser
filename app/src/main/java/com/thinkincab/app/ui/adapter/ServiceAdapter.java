@@ -106,8 +106,19 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                 .into(holder.image);
 
 
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+        holder.image.setColorFilter(filter);
 
         if (position == lastCheckedPos && canNotifyDataSetChanged) {
+            ColorMatrix mat = new ColorMatrix();
+            mat.setSaturation(30);
+
+            ColorMatrixColorFilter fil  = new ColorMatrixColorFilter(mat);
+            holder.image.setColorFilter(fil);
+
             canNotifyDataSetChanged = false;
             capacity.setText(String.valueOf(obj.getCapacity()));
             holder.mFrame_service.setBackground(context.getResources().getDrawable(R.drawable.circle_background));
@@ -143,9 +154,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
             Service object = list.get(position);
             if (object != null) {
                 if (view.getId() == R.id.item_view) {
+                     Glide.with(context)
+                            .load(obj.getImage())
+                            .apply(RequestOptions.placeholderOf(R.drawable.ic_car).dontAnimate().error(R.drawable.ic_car))
+                            .into(holder.image);
+
                     if (lastCheckedPos == position) {
                         RateCardFragment.SERVICE = object;
                         ((MainActivity) context).changeFragment(new RateCardFragment());
+
                     }
                     lastCheckedPos = position;
                     notifyDataSetChanged();
@@ -194,6 +211,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
             price = view.findViewById(R.id.price);
             image = view.findViewById(R.id.image);
             itemView = view.findViewById(R.id.item_view);
+
         }
     }
 }

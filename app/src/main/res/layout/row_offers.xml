@@ -97,12 +97,13 @@
         app:layout_constraintTop_toTopOf="@+id/tv_address"
         tools:text="2.4km" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_taxi"
         android:layout_width="@dimen/_66sdp"
         android:layout_height="@dimen/_34sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:src="@drawable/carr"
+
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view4"

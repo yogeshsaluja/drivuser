@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/grey_material"
     tools:context=".ui.activity.invite_friend.InviteFriendActivity">
-
+<include layout="@layout/custom_toolbar"/>
     <LinearLayout
+
         android:id="@+id/lnrInviteFriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/invite_friend_top_bg"
         android:orientation="horizontal"

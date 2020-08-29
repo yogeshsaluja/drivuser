@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <include layout="@layout/custom_toolbar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,6 +24,7 @@
                 android:fontFamily="@font/clanpro_medium"
                 android:padding="16dp"
                 android:text="@string/favorites"
+                android:visibility="gone"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_18" />
 

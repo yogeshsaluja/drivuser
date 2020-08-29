@@ -59,7 +59,10 @@ public class PaymentActivity extends BaseActivity implements PaymentIView {
     private static final int BRAINTREE_PAYMENT_REQUEST_CODE = 101;
     private static final int PAYTM_PAYMENT_REQUEST_CODE = 102;
     private static final int PAYUMONEY_PAYMENT_REQUEST_CODE = 103;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     @BindView(R.id.add_card)
     TextView addCard;
     @BindView(R.id.cash)
@@ -98,8 +101,13 @@ public class PaymentActivity extends BaseActivity implements PaymentIView {
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-        setTitle(getString(R.string.payment));
-
+         title.setText(getString(R.string.payment));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             boolean hideCash = extras.getBoolean("hideCash", false);

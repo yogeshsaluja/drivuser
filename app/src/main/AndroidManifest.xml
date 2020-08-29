@@ -113,6 +113,7 @@
         <activity
             android:name=".ui.activity.profile.ProfileActivity"
             android:label="@string/profile"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -124,6 +125,7 @@
         <activity
             android:name=".ui.activity.help.HelpActivity"
             android:label="@string/help"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -139,6 +141,7 @@
         <activity
             android:name=".ui.activity.passbook.WalletHistoryActivity"
             android:label="@string/passbook"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -166,6 +169,7 @@
         <activity
             android:name=".ui.activity.past_trip_detail.PastTripDetailActivity"
             android:label="@string/past_trip_details"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -176,6 +180,7 @@
         <activity
             android:name=".ui.activity.setting.SettingsActivity"
             android:label="@string/settings"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -189,12 +194,14 @@
         <activity
             android:name=".ui.activity.wallet.WalletActivity"
             android:label="@string/wallet"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activity.coupon.CouponActivity"
             android:label="@string/offer"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -205,6 +212,7 @@
         <activity
             android:name=".ui.activity.payment.PaymentActivity"
             android:label="@string/payment"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -226,6 +234,7 @@
         <activity
             android:name=".chat.ChatActivity"
             android:label="@string/chat"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
@@ -261,11 +270,13 @@
         <activity
             android:name=".ui.activity.invite_friend.InviteFriendActivity"
             android:label="@string/invite_friend"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.notification_manager.NotificationManagerActivity"
             android:label="@string/notification_manager"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity

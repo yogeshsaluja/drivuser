@@ -54,12 +54,21 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
         ButterKnife.bind(this);
 
         List<WalkThrough> list = new ArrayList<>();
-        list.add(new WalkThrough(R.drawable.bg_walk_one,
+        list.add(new WalkThrough(R.drawable.ic_car_horizental,
                 getString(R.string.walk_1), getString(R.string.walk_1_description)));
-        list.add(new WalkThrough(R.drawable.bg_walk_two,
+        list.add(new WalkThrough(R.drawable.ic_intro_two,
                 getString(R.string.walk_2), getString(R.string.walk_2_description)));
-        list.add(new WalkThrough(R.drawable.bg_walk_three,
+        list.add(new WalkThrough(R.drawable.ic_intro_two_two,
                 getString(R.string.walk_3), getString(R.string.walk_3_description)));
+
+        list.add(new WalkThrough(R.drawable.bg_walk_three,
+                getString(R.string.walk_3), getString(R.string.walk_4_description)));
+
+        list.add(new WalkThrough(R.drawable.bg_walk_three,
+                getString(R.string.walk_3), getString(R.string.walk_5_description)));
+
+        list.add(new WalkThrough(R.drawable.bg_walk_three,
+                getString(R.string.walk_3), getString(R.string.walk_6_description)));
 
         adapter = new MyViewPagerAdapter(this, list);
         viewPager.setAdapter(adapter);
@@ -155,7 +164,29 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
             TextView title = itemView.findViewById(R.id.title);
             TextView description = itemView.findViewById(R.id.description);
             ImageView imageView = itemView.findViewById(R.id.img_pager_item);
+            LinearLayout introFour = itemView.findViewById(R.id.ll_intro_four);
+            LinearLayout introthree = itemView.findViewById(R.id.ll_intro_three);
 
+            LinearLayout introFive = itemView.findViewById(R.id.ll_intro_five);
+            LinearLayout introSix = itemView.findViewById(R.id.ll_intro_six);
+
+            if (position==1){
+                imageView.setVisibility(View.GONE);
+                introthree.setVisibility(View.VISIBLE);
+            }else   if (position==2){
+                imageView.setVisibility(View.GONE);
+                introFour.setVisibility(View.VISIBLE);
+            }else if (position==3){
+                imageView.setVisibility(View.GONE);
+                introFive.setVisibility(View.VISIBLE);
+            }
+            else if (position==4){
+                imageView.setVisibility(View.GONE);
+                introFive.setVisibility(View.VISIBLE);
+            }else if (position==5){
+                imageView.setVisibility(View.GONE);
+                introSix.setVisibility(View.VISIBLE);
+            }
             title.setText(walk.title);
             description.setText(walk.description);
             Glide.with(context).load(walk.drawable).into(imageView);

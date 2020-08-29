@@ -52,7 +52,7 @@ public class BiddingAdapter extends RecyclerView.Adapter<BiddingAdapter.MyViewHo
                 .into(holder.img);
         holder.tv_username.setText(notifications.get(position).getProvider().getFirstName());
         holder.tv_price.setText("driv : "+notifications.get(position).getAmount());
-        holder.tv_address.setText(notifications.get(position).getProvider().getCity());
+      //  holder.tv_address.setText(notifications.get(position).getProvider().getProviderService().getServiceModel()+" ( "+notifications.get(position).getProvider().getProviderService().getServiceNumber()+" )");
 
         if(notifications.get(position).getAmount()==0)
         {

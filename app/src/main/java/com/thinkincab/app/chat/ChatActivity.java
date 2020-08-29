@@ -4,11 +4,14 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +39,10 @@ public class ChatActivity extends BaseActivity {
 
     public static String chatPath = null;
     public static String sender = "app";
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     @BindView(R.id.chat_lv)
     ListView chatLv;
     @BindView(R.id.message)
@@ -60,6 +66,14 @@ public class ChatActivity extends BaseActivity {
         ButterKnife.bind(this);
         mCompositeDisposable = new CompositeDisposable();
         Bundle extras = getIntent().getExtras();
+
+        title.setText(getString(R.string.chat));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         if (extras != null) {
             chatPath = extras.getString("request_id", null);
             initChatView(chatPath);

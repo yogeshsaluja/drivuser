@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thinkincab.app.R;
@@ -30,7 +31,10 @@ public class CouponActivity extends BaseActivity implements CouponIView {
     RecyclerView rvCoupon;
     @BindView(R.id.tvNoData)
     TextView tvNoData;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     private CouponPresenter<CouponActivity> presenter = new CouponPresenter<>();
 
     @Override
@@ -43,7 +47,13 @@ public class CouponActivity extends BaseActivity implements CouponIView {
         ButterKnife.bind(this);
         presenter.attachView(this);
         // Activity title will be updated after the locale has changed in Runtime
-        setTitle(getString(R.string.offer));
+        title.setText(getString(R.string.offer));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         showLoading();
         rvCoupon.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

@@ -27,7 +27,7 @@
                 android:layout_height="50dp"
                 android:contentDescription="@string/app_name"
                 android:padding="12dp"
-                android:tint="@color/white"
+                android:tint="@color/black"
                 app:srcCompat="@drawable/ic_menu" />
 
             <ImageView

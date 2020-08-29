@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,10 @@ import static com.thinkincab.app.MvpApplication.isPayumoney;
 import static com.thinkincab.app.ui.activity.payment.PaymentActivity.PICK_PAYMENT_METHOD;
 
 public class WalletActivity extends BaseActivity implements WalletIView {
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     @BindView(R.id.wallet_balance)
     TextView walletBalance;
     @BindView(R.id.amount)
@@ -79,7 +83,13 @@ public class WalletActivity extends BaseActivity implements WalletIView {
         ButterKnife.bind(this);
         presenter.attachView(this);
         // Activity title will be updated after the locale has changed in Runtime
-        setTitle(getString(R.string.wallet));
+        title.setText(getString(R.string.wallet));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         _199.setText(SharedHelper.getKey(this, "currency") + " " + getString(R.string._199));
         _599.setText(SharedHelper.getKey(this, "currency") + " " + getString(R.string._599));

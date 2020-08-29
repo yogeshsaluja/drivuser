@@ -1,5 +1,9 @@
 package com.thinkincab.app.ui.activity.your_trips;
 
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,13 +21,15 @@ import butterknife.ButterKnife;
 
 public class YourTripActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
     @BindView(R.id.tabs)
     TabLayout tabs;
     @BindView(R.id.container)
     ViewPager container;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     TabPagerAdapter adapter;
 
     @Override
@@ -34,11 +40,15 @@ public class YourTripActivity extends BaseActivity {
     @Override
     public void initView() {
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // Activity title will be updated after the locale has changed in Runtime
-        setTitle(getString(R.string.your_trips));
 
+        // Activity title will be updated after the locale has changed in Runtime
+        title.setText(getString(R.string.your_trips));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         tabs.addTab(tabs.newTab().setText(getString(R.string.past)));
         tabs.addTab(tabs.newTab().setText(getString(R.string.upcoming)));
 

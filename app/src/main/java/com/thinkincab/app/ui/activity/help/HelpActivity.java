@@ -7,12 +7,15 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.thinkincab.app.BuildConfig;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.data.network.model.Help;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,6 +24,10 @@ public class HelpActivity extends BaseActivity implements HelpIView {
     private String ContactNumber = null;
     private String Mail = null;
     private HelpPresenter<HelpActivity> presenter = new HelpPresenter<>();
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
 
     @Override
     public int getLayoutId() {
@@ -31,7 +38,13 @@ public class HelpActivity extends BaseActivity implements HelpIView {
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-        setTitle(getString(R.string.help));
+        title.setText(getString(R.string.help));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         presenter.help();
     }
 

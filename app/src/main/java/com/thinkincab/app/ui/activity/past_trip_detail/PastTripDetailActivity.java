@@ -70,6 +70,10 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
     Button viewReceipt;
     @BindView(R.id.payment_image)
     ImageView paymentImage;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
 
     private boolean isDisputeCreated;
     private boolean isLostItemCreated;
@@ -87,8 +91,13 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-        setTitle(getString(R.string.past_trip_details));
-
+        title.setText(getString(R.string.past_trip_details));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         if (DATUM != null) {
             showLoading();
             presenter.getPastTripDetails(DATUM.getId());

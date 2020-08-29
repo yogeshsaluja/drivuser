@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thinkincab.app.R;
@@ -28,6 +29,12 @@ public class WalletHistoryActivity extends BaseActivity implements WalletHistory
     RecyclerView rvWallet;
     @BindView(R.id.tvNoWalletData)
     TextView tvNoWalletData;
+
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
+
     private WalletHistoryPresenter<WalletHistoryActivity> presenter = new WalletHistoryPresenter<>();
     private List<Wallet> walletList = new ArrayList<>();
 
@@ -40,9 +47,14 @@ public class WalletHistoryActivity extends BaseActivity implements WalletHistory
     public void initView() {
         presenter.attachView(this);
         ButterKnife.bind(this);
-
-        setTitle(getString(R.string.passbook));
-        showLoading();
+        title.setText(getString(R.string.passbook));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+         showLoading();
         presenter.wallet();
 
     }

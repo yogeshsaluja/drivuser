@@ -1,5 +1,9 @@
 package com.thinkincab.app.ui.activity.notification_manager;
 
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +21,10 @@ public class NotificationManagerActivity extends BaseActivity implements Notific
 
     @BindView(R.id.rvNotificationManager)
     RecyclerView rvNotificationManager;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     private NotificationManagerPresenter<NotificationManagerActivity> presenter = new NotificationManagerPresenter<>();
 
     @Override
@@ -29,7 +36,13 @@ public class NotificationManagerActivity extends BaseActivity implements Notific
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-        setTitle(getString(R.string.notification_manager));
+         title.setText(getString(R.string.notification_manager));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         presenter.getNotificationManager();
     }

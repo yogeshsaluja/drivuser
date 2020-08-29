@@ -43,6 +43,15 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
     TextView next;
     private String email;
 
+    @BindView(R.id.ed_otp_one)
+    EditText ed_otp_one;
+    @BindView(R.id.ed_otp_two)
+    EditText ed_otp_two;
+    @BindView(R.id.ed_otp_three)
+    EditText ed_otp_three;
+    @BindView(R.id.ed_otp_four)
+    EditText ed_otp_four;
+
     private loginPresenter<OtpVerifyActivity> presenter = new loginPresenter();
 
     @Override
@@ -57,13 +66,20 @@ public class OtpVerifyActivity extends BaseActivity implements LoginIView {
       /*  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);*/
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (MvpApplication.Otpresponse.getVerified() || BuildConfig.DEBUG)
                     otp.setText(""+MvpApplication.Otpresponse.getOtp());
+                String  otparr=""+MvpApplication.Otpresponse.getOtp().toString();
+                ed_otp_one.setText(""+otparr.charAt(0));
+                ed_otp_two.setText(""+otparr.charAt(1));
+                ed_otp_three.setText(""+otparr.charAt(2));
+                ed_otp_four.setText(""+otparr.charAt(3));
 
-                }
-            },2000);
+
+            }
+        },2000);
         mToolbar.setNavigationOnClickListener(v -> finish());
         presenter.attachView(this);
 

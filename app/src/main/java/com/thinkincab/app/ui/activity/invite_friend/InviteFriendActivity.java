@@ -6,6 +6,7 @@ import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,7 +31,10 @@ public class InviteFriendActivity extends BaseActivity implements InviteFriendIV
     TextView referral_amount;
     @BindView(R.id.llReferral)
     LinearLayout llReferral;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     private InviteFriendPresenter<InviteFriendActivity> inviteFriendPresenter = new InviteFriendPresenter<>();
 
     @Override
@@ -42,7 +46,13 @@ public class InviteFriendActivity extends BaseActivity implements InviteFriendIV
     public void initView() {
         ButterKnife.bind(this);
         inviteFriendPresenter.attachView(this);
-
+        title.setText(getString(R.string.invite_friend));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         if (!SharedHelper.getKey(this, "referral_code").equalsIgnoreCase("")) {
             updateUI();
         } else {

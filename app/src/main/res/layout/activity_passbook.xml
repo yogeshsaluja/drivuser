@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.passbook.WalletHistoryActivity">
-
+<include layout="@layout/custom_toolbar"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWallet"
         android:layout_width="match_parent"

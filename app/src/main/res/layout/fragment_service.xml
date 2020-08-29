@@ -410,7 +410,7 @@
                 android:fontFamily="@font/clanpro_narrnews"
                 android:text="@string/request_offers"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/colorSecondaryText"
                 android:visibility="visible" />
 
         </LinearLayout>

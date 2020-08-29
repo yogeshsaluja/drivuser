@@ -4,9 +4,14 @@
     <string name="walk_1">Welcome</string>
     <string name="walk_2">Schedule</string>
     <string name="walk_3">Drivers</string>
-    <string name="walk_1_description">Services to transport you where you need to go. A lot can happen, on our ride.</string>
-    <string name="walk_2_description">Take a ride whenever and wherever you want. Plan and Schedule for us to pick you up.</string>
-    <string name="walk_3_description">We have the most friendly drivers who will go the extra mile for you.</string>
+    <string name="walk_1_description">Solicita un driv puerta puerta, o por horas.</string>
+    <string name="walk_2_description">Driv calcula la tarifa y los conductores harán una oferta menor</string>
+    <string name="walk_3_description">Compara precios, conductores y vehículos.</string>
+    <string name="walk_4_description" translatable="false">Selecciona la mejor oferta.</string>
+
+    <string name="walk_5_description" translatable="false">Selecciona la mejor oferta.</string>
+    <string name="walk_6_description" translatable="false">Realiza el pago con tarjeta o efectivo.</string>
+
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign up</string>
     <string name="or_connect_with_social">Or connect with social</string>

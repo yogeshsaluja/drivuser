@@ -84,7 +84,10 @@ public class ProfileActivity extends BaseActivity implements ProfileIView {
     private String qrCodeUrl;
     private AlertDialog mDialog;
     private String userAvatar;
-
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
     @Override
     public int getLayoutId() {
         return R.layout.activity_profile;
@@ -94,8 +97,13 @@ public class ProfileActivity extends BaseActivity implements ProfileIView {
     public void initView() {
         ButterKnife.bind(this);
         profilePresenter.attachView(this);
-        setTitle(getString(R.string.profile));
-
+         title.setText(getString(R.string.profile));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         showLoading();
         profilePresenter.profile();
         Glide.with(baseActivity())

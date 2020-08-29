@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
+
         android:background="@color/colorPrimary"
 
         app:layout_constraintBottom_toTopOf="@+id/view"
@@ -53,10 +54,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_150sdp"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
@@ -65,16 +66,90 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="42dp"
-            android:fontFamily="@font/clanpro_narrnews"
+             android:fontFamily="@font/clanpro_narrnews"
             android:gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_alignParentTop="true"
             android:text="@string/enterverifcation"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_18" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/ed_otp_one"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorSecondaryText"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+
+                android:inputType="phone"
+                android:paddingLeft="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/ed_otp_two"
+
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorSecondaryText"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/ed_otp_three"
+
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorSecondaryText"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/ed_otp_four"
+
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:textColor="@color/colorSecondaryText"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryText"
             android:layout_marginStart="@dimen/_20sdp"
@@ -92,7 +167,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

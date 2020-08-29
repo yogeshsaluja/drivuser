@@ -84,7 +84,6 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
         ButterKnife.bind(this);
         registerPresenter.attachView(this);
         // Activity title will be updated after the locale has changed in Runtime
-        setTitle(getString(R.string.register));
 
         registerPresenter.getSettings();
 

@@ -37,8 +37,12 @@ import com.thinkincab.app.ui.activity.coupon.CouponActivity;
 import com.thinkincab.app.ui.activity.help.HelpActivity;
 import com.thinkincab.app.ui.activity.invite_friend.InviteFriendActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
+import com.thinkincab.app.ui.activity.notification_manager.NotificationManagerActivity;
+import com.thinkincab.app.ui.activity.passbook.WalletHistoryActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 import com.thinkincab.app.ui.activity.profile.ProfileActivity;
+import com.thinkincab.app.ui.activity.setting.SettingsActivity;
+import com.thinkincab.app.ui.activity.wallet.WalletActivity;
 import com.thinkincab.app.ui.activity.your_trips.YourTripActivity;
 
 import java.util.Objects;
@@ -103,7 +107,7 @@ public class HomePageActivity   extends BaseActivity implements
         });
 
 
-        ((ImageView)findViewById(R.id.imageView17)).setVisibility(View.GONE);
+        ((ImageView)findViewById(R.id.back)).setVisibility(View.GONE);
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View view, float v) {
@@ -149,27 +153,27 @@ public class HomePageActivity   extends BaseActivity implements
             case R.id.nav_coupon:
                 startActivity(new Intent(this, CouponActivity.class));
                 break;
-//            case R.id.nav_wallet:
-//                startActivity(new Intent(this, WalletActivity.class));
-//                break;
-//            case R.id.nav_passbook:
-//                startActivity(new Intent(this, WalletHistoryActivity.class));
-//                break;
-//            case R.id.nav_settings:
-//                startActivity(new Intent(this, SettingsActivity.class));
-//                break;
+            case R.id.nav_wallet:
+                startActivity(new Intent(this, WalletActivity.class));
+                break;
+            case R.id.nav_passbook:
+                startActivity(new Intent(this, WalletHistoryActivity.class));
+                break;
+            case R.id.nav_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                break;
             case R.id.nav_help:
                 startActivity(new Intent(this, HelpActivity.class));
                 break;
             case R.id.nav_share:
                 shareApp();
                 break;
-//            case R.id.nav_become_driver:
-//                alertBecomeDriver();
-//                break;
-//            case R.id.nav_notification:
-//                startActivity(new Intent(this, NotificationManagerActivity.class));
-//                break;
+            case R.id.nav_become_driver:
+                //alertBecomeDriver();
+                break;
+            case R.id.nav_notification:
+                startActivity(new Intent(this, NotificationManagerActivity.class));
+                break;
             case R.id.nav_invite_friend:
                 startActivity(new Intent(this, InviteFriendActivity.class));
                 break;

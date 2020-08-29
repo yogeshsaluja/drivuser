@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,13 +98,24 @@ public class LocationPickActivity extends BaseActivity
     //private static final LatLngBounds BOUNDS_BRASIL = new LatLngBounds(new LatLng(-14.235, -51.9253), new LatLng(-14.235, -51.9253));
     private Location mLastKnownLocation;
     protected GoogleApiClient mGoogleApiClient;
-
+    @BindView(R.id.textView35)
+    TextView title;
     @BindView(R.id.appbar)
     AppBarLayout appbar;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.back)
+    ImageView back;
     @BindView(R.id.source)
     EditText source;
+    @BindView(R.id.imageView16)
+    ImageView drivelogo;
+
+    @BindView(R.id.tv_done)
+    TextView tv_done;
+
+
+
+
+
     @BindView(R.id.destination)
     EditText destination;
     @BindView(R.id.destination_layout)
@@ -245,9 +257,78 @@ public class LocationPickActivity extends BaseActivity
         buildGoogleApiClient();
         ButterKnife.bind(this);
         presenter.attachView(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        drivelogo.setVisibility(View.GONE);
+        title.setText(getString(R.string.location));
+        tv_done.setVisibility(View.VISIBLE);
 
+        tv_done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(actionName) && actionName.equals(Constants.LocationActions.SELECT_HOME) || actionName.equals(Constants.LocationActions.SELECT_WORK)) {
+                    Intent intent = new Intent();
+                    intent.putExtra(SRC_ADD, s_address);
+                    intent.putExtra(SRC_LAT, s_latitude);
+                    intent.putExtra(SRC_LONG, s_longitude);
+                    intent.putExtra(DEST_ADD, s_address);
+                    intent.putExtra(DEST_LAT, s_latitude);
+                    intent.putExtra(DEST_LONG, s_longitude);
+                    RIDE_REQUEST.put(SRC_ADD, s_address);
+                    RIDE_REQUEST.put(SRC_LAT, s_latitude);
+                    RIDE_REQUEST.put(SRC_LONG, s_longitude);
+                    RIDE_REQUEST.put(DEST_ADD, s_address);
+                    RIDE_REQUEST.put(DEST_LAT, s_latitude);
+                    RIDE_REQUEST.put(DEST_LONG, s_longitude);
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                } else {
+
+                    if (mLastKnownLocation != null) {
+
+                        LatLng latLng = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+
+                        if (RIDE_REQUEST.containsKey(SRC_ADD) && RIDE_REQUEST.containsKey(DEST_ADD)) {
+                            setResult(Activity.RESULT_OK, new Intent());
+                            finish();
+                        } else if (RIDE_REQUEST.containsKey(SRC_ADD) && !RIDE_REQUEST.containsKey(DEST_ADD)) {
+                            String address = getAddress(latLng);
+                            RIDE_REQUEST.put(SRC_ADD, address);
+                            RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
+                            RIDE_REQUEST.put(DEST_ADD, address);
+                            RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
+                            if (!TextUtils.isEmpty(s_address)){
+                                RIDE_REQUEST.put(SRC_ADD, s_address);
+                                RIDE_REQUEST.put(SRC_LAT, s_latitude);
+                                RIDE_REQUEST.put(SRC_LONG, s_longitude);
+                            }
+                            setResult(Activity.RESULT_OK, new Intent());
+                            finish();
+                        } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && RIDE_REQUEST.containsKey(DEST_ADD)) {
+                            String address = getAddress(latLng);
+                            RIDE_REQUEST.put(SRC_ADD, address);
+                            RIDE_REQUEST.put(SRC_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(SRC_LONG, latLng.longitude);
+                            RIDE_REQUEST.put(DEST_ADD, address);
+                            RIDE_REQUEST.put(DEST_LAT, latLng.latitude);
+                            RIDE_REQUEST.put(DEST_LONG, latLng.longitude);
+                            setResult(Activity.RESULT_OK, new Intent());
+                            finish();
+                        } else if (!RIDE_REQUEST.containsKey(SRC_ADD) && !RIDE_REQUEST.containsKey(DEST_ADD)) {
+                            showAlert("Warning", "Your Request is incomplete. Please choose a location from the list of suggestions as you type.");
+                        }
+
+
+                    }
+                }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         // Configura o google places
         Places.initialize(getApplicationContext(), getString(R.string.google_map_key));
         mPlacesClient = Places.createClient(LocationPickActivity.this);

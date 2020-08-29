@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.thinkincab.app.R;
@@ -42,6 +43,10 @@ public class SettingsActivity extends BaseActivity implements SettingsIView {
     @BindView(R.id.work_address)
     TextView workAddress;
 
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.textView35)
+    TextView title;
 
     private String type = "home";
     private String language;
@@ -57,9 +62,15 @@ public class SettingsActivity extends BaseActivity implements SettingsIView {
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-
+        title.setText(getString(R.string.settings));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         // Activity title will be updated after the locale has changed in Runtime
-        setTitle(getString(R.string.settings));
+
         showLoading();
         presenter.address();
 
