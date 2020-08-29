@@ -99,6 +99,7 @@
             android:label="@string/register"
             android:parentActivityName=".ui.activity.OnBoardActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activity.login.EmailActivity"

@@ -203,8 +203,10 @@
             style="@style/MyButton.Primary"
             android:layout_margin="12dp"
             android:padding="8dp"
+
             android:text="@string/save"
-            android:textColor="#FFF" />
+            android:background="@drawable/button_round_primary"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/change_password"

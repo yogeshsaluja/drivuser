@@ -63,7 +63,7 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
         ButterKnife.bind(this);
         presenter.attachView(this);
         presenter.getRequest();
-        title.setText(getString(R.string.chat));
+        title.setText(getString(R.string.offer));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

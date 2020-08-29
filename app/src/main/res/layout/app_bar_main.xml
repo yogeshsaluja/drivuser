@@ -45,9 +45,10 @@
                 android:id="@+id/gps"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/drive" />
+                android:src="@drawable/ic_logo" />
 
         </RelativeLayout>
 
