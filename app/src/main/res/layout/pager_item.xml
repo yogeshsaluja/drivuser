@@ -15,54 +15,55 @@
         android:contentDescription="@string/app_name"
         android:padding="8dp"
         android:scaleType="fitCenter" />
+
     <LinearLayout
         android:id="@+id/ll_intro_three"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_60sdp"
-            app:srcCompat="@drawable/ic_intro_two"
             android:layout_height="@dimen/_80sdp"
             android:layout_marginRight="@dimen/_70sdp"
-             android:textColor="@color/pink"
-            android:textSize="@dimen/_20sdp" />
+            android:textColor="@color/pink"
+            android:textSize="@dimen/_20sdp"
+            app:srcCompat="@drawable/man" />
 
         <TextView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
-             android:gravity="center"
             android:layout_marginTop="@dimen/_5sdp"
-             android:text="$4.80"
             android:drawableTop="@drawable/ic_intro_two_two"
+            android:gravity="center"
+            android:text="$4.80"
             android:textColor="@color/colorSecondaryText"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_13ssp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_intro_four"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_70sdp"
             android:text="$4.58"
-            android:textColor="@color/pink"
-            android:textSize="@dimen/_20sdp" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_24sdp" />
 
         <TextView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:background="@drawable/dark_border"
+            android:background="@drawable/dollar"
             android:gravity="center"
-            android:text="$4"
+
             android:textColor="@color/pink"
             android:textSize="@dimen/_16ssp" />
 
@@ -71,10 +72,10 @@
 
     <LinearLayout
         android:id="@+id/ll_intro_five"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -82,7 +83,7 @@
             android:layout_marginRight="@dimen/_70sdp"
             android:text="$4"
             android:textColor="@color/pink"
-            android:textSize="@dimen/_20sdp" />
+            android:textSize="@dimen/_24sdp" />
 
         <TextView
             android:layout_width="@dimen/_100sdp"
@@ -97,10 +98,10 @@
 
     <LinearLayout
         android:id="@+id/ll_intro_six"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/_50sdp"
@@ -114,10 +115,10 @@
         <ImageView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            app:srcCompat="@drawable/ic_card"
-            android:padding="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_70sdp"
-            android:background="@drawable/dark_border"
+
+            android:background="@drawable/cardasset"
+            android:padding="@dimen/_5sdp"
             android:textColor="@color/pink"
             android:textSize="@dimen/_20sdp" />
 
@@ -148,6 +149,6 @@
 
         android:text="@string/lorum"
         android:textColor="@color/colorSecondaryText"
-        android:textSize="@dimen/_16ssp" />
+        android:textSize="@dimen/_13ssp" />
 
 </LinearLayout>

@@ -61,13 +61,12 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
         list.add(new WalkThrough(R.drawable.ic_intro_two_two,
                 getString(R.string.walk_3), getString(R.string.walk_3_description)));
 
-        list.add(new WalkThrough(R.drawable.cardasset,
-                getString(R.string.walk_3), getString(R.string.walk_4_description)));
+
 
         list.add(new WalkThrough(R.drawable.cardasset,
                 getString(R.string.walk_3), getString(R.string.walk_5_description)));
 
-        list.add(new WalkThrough(R.drawable.cardasset,
+         list.add(new WalkThrough(R.drawable.cardasset,
                 getString(R.string.walk_3), getString(R.string.walk_6_description)));
 
         adapter = new MyViewPagerAdapter(this, list);
@@ -180,10 +179,7 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
                 imageView.setVisibility(View.GONE);
                 introFive.setVisibility(View.VISIBLE);
             }
-            else if (position==4){
-                imageView.setVisibility(View.GONE);
-                introFive.setVisibility(View.VISIBLE);
-            }else if (position==5){
+             else if (position==4){
                 imageView.setVisibility(View.GONE);
                 introSix.setVisibility(View.VISIBLE);
             }
