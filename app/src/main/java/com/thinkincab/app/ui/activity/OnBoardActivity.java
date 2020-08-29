@@ -56,18 +56,18 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
         List<WalkThrough> list = new ArrayList<>();
         list.add(new WalkThrough(R.drawable.ic_car_horizental,
                 getString(R.string.walk_1), getString(R.string.walk_1_description)));
-        list.add(new WalkThrough(R.drawable.ic_intro_two,
+        list.add(new WalkThrough(R.drawable.man,
                 getString(R.string.walk_2), getString(R.string.walk_2_description)));
         list.add(new WalkThrough(R.drawable.ic_intro_two_two,
                 getString(R.string.walk_3), getString(R.string.walk_3_description)));
 
-        list.add(new WalkThrough(R.drawable.bg_walk_three,
+        list.add(new WalkThrough(R.drawable.cardasset,
                 getString(R.string.walk_3), getString(R.string.walk_4_description)));
 
-        list.add(new WalkThrough(R.drawable.bg_walk_three,
+        list.add(new WalkThrough(R.drawable.cardasset,
                 getString(R.string.walk_3), getString(R.string.walk_5_description)));
 
-        list.add(new WalkThrough(R.drawable.bg_walk_three,
+        list.add(new WalkThrough(R.drawable.cardasset,
                 getString(R.string.walk_3), getString(R.string.walk_6_description)));
 
         adapter = new MyViewPagerAdapter(this, list);

@@ -66,13 +66,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:fontFamily="@font/clanpro_narrnews"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:gravity="center"
             android:text="@string/enterverifcation"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_18" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,59 +88,61 @@
 
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:textColor="@color/colorSecondaryText"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/shape_rounded"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/_10sdp"
-
                 android:inputType="phone"
+
                 android:paddingLeft="@dimen/_10sdp"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
                 android:id="@+id/ed_otp_two"
-
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:textColor="@color/colorSecondaryText"
-                android:background="@drawable/shape_rounded"
-                android:gravity="center"
-
-                android:inputType="phone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <EditText
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
+                android:layout_centerInParent="true"
+
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+                android:inputType="phone"
+
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
                 android:id="@+id/ed_otp_three"
-
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:textColor="@color/colorSecondaryText"
-                android:background="@drawable/shape_rounded"
-                android:gravity="center"
-
-                android:inputType="phone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <EditText
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:id="@+id/ed_otp_four"
-
                 android:layout_centerInParent="true"
+
                 android:layout_gravity="center"
-                android:textColor="@color/colorSecondaryText"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/shape_rounded"
                 android:gravity="center"
-
                 android:inputType="phone"
+
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/ed_otp_four"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_centerInParent="true"
+
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/shape_rounded"
+                android:gravity="center"
+                android:inputType="phone"
+
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -149,12 +152,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryText"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"
+            android:textColor="@color/colorPrimaryText"
+            android:visibility="gone"
             app:hintTextAppearance="@style/TextLabel">
 
             <EditText
@@ -206,13 +209,11 @@
         android:background="@drawable/shape_button_grad"
         android:clickable="false"
         android:gravity="center"
-        android:paddingTop="@dimen/_4sdp"
 
-        android:paddingBottom="@dimen/_4sdp"
         android:src="@drawable/shape_button_grad"
         android:text="@string/continue_app"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -224,20 +225,23 @@
         android:id="@+id/textView2"
         android:layout_width="@dimen/_105sdp"
         android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/shape_button_grad"
         android:clickable="false"
+        android:gravity="center"
         android:paddingTop="@dimen/_4sdp"
         android:paddingBottom="@dimen/_4sdp"
         android:text="@string/not_code"
-        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
+        android:textSize="@dimen/_18ssp"
 
+        app:layout_constraintBottom_toBottomOf="@+id/next"
         app:layout_constraintEnd_toStartOf="@+id/next"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/next" />
+        app:layout_constraintTop_toTopOf="@+id/next"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -245,8 +249,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_45sdp"
         android:text="@string/enter_verification_code"
-        android:textSize="@dimen/_20ssp"
         android:textColor="@color/black"
+        android:textSize="@dimen/_20ssp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

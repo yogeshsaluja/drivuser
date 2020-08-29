@@ -49,7 +49,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
+
             android:baselineAligned="false"
             android:orientation="horizontal">
 
@@ -75,6 +75,7 @@
 
                     android:id="@+id/first_name"
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_edit"
                     android:fontFamily="@font/clanpro_narrnews"
@@ -122,7 +123,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
+
             android:orientation="vertical">
 
             <TextView
@@ -168,7 +169,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
+
             android:orientation="vertical">
 
             <TextView

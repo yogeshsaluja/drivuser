@@ -133,17 +133,19 @@
 
     <TextView
         android:id="@+id/submit"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_105sdp"
+        android:layout_height="@dimen/_30sdp"
         android:gravity="center"
         android:paddingTop="@dimen/_5sdp"
         android:paddingBottom="@dimen/_5sdp"
-        android:layout_margin="@dimen/_10sdp"
+
         android:background="@drawable/shape_button_grad"
         android:drawableTint="@color/white"
 
-        android:text="New User "
+        android:layout_marginTop="@dimen/_21sdp"
+        android:text="New User"
 
+        android:textSize="@dimen/_18ssp"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/l_mobile"
@@ -151,21 +153,20 @@
 
     <TextView
         android:id="@+id/bt_login"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10sdp"
-        android:paddingRight="@dimen/_10sdp"
-        android:paddingTop="@dimen/_5sdp"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_5sdp"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="@dimen/_105sdp"
+        android:layout_height="0dp"
+
         android:background="@drawable/shape_button_grad"
         android:drawableTint="@color/white"
+        android:gravity="center"
 
         android:text="Sign in"
 
         android:textColor="@color/white"
+
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="@+id/l_mobile"
-        app:layout_constraintTop_toBottomOf="@+id/l_mobile" />
+        app:layout_constraintTop_toTopOf="@+id/submit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

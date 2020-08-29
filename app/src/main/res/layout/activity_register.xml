@@ -7,14 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.register.RegisterActivity">
 
+    <include
+        android:id="@+id/include7"
+        layout="@layout/custom_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/include7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/clanpro_narrnews"
+                android:lineSpacingExtra="@dimen/_4ssp"
                 android:text="@string/enter_the_details_you_used_to_register"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/_18ssp" />
 
             <LinearLayout
 
@@ -43,21 +51,21 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:text="@string/email"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_14" />
 
                 <EditText
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:background="@drawable/shape_edit"
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/shape_edit"
                     android:hint="@string/email_hint"
                     android:inputType="textEmailAddress"
+                    android:padding="@dimen/_10sdp"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/text_18" />
 
@@ -85,16 +93,16 @@
                         android:textSize="@dimen/text_14" />
 
                     <EditText
-                        android:padding="@dimen/_10sdp"
-                        android:background="@drawable/shape_edit"
-                        android:layout_marginTop="@dimen/_5sdp"
-
                         android:id="@+id/first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/shape_edit"
                         android:hint="@string/first_name"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName|textCapWords"
+                        android:padding="@dimen/_10sdp"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/text_18" />
 
@@ -114,16 +122,16 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:padding="@dimen/_10sdp"
-                        android:background="@drawable/shape_edit"
-                        android:layout_marginTop="@dimen/_5sdp"
-
                         android:id="@+id/last_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/shape_edit"
                         android:hint="@string/last_name"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName|textCapWords"
+                        android:padding="@dimen/_10sdp"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/text_18" />
 
@@ -153,16 +161,15 @@
 
 
                     <ImageView
-                        android:visibility="gone"
                         android:id="@+id/countryImage"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:src="@drawable/flag_lk" />
+                        android:src="@drawable/flag_lk"
+                        android:visibility="gone" />
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/countryNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -171,22 +178,23 @@
                         android:layout_toEndOf="@+id/countryImage"
                         android:gravity="center"
                         android:text="+94"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:visibility="gone" />
 
                     <EditText
-                        android:padding="@dimen/_10sdp"
-                        android:background="@drawable/shape_edit"
-
                         android:id="@+id/phoneNumber"
                         android:layout_width="match_parent"
+
                         android:layout_height="match_parent"
                         android:layout_alignParentBottom="true"
                         android:layout_toEndOf="@+id/countryNumber"
+                        android:background="@drawable/shape_edit"
                         android:hint="@string/phone_number"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLines="1"
-                         android:textSize="@dimen/_15sdp" />
+                        android:padding="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp" />
                 </RelativeLayout>
 
 
@@ -287,7 +295,9 @@
                 <CheckBox
                     android:id="@+id/chkTerms"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="true" />
 
                 <TextView
                     android:id="@+id/lblTerms"
@@ -295,10 +305,11 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:text="@string/i_have_read_and_agreed_the_n_terms_and_conditions"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
             </LinearLayout>
+
             <Button
                 android:id="@+id/next"
                 android:layout_width="match_parent"

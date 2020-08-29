@@ -46,15 +46,11 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
     }
 
 
-
-
-
     @Override
     protected void initView() {
         ButterKnife.bind(this);
         registerPresenter.attachView(this);
         dialog=new CustomDialog(this);
-
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +69,8 @@ public class RegisterPhoneActivity extends BaseActivity implements RegisterMobil
                 }
             }
         });
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

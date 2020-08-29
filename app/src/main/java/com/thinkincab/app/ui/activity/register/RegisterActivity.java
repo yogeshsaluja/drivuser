@@ -87,6 +87,8 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
 
         registerPresenter.getSettings();
 
+
+        //((TextView)findViewById(R.id.include7).findViewById(R.id.textView35)).setText("textView35");
         clickFunctions();
 
         //setCountryList();

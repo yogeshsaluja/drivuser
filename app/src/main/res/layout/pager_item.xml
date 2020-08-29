@@ -145,8 +145,9 @@
         android:maxLines="3"
         android:layout_marginTop="@dimen/_10sdp"
         android:padding="8dp"
+
         android:text="@string/lorum"
         android:textColor="@color/colorSecondaryText"
-        android:textSize="16sp" />
+        android:textSize="@dimen/_16ssp" />
 
 </LinearLayout>

@@ -4,13 +4,13 @@
     <string name="walk_1">Welcome</string>
     <string name="walk_2">Schedule</string>
     <string name="walk_3">Drivers</string>
-    <string name="walk_1_description">Solicita un driv puerta puerta, o por horas.</string>
-    <string name="walk_2_description">Driv calcula la tarifa y los conductores harán una oferta menor</string>
-    <string name="walk_3_description">Compara precios, conductores y vehículos.</string>
+    <string name="walk_1_description">Solicita un driv puerta puerta, \n  o por horas.</string>
+    <string name="walk_2_description">Driv calcula la tarifa y los conductores \n harán una oferta menor</string>
+    <string name="walk_3_description">Compara precios, conductores y \n vehículos.</string>
     <string name="walk_4_description" translatable="false">Selecciona la mejor oferta.</string>
 
     <string name="walk_5_description" translatable="false">Selecciona la mejor oferta.</string>
-    <string name="walk_6_description" translatable="false">Realiza el pago con tarjeta o efectivo.</string>
+    <string name="walk_6_description" translatable="false">Realiza el pago con tarjeta o \n efectivo.</string>
 
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign up</string>
