@@ -4,8 +4,8 @@
     <color name="colorPrimary">#23E5DB</color>
     <color name="colorPrimaryDark">#FF0011FF</color>
     <color name="colorAccent">#888888</color>
-    <color name="colorPrimaryText">#000000</color>
-    <color name="colorSecondaryText">#1B2F34</color>
+    <color name="colorPrimaryText">#1D3337 </color>
+    <color name="colorSecondaryText">#1D3337 </color>
     <color name="window_background">#F7F7F8</color>
     <color name="ripple_color">#13aee7</color>
 
@@ -21,7 +21,7 @@
     <color name="open_word">#1b66ee</color>
     <color name="close_bg">#ffe7ed</color>
     <color name="close_word">#ee1b50</color>
-    <color name="black">#000000</color>
+    <color name="black">#1D3337 </color>
     <color name="pink">#C2007A</color>
 
 

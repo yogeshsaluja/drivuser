@@ -88,7 +88,10 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
         registerPresenter.getSettings();
 
 
-        //((TextView)findViewById(R.id.include7).findViewById(R.id.textView35)).setText("textView35");
+
+
+
+        ((ImageView)findViewById(R.id.include7).findViewById(R.id.back)).setVisibility(View.INVISIBLE);
         clickFunctions();
 
         //setCountryList();

@@ -22,15 +22,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseActivity;
 import com.thinkincab.app.base.BaseFragment;
+import com.thinkincab.app.common.Constants;
 import com.thinkincab.app.common.EqualSpacingItemDecoration;
 import com.thinkincab.app.data.network.APIClient;
 import com.thinkincab.app.data.network.model.EstimateFare;
 import com.thinkincab.app.data.network.model.Provider;
 import com.thinkincab.app.data.network.model.Service;
+import com.thinkincab.app.ui.activity.location_pick.LocationPickActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 import com.thinkincab.app.ui.adapter.ServiceAdapter;
@@ -58,12 +61,22 @@ import static com.thinkincab.app.MvpApplication.RIDE_REQUEST;
 import static com.thinkincab.app.common.Constants.BroadcastReceiver.INTENT_FILTER;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_ID;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_LAST_FOUR;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.DEST_ADD;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.DEST_LAT;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.DEST_LONG;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.DISTANCE_VAL;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.PAYMENT_MODE;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SERVICE_TYPE;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SRC_ADD;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SRC_LAT;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SRC_LONG;
+import static com.thinkincab.app.common.Constants.Status.EMPTY;
+import static com.thinkincab.app.common.Constants.Status.PICKED_UP;
+import static com.thinkincab.app.common.Constants.Status.SERVICE;
 import static com.thinkincab.app.data.SharedHelper.getKey;
 import static com.thinkincab.app.data.SharedHelper.getProviders;
 import static com.thinkincab.app.data.SharedHelper.putKey;
+import static com.thinkincab.app.ui.activity.main.MainActivity.CURRENT_STATUS;
 import static com.thinkincab.app.ui.activity.payment.PaymentActivity.PICK_PAYMENT_METHOD;
 
 public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIView {
@@ -90,6 +103,12 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     TextView tv_four_hour;
     @BindView(R.id.tv_eight_hour)
     TextView tv_eight_hour;
+    @BindView(R.id.ride_now)
+    Button ride_now;
+    @BindView(R.id.source)
+    TextView msource;
+    @BindView(R.id.destination)
+    TextView mdestination;
 
 
 
@@ -145,6 +164,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         }
     };
 
+
     public ServiceTypesFragment() {
     }
 
@@ -178,7 +198,9 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         return view;
     }
 
-    @OnClick({R.id.payment_type, R.id.get_pricing, R.id.schedule_ride, R.id.ride_now,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
+
+
+    @OnClick({R.id.payment_type, R.id.get_pricing,R.id.source,R.id.destination, R.id.schedule_ride, R.id.ride_now,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.payment_type:
@@ -197,6 +219,20 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                         }
                     }
                 }
+                break;
+
+
+            case R.id.source:
+                ((MainActivity)getContext()).CURRENT_STATUS = EMPTY;
+                Intent sourceIntent = new Intent(getContext(), LocationPickActivity.class);
+                sourceIntent.putExtra("actionName", Constants.LocationActions.SELECT_SOURCE);
+                startActivityForResult(sourceIntent, 3);
+                break;
+            case R.id.destination:
+                ((MainActivity)getContext()).CURRENT_STATUS = EMPTY;
+                Intent intent = new Intent(getContext(), LocationPickActivity.class);
+                intent.putExtra("actionName", Constants.LocationActions.SELECT_DESTINATION);
+                startActivityForResult(intent, 3);
                 break;
             case R.id.tv_two_hour:
                 RIDE_REQUEST.put("rental_hours","120");
@@ -339,6 +375,13 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                     e.printStackTrace();
                 }
 
+
+                if(mServices.size()>0)
+                {
+                   ride_now.setVisibility(View.VISIBLE);
+                }
+                else ride_now.setVisibility(View.GONE);
+
                 adapter = new ServiceAdapter(getActivity(), mServices, mListener, capacity, mEstimateFare);
                 serviceRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
                 serviceRv.setItemAnimator(new DefaultItemAnimator());
@@ -377,8 +420,11 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     }
 
 
+
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         if (requestCode == PICK_PAYMENT_METHOD && resultCode == Activity.RESULT_OK) {
             RIDE_REQUEST.put(PAYMENT_MODE, data.getStringExtra("payment_mode"));
             if (data.getStringExtra("payment_mode").equals("CARD")) {
@@ -386,6 +432,27 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                 RIDE_REQUEST.put(CARD_LAST_FOUR, data.getStringExtra("card_last_four"));
             }
             initPayment(paymentType);
+        }
+        if (requestCode == 3) if (resultCode == Activity.RESULT_OK) {
+            if (RIDE_REQUEST.containsKey(SRC_ADD))
+                msource.setText(String.valueOf(RIDE_REQUEST.get(SRC_ADD)));
+            else msource.setText("");
+            if (RIDE_REQUEST.containsKey(DEST_ADD))
+                mdestination.setText(String.valueOf(RIDE_REQUEST.get(DEST_ADD)));
+            else mdestination.setText("");
+
+            if (RIDE_REQUEST.containsKey(SRC_ADD)
+                    && RIDE_REQUEST.containsKey(DEST_ADD)
+                    && CURRENT_STATUS.equalsIgnoreCase(EMPTY)) {
+                CURRENT_STATUS = SERVICE;
+               // ((MainActivity)getContext()).changeFlow(CURRENT_STATUS);
+                LatLng origin = new LatLng((Double) RIDE_REQUEST.get(SRC_LAT), (Double) RIDE_REQUEST.get(SRC_LONG));
+                LatLng destination = new LatLng((Double) RIDE_REQUEST.get(DEST_LAT), (Double) RIDE_REQUEST.get(DEST_LONG));
+                ((MainActivity)getContext()).drawRoute(origin, destination);
+            } else if (RIDE_REQUEST.containsKey(DEST_ADD)
+                    && !RIDE_REQUEST.get(DEST_ADD).equals("")
+                    && CURRENT_STATUS.equalsIgnoreCase(PICKED_UP))
+                ((MainActivity)getContext()).extendRide();
         }
     }
 

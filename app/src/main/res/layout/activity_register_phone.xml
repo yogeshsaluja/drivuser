@@ -12,6 +12,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView2"
+
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_28sdp"
+
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo" />
+
 
     <View
         android:background="@color/white"

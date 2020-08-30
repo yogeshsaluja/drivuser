@@ -44,6 +44,7 @@
             android:layout_height="96dp"
             android:layout_margin="12dp"
             android:transitionName="picture"
+            android:background="@drawable/strok_primary"
             app:srcCompat="@drawable/ic_user_placeholder" />
 
         <LinearLayout

@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:drawableStart="@drawable/ic_work"
+                    android:drawableStart="@drawable/ic_wokry"
                     android:drawablePadding="8dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/clanpro_narrnews"

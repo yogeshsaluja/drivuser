@@ -29,6 +29,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
@@ -175,7 +177,7 @@ public class MainActivity extends BaseActivity implements
         DirectionCallback,
         MainIView, LocationListener {
 
-    private static String CURRENT_STATUS = EMPTY;
+    public static String CURRENT_STATUS = EMPTY;
     private MainPresenter<MainActivity> mainPresenter = new MainPresenter<>();
 
     @BindView(R.id.llChangeLocation)
@@ -196,7 +198,9 @@ public class MainActivity extends BaseActivity implements
     DrawerLayout drawerLayout;
     @BindView(R.id.top_layout)
     LinearLayout topLayout;
-    @BindView(R.id.pick_location_layout)
+
+    @Nullable
+    @BindView(R.id.pick_location_layoutt)
     LinearLayout pickLocationLayout;
     @BindView(R.id.changeDestination)
     TextView changeDestination;
@@ -259,14 +263,50 @@ public class MainActivity extends BaseActivity implements
         return R.layout.activity_main;
     }
 
+
+
+    private void sos() {
+        new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.sos_alert))
+                .setMessage(R.string.are_sure_you_want_to_emergency_alert)
+                .setCancelable(true)
+                .setPositiveButton(getResources().getString(R.string.yes), (dialog, which) -> callPhoneNumber(SharedHelper.getKey(this, SOS_NUMBER)))
+                .setNegativeButton(getResources().getString(R.string.no), (dialog, which) -> dialog.cancel())
+                .show();
+    }
+
+    private void callPhoneNumber(String mobileNumber) {
+        if (mobileNumber != null && !mobileNumber.isEmpty()) {
+            if (ActivityCompat.checkSelfPermission(baseActivity(), Manifest.permission.CALL_PHONE)
+                    == PackageManager.PERMISSION_GRANTED)
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobileNumber)));
+            else ActivityCompat.requestPermissions(baseActivity(),
+                    new String[]{Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE);
+        }
+    }
+
+ public    TextView msos;
+
     @Override
     public void initView() {
+
+
+         findViewById(R.id.mylayy).setVisibility(View.GONE);
 
         if (Build.VERSION.SDK_INT >= 21)
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         ButterKnife.bind(this);
+
+
+        msos=  findViewById(R.id.sos);
+        msos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sos();
+            }
+        });
 
         // Configura o google places
         Places.initialize(getApplicationContext(), getString(R.string.google_map_key));
@@ -385,6 +425,11 @@ public class MainActivity extends BaseActivity implements
 
             }
         });
+
+
+        CURRENT_STATUS=SERVICE;
+        changeFlow(SERVICE);
+        //changeFragment(new ServiceTypesFragment());
     }
 
     @Override
@@ -445,11 +490,11 @@ public class MainActivity extends BaseActivity implements
                 hideLoading();
                 addAllProviders(SharedHelper.getProviders(this));
 //                displayCurrentAddress();
-                changeFragment(null);
-                destinationTxt.setText(getString(R.string.where_to));
-                llPickHomeAdd.setVisibility(home != null ? View.VISIBLE : View.INVISIBLE);
-                llPickWorkAdd.setVisibility(work != null ? View.VISIBLE : View.INVISIBLE);
-                mProviderLocation = null;
+               // changeFragment(new ServiceTypesFragment());
+              //  destinationTxt.setText(getString(R.string.where_to));
+//                llPickHomeAdd.setVisibility(home != null ? View.VISIBLE : View.INVISIBLE);
+//                llPickWorkAdd.setVisibility(work != null ? View.VISIBLE : View.INVISIBLE);
+//                mProviderLocation = null;
                 polyLinePoints = null;
                 break;
             case SERVICE:
@@ -1135,9 +1180,11 @@ public class MainActivity extends BaseActivity implements
     public void onSuccess(AddressResponse response) {
         home = (response.getHome().isEmpty()) ? null : response.getHome().get(response.getHome().size() - 1);
         work = (response.getWork().isEmpty()) ? null : response.getWork().get(response.getWork().size() - 1);
-        if (CURRENT_STATUS.equalsIgnoreCase(EMPTY)) {
-            llPickHomeAdd.setVisibility(home != null ? View.VISIBLE : View.GONE);
-            llPickWorkAdd.setVisibility(work != null ? View.VISIBLE : View.GONE);
+        if (CURRENT_STATUS.equalsIgnoreCase(EMPTY))
+        {
+
+         //   llPickHomeAdd.setVisibility(home != null ? View.VISIBLE : View.GONE);
+          //  llPickWorkAdd.setVisibility(work != null ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -1339,7 +1386,7 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-    private void extendRide() {
+    public void extendRide() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle(getString(R.string.destination_change))
                 .setMessage(getString(R.string.destination_fare_changes))

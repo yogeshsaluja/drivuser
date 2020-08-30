@@ -152,9 +152,9 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/_40sdp"
             android:layout_marginRight="@dimen/_40sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:id="@+id/add_amount"
-
+            android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/shape_rounded"
             android:textColor="@color/colorSecondaryText"
              android:layout_alignParentBottom="true"

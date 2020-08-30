@@ -21,14 +21,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white"
-
         android:fitsSystemWindows="true"
         app:itemBackground="@drawable/activated_background"
         app:itemHorizontalPadding="@dimen/_50sdp"
         android:textAlignment="textStart"
         app:headerLayout="@layout/nav_header_main"
         app:itemTextAppearance="@style/NavDrawerTextStyle"
-        app:itemTextColor="@color/colorAccent"
+        app:itemTextColor="@color/black"
         app:menu="@menu/activity_main_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

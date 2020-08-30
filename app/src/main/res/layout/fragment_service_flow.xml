@@ -16,17 +16,18 @@
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="8dp">
+
         <ImageView
             android:id="@+id/call_sec"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/dark_border"
+
+            android:background="@drawable/callpng"
             android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_call"
-            android:visibility="gone"
             android:text="@string/call"
-            android:tint="@color/pink" />
+            android:tint="@color/pink"
+            android:visibility="gone" />
 
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/round"
             android:backgroundTint="#000"
+            android:visibility="invisible"
             android:elevation="2dp"
             android:fontFamily="@font/clanpro_medium"
             android:gravity="center"
@@ -286,9 +288,9 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_alignParentLeft="true"
                      android:padding="@dimen/_10sdp"
-                    android:tint="@color/colorSecondaryText"
-                    android:background="@drawable/dark_border"
-                    app:srcCompat="@drawable/ic_close" />
+
+
+                    android:background="@drawable/blaskpng" />
 
                 <ImageView
                     android:id="@+id/chat"
@@ -296,7 +298,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_centerHorizontal="true"
 
-                    android:background="@drawable/ic_chat"
+                    android:background="@drawable/chatpng"
                     android:padding="@dimen/_10sdp"
                     />
 
@@ -307,9 +309,9 @@
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/dark_border"
+                    android:background="@drawable/callpng"
                     android:padding="@dimen/_10sdp"
-                    android:src="@drawable/ic_call"
+
 
                     android:text="@string/call"
                     android:tint="@color/pink" />
@@ -334,11 +336,12 @@
                     android:id="@+id/share_ride"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_alignParentRight="true"
+
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/sharer"
                     android:padding="@dimen/_10sdp"
                     android:text="@string/share_ride"
-                    android:visibility="visible"
-                     />
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_invoice"
     android:layout_width="match_parent"
-     android:padding="@dimen/_10sdp"
+
 
     android:layout_height="match_parent"
     >
@@ -14,16 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_white_border"
-        android:visibility="gone"
-        android:padding="@dimen/_10sdp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_10sdp"
+       android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="16dp"
-            android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textView"
@@ -699,22 +701,23 @@
 
             <Button
                 android:id="@+id/done"
-                android:layout_weight="1"
-                android:background="@drawable/shape_rounded"
-                android:textColor="@color/colorSecondaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:text="@string/done"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rounded"
+                android:text="@string/done"
+                android:textColor="@color/colorSecondaryText"
                 android:visibility="visible" />
 
             <Button
-                android:layout_weight="1"
+                android:id="@+id/pay_now"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pay_now"
+                android:layout_weight="1"
                 android:background="@drawable/shape_rounded"
-                android:textColor="@color/colorSecondaryText"                android:text="@string/pay_now"
+                android:text="@string/pay_now"
+                android:textColor="@color/colorSecondaryText"
                 android:visibility="visible" />
 
         </LinearLayout>

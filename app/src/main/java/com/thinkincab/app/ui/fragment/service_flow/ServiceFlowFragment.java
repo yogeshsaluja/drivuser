@@ -6,10 +6,13 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import android.text.TextUtils;
@@ -396,6 +399,21 @@ public class ServiceFlowFragment extends BaseFragment
         }
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getContext()!=null)
+        ((MainActivity)getContext()).msos.setVisibility(View.VISIBLE);
+
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(getContext()!=null)
+        ((MainActivity)getContext()).msos.setVisibility(View.INVISIBLE);
+    }
 
     private void sharedRide() {
         try {

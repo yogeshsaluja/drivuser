@@ -149,7 +149,8 @@ public class PastTripFragment extends BaseFragment implements PastTripIView {
             Payment payment = datum.getPayment();
             if (payment != null) {
                 String s = getNewNumberFormat(payment.getTotal());
-                holder.payable.setText(SharedHelper.getKey(mContext, "currency") + " " + s);
+                //holder.payable.setText(SharedHelper.getKey(mContext, "currency") + " " + s);
+                holder.payable.setText(s);
             }
             //  holder.payable.setText(payment.getTotal().toString());
         }

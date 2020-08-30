@@ -144,14 +144,17 @@
 
             <TextView
                 android:id="@+id/add_card"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
+                android:background="@drawable/button_round_primary"
                 android:clickable="true"
                 android:ellipsize="end"
                 android:focusable="true"
-                android:padding="16dp"
                 android:gravity="center"
+                android:layout_gravity="center"
+
+                android:padding="16dp"
+
                 android:singleLine="true"
                 android:text="@string/add_card_for_payments"
                 android:textColor="@color/colorSecondaryText"

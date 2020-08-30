@@ -94,26 +94,37 @@
 
     </LinearLayout>
 
+    <include layout="@layout/pick_location_layout"
+        android:id="@+id/iclc"/>
+
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/surgeLayout"
+        android:layout_marginTop="@dimen/_5sdp"
+
+        android:layout_below="@+id/iclc"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="@dimen/_10sdp"
+
         android:background="@color/white"
-        android:clipToPadding="false"
+
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:gravity="center"
-            android:id="@+id/tv_title"
             android:text="Favorite Location"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:id="@+id/ll_home"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal">
@@ -213,9 +224,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_25sdp"
 
+                android:layout_marginStart="@dimen/_25sdp"
                 android:background="@drawable/shape_dark"
                 android:gravity="center"
-                android:layout_marginStart="@dimen/_25sdp"
 
 
                 android:minWidth="@dimen/_70sdp"
@@ -240,15 +251,15 @@
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:background="@drawable/shape_button_grad"
+
+                android:background="@drawable/bbike"
                 android:gravity="center"
                 android:minWidth="@dimen/_70sdp"
                 android:padding="@dimen/_10sdp"
-                android:textColor="@color/white"
 
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp"
-                android:tint="@color/white"
-                card_view:srcCompat="@drawable/ic_car" />
+                android:tint="@color/white" />
 
             <TextView
                 android:id="@+id/tv_note"
@@ -279,7 +290,6 @@
                 tools:text="ndkjsbhdbsbhfbdjbfjd" />
 
         </LinearLayout>
-
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -410,8 +420,9 @@
                 android:fontFamily="@font/clanpro_narrnews"
                 android:text="@string/request_offers"
                 android:textAllCaps="true"
+
                 android:textColor="@color/colorSecondaryText"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 

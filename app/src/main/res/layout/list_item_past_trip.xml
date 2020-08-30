@@ -29,12 +29,13 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="60dp"
+                android:layout_width="10dp"
                 android:layout_height="60dp"
                 android:contentDescription="@string/app_name"
                 android:padding="4dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_user_placeholder" />
+                android:src="@drawable/ic_user_placeholder"
+                android:visibility="invisible" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -74,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:hint="@string/dash"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/pink"
                     android:textSize="@dimen/text_14" />
 
                 <TextView

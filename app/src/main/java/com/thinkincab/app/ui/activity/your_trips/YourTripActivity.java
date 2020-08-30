@@ -49,17 +49,17 @@ public class YourTripActivity extends BaseActivity {
                 finish();
             }
         });
-        tabs.addTab(tabs.newTab().setText(getString(R.string.past)));
-        tabs.addTab(tabs.newTab().setText(getString(R.string.upcoming)));
+       // tabs.addTab(tabs.newTab().setText(getString(R.string.past)));
+       // tabs.addTab(tabs.newTab().setText(getString(R.string.upcoming)));
 
         adapter = new TabPagerAdapter(getSupportFragmentManager(), tabs.getTabCount());
         container.setAdapter(adapter);
-        container.canScrollHorizontally(0);
-        container.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+       // container.canScrollHorizontally(0);
+        //container.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                container.setCurrentItem(tab.getPosition());
+               // container.setCurrentItem(tab.getPosition());
             }
 
             @Override
