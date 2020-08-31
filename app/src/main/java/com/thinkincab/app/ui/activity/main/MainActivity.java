@@ -199,8 +199,7 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.top_layout)
     LinearLayout topLayout;
 
-    @Nullable
-    @BindView(R.id.pick_location_layoutt)
+
     LinearLayout pickLocationLayout;
     @BindView(R.id.changeDestination)
     TextView changeDestination;
@@ -291,7 +290,10 @@ public class MainActivity extends BaseActivity implements
     public void initView() {
 
 
-         findViewById(R.id.mylayy).setVisibility(View.GONE);
+
+         pickLocationLayout=findViewById(R.id.mylayy).findViewById(R.id.pick_location_layoutt);
+
+    findViewById(R.id.mylayy).setVisibility(View.GONE);
 
         if (Build.VERSION.SDK_INT >= 21)
             getWindow().getDecorView().setSystemUiVisibility(

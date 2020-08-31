@@ -165,6 +165,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     };
 
 
+
     public ServiceTypesFragment() {
     }
 
@@ -177,7 +178,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     public View initView(View view) {
         unbinder = ButterKnife.bind(this, view);
         presenter.attachView(this);
-        presenter.services();
+
         if (MainActivity.type.equalsIgnoreCase("NORMAL")){
             ll_hours.setVisibility(View.GONE);
         }else if (MainActivity.type.equalsIgnoreCase("RENTAL")){
@@ -453,6 +454,8 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                     && !RIDE_REQUEST.get(DEST_ADD).equals("")
                     && CURRENT_STATUS.equalsIgnoreCase(PICKED_UP))
                 ((MainActivity)getContext()).extendRide();
+
+            presenter.services();
         }
     }
 
