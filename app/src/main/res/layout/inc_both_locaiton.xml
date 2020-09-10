@@ -5,7 +5,8 @@
     android:id="@+id/both_etxt"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_78sdp"
-    android:elevation="@dimen/_4sdp"
+    android:elevation="@dimen/_6sdp"
+
 
     android:background="@drawable/strok_gray">
 
@@ -13,7 +14,7 @@
         android:id="@+id/divider9"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
+        android:background="#AFAFAE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,18 +54,19 @@
 
     <ImageView
         android:id="@+id/imageView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:background="@drawable/ic_marker"
         app:layout_constraintBottom_toTopOf="@+id/divider9"
         app:layout_constraintEnd_toStartOf="@+id/textView32"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_marker" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_18sdp"
         android:background="@drawable/ic_marker"
         android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -63,6 +63,7 @@ import retrofit2.Response;
 
 import static com.thinkincab.app.MvpApplication.DATUM;
 import static com.thinkincab.app.MvpApplication.RIDE_REQUEST;
+import static com.thinkincab.app.MvpApplication.hrsselected;
 import static com.thinkincab.app.common.Constants.BroadcastReceiver.INTENT_FILTER;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_ID;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_LAST_FOUR;
@@ -246,6 +247,9 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     }
 
 
+
+
+
     @OnClick({R.id.tv_work, R.id.tv_home, R.id.payment_type, R.id.get_pricing, R.id.source, R.id.destination, R.id.schedule_ride, R.id.ride_now, R.id.tv_two_hour, R.id.tv_four_hour, R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -311,6 +315,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
             case R.id.tv_two_hour:
                 RIDE_REQUEST.put("rental_hours", "120");
 
+                hrsselected="2";
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
@@ -320,6 +325,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
             case R.id.tv_four_hour:
                 RIDE_REQUEST.put("rental_hours", "240");
 
+                hrsselected="4";
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
                 tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
@@ -328,6 +334,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                 break;
             case R.id.tv_eight_hour:
                 RIDE_REQUEST.put("rental_hours", "480");
+                hrsselected="8";
 
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));

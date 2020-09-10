@@ -45,8 +45,9 @@
                     android:fontFamily="@font/clanpro_narrnews"
                     android:padding="12dp"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="43sp" />
+                    android:textColor="@color/pink"
+                    android:textSize="43sp"
+                    tools:text="15" />
 
             </LinearLayout>
 
@@ -154,6 +155,8 @@
             android:layout_marginRight="@dimen/_40sdp"
             android:layout_height="wrap_content"
             android:id="@+id/add_amount"
+            android:textStyle="bold"
+            android:textSize="@dimen/_16ssp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/shape_rounded"
             android:textColor="@color/colorSecondaryText"

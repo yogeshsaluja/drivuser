@@ -25,6 +25,7 @@ public class MvpApplication extends Application {
     public static String marker;
     public static DataResponse checkResp=null;
     public static String estFare="";
+    public static String hrsselected="";
     public static boolean checkStatus=true;
     public static boolean timeout=false;
     private static MvpApplication mInstance;

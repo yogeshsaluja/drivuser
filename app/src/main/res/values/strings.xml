@@ -115,7 +115,7 @@
     <string name="due_to_peek_hours">Due to peek hours, Charges will be varied based on availability of providers.</string>
     <string name="cancel">Cancel</string>
     <string name="add_amount">Add Amount</string>
-    <string name="add_money">Add money</string>
+    <string name="add_money">Add money to wallet</string>
     <string name="add_coupon_code">Add Coupon code</string>
     <string name="no_coupon_added">No Coupon added</string>
     <string name="add_coupon">Add Coupon</string>
@@ -358,4 +358,6 @@
     <string name="rent_by_hours">Rent by hours</string>
     <string name="request_offers">Request offers</string>
     <string name="request_drive">Request a Drive</string>
- </resources>
+    <string name="choose_the_best_offer">Choose the best offer</string>
+    <string name="write_your_review">Write your reviews</string>
+</resources>

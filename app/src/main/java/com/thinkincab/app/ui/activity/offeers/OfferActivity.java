@@ -53,6 +53,9 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
 
     @BindView(R.id.back)
     ImageView back;
+
+    @BindView(R.id.textView5)
+    TextView hrs ;
     @BindView(R.id.textView35)
     TextView title;
     private boolean status=true;
@@ -146,6 +149,7 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
         string.setSpan(new StrikethroughSpan(), 0, string.length(), 0);
 
         amount.setText(string);
+        hrs.setText(MvpApplication.hrsselected);
 
     }
 

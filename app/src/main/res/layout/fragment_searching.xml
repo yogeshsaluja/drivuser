@@ -28,23 +28,24 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
+            android:layout_height="@dimen/_36sdp"
             android:background="@drawable/shape_grad"
+            android:gravity="center"
+
             android:text="Waiting offers"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
             android:id="@+id/cancel"
-            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@drawable/shape_grad_blue_rect"
             android:gravity="center"
+            android:text="@string/cancel_request"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:background="@color/colorPrimary"
-             android:text="@string/cancel_request" />
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

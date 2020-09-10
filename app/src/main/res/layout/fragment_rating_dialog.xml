@@ -35,8 +35,9 @@
                 android:fontFamily="@font/clanpro_medium"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
+                android:text="Rate your trip"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,10 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:gravity="start"
-                android:hint="@string/write_your_comment"
+                android:hint="@string/write_your_review"
                 android:inputType="text"
+                android:textColorHint="#AFAFAE"
+
+                android:textColor="#AFAFAE"
                 android:padding="@dimen/_8sdp"
-                android:textSize="@dimen/text_14" />
+                android:textSize="@dimen/_12ssp" />
 
             <Button
                 android:id="@+id/submit"
@@ -87,6 +91,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
 
+                android:textStyle="bold"
+                android:textSize="@dimen/_19ssp"
                 android:background="@drawable/shape_rounded"
                 android:text="@string/submit"
                 android:textColor="@color/colorSecondaryText" />

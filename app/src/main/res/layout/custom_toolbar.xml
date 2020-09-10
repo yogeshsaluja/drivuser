@@ -10,7 +10,7 @@
     <View
         android:id="@+id/view6"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_height="@dimen/_43sdp"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,17 +20,18 @@
     <TextView
         android:id="@+id/textView35"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Offers"
-        android:textStyle="bold"
-        android:textSize="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_60sdp"
+        android:layout_width="@dimen/_44sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
         android:textColor="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
+
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="61dp" />
+        tools:text="Offers" />
     <TextView
 
         android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="@dimen/_75sdp"
+        android:layout_width="@dimen/_65sdp"
         android:layout_height="@dimen/_28sdp"
 
         android:layout_marginEnd="@dimen/_8sdp"
@@ -60,11 +61,13 @@
 
     <ImageView
         android:id="@+id/back"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:cropToPadding="true"
+        android:padding="@dimen/_4sdp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view6"
         app:srcCompat="@drawable/ic_back_black" />
 </androidx.constraintlayout.widget.ConstraintLayout>

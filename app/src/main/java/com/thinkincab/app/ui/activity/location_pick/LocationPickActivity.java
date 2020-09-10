@@ -257,8 +257,8 @@ public class LocationPickActivity extends BaseActivity
         buildGoogleApiClient();
         ButterKnife.bind(this);
         presenter.attachView(this);
-        drivelogo.setVisibility(View.GONE);
-        title.setText(getString(R.string.location));
+       // drivelogo.setVisibility(View.VISIBLE);
+        title.setText(R.string.choose_the_best_offer);
         tv_done.setVisibility(View.VISIBLE);
 
         tv_done.setOnClickListener(new View.OnClickListener() {

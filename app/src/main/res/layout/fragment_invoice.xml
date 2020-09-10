@@ -469,14 +469,14 @@
                     android:id="@+id/tvGiveTip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_round_accent"
+                    android:background="@drawable/button_round_accent_white"
                     android:ellipsize="end"
                     android:gravity="end"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:singleLine="true"
                     android:text="@string/add_tip"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/text_14" />
 
             </LinearLayout>
@@ -707,6 +707,9 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/shape_rounded"
                 android:text="@string/done"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="@dimen/_19ssp"
                 android:textColor="@color/colorSecondaryText"
                 android:visibility="visible" />
 
@@ -719,6 +722,10 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/shape_rounded"
                 android:text="@string/pay_now"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_19ssp"
                 android:textColor="@color/colorSecondaryText"
                 android:visibility="visible" />
 

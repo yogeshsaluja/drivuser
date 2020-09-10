@@ -27,18 +27,17 @@
 
         <TextView
             android:id="@+id/tv_done"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
-            android:layout_width="@dimen/_150sdp"
-            android:elevation="5dp"
-            android:textColor="@color/colorSecondaryText"
+            android:layout_width="@dimen/_210sdp"
             android:layout_height="@dimen/_40sdp"
-            android:text="Accept"
-            android:textSize="@dimen/_16ssp"
-            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/_50sdp"
-            android:background="@drawable/shape_rounded"
-              />
+            android:background="@drawable/shape_grad_blue"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:text="Accept"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/_19ssp" />
 
     </RelativeLayout>
 

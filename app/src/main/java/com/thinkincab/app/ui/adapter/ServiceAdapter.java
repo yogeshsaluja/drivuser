@@ -85,6 +85,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         //    holder.estimated_fixed.setVisibility(View.VISIBLE);
             //holder.price.setVisibility(View.VISIBLE);
             MvpApplication.estFare=SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()));
+
             holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
             if (SharedHelper.getKey(context, "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
                 if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0) {
