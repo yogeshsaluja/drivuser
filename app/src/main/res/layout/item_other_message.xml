@@ -13,7 +13,7 @@
         app:cmv_arrowGravity="start"
         app:cmv_arrowMargin="8dp"
         app:cmv_arrowPosition="left"
-        app:cmv_backgroundColor="#FDFEFE"
+        app:cmv_backgroundColor="@color/pink"
 
         app:cmv_backgroundColorPressed="#FFBABABA"
         app:cmv_contentPadding="10dp"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             tools:text="@string/enter_verification_code"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradent_shape"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#434343" />
 
