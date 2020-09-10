@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+
     android:padding="8dp">
 
     <me.himanshusoni.chatmessageview.ChatMessageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,6 +14,7 @@
         app:cmv_arrowMargin="8dp"
         app:cmv_arrowPosition="left"
         app:cmv_backgroundColor="#FDFEFE"
+
         app:cmv_backgroundColorPressed="#FFBABABA"
         app:cmv_contentPadding="10dp"
         app:cmv_cornerRadius="12dp"
@@ -20,7 +23,9 @@
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
+            tools:text="@string/enter_verification_code"
             android:layout_height="wrap_content"
+            android:background="@drawable/gradent_shape"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#434343" />
 

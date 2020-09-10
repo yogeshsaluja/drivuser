@@ -204,9 +204,9 @@
             style="@style/MyButton.Primary"
             android:layout_margin="12dp"
             android:padding="8dp"
-
+            android:textSize="@dimen/_18ssp"
             android:text="@string/save"
-            android:background="@drawable/button_round_primary"
+            android:background="@drawable/shape_grad_blue"
             android:textColor="@color/black" />
 
         <TextView
@@ -216,9 +216,10 @@
             android:fontFamily="@font/clanpro_narrnews"
             android:gravity="center"
             android:padding="16dp"
+
             android:text="@string/looking_to_change_password"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_14"
+            android:textSize="@dimen/_18ssp"
             android:visibility="invisible" />
 
     </LinearLayout>
