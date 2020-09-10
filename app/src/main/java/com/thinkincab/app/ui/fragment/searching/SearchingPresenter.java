@@ -29,7 +29,7 @@ public class SearchingPresenter<V extends SearchingIView> extends BasePresenter<
                 .acceptRequest(params)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+                .subscribe(getMvpView()::onSuccessResukt, getMvpView()::onError));
     }
     @Override
     public void getRequest() {

@@ -38,7 +38,8 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/round"
             android:backgroundTint="#000"
-            android:visibility="invisible"
+            android:visibility="gone"
+
             android:elevation="2dp"
             android:fontFamily="@font/clanpro_medium"
             android:gravity="center"
@@ -122,24 +123,53 @@
                         android:id="@+id/rating"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
+
                         android:layout_height="match_parent"
                         android:drawableRight="@drawable/ic_star"
-                        android:drawablePadding="5dp"
+                        android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center"
 
                         />
 
                     <TextView
                         android:id="@+id/otp"
-                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="#fdfbfb"
                         android:ellipsize="end"
                         android:fontFamily="@font/clanpro_narrnews"
                         android:padding="4dp"
+                        android:gravity="left"
                         android:singleLine="true"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/text_14" />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center|right"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_weight="1"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/car_blue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"/>
+                        <TextView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/clanpro_book"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="auto"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="@dimen/_10sdp" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -201,14 +231,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/due_to_peek_hours"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/text_12" />
 
             <TextView
                 android:id="@+id/lefttime"
@@ -220,6 +242,59 @@
                 android:textColor="@color/white"
                 android:visibility="gone"
                 tools:text="bsdhjdfd"></TextView>
+            <TextView
+                android:id="@+id/tvTimer"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:maxLines="2"
+                android:padding="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/pink"
+                android:textSize="@dimen/_18ssp" />
+
+
+            <RelativeLayout
+                android:id="@+id/ll_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                     android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                     android:gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                     android:text="Cancel"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="Chat"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                     android:text="Call"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/_12ssp" />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -233,7 +308,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/share_ride"
+                    android:layout_below="@+id/cancel"
                     android:layout_margin="@dimen/_5sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -293,18 +368,6 @@
                     android:background="@drawable/blaskpng" />
 
                 <ImageView
-                    android:id="@+id/chat"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_centerHorizontal="true"
-
-                    android:background="@drawable/chatpng"
-                    android:padding="@dimen/_10sdp"
-                    />
-
-
-
-                <ImageView
                     android:id="@+id/call"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
@@ -315,21 +378,34 @@
 
                     android:text="@string/call"
                     android:tint="@color/pink" />
-                <TextView
-                    android:id="@+id/tvTimer"
+
+                <ImageView
+                    android:id="@+id/chat"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerHorizontal="true"
+
+                    android:background="@drawable/chatpng"
+                    android:padding="@dimen/_10sdp" />
+
+                <ImageView
+                    android:id="@+id/img_cardd"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:text="00:00:00"
-                    android:maxLines="2"
+
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/cardasset" />
+
+                <ImageView
+                    android:id="@+id/img_cash"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:visibility="gone"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/cashasset" />
 
 
-                    android:padding="12dp"
-                    android:textColor="@color/pink"
-                    android:textSize="@dimen/_18ssp" />
 
 
                 <ImageView
@@ -349,7 +425,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@color/quantum_black_100" />
 

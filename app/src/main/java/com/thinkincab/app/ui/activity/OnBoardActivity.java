@@ -91,7 +91,7 @@ public class OnBoardActivity extends BaseActivity implements ViewPager.OnPageCha
             public void onStateChange(boolean active) {
                 if (active){
                     swipeBtnSignUp.toggleState();
-                    startActivity(new Intent(OnBoardActivity.this, RegisterActivity.class));
+                    startActivity(new Intent(OnBoardActivity.this, RegisterPhoneActivity.class));
 
                 }
 

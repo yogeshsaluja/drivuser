@@ -3,9 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:focusable="true"
-    android:orientation="vertical">
+    android:id="@+id/main"
+    android:visibility="visible"
+     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/eta_layout"
@@ -94,7 +96,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/pick_location_layout"
+    <include layout="@layout/pickup_layout_new"
         android:id="@+id/iclc"/>
 
     <LinearLayout
@@ -102,12 +104,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
 
         android:layout_below="@+id/iclc"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="@dimen/_10sdp"
 
         android:background="@color/white"
 
@@ -118,6 +117,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:gravity="center"
+            android:textStyle="bold"
+            android:fontFamily="@font/clanpro_narrnews"
             android:text="Favorite Location"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp" />
@@ -126,6 +127,8 @@
             android:id="@+id/ll_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:visibility="visible"
             android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal">
 
@@ -138,23 +141,26 @@
 
 
             <TextView
+                android:id="@+id/tv_home"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:gravity="center|left"
                 android:text="Casa"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:background=" #D7D7D7" />
 
         <LinearLayout
             android:id="@+id/ll_work"
-
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
@@ -168,18 +174,24 @@
                 card_view:srcCompat="@drawable/ic_wokry" />
 
             <TextView
+                android:id="@+id/tv_work"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:gravity="center|left"
                 android:text="Trabajo"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+
+            android:background=" #D7D7D7" />
 
         <LinearLayout
             android:id="@+id/ll_hours"
-
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -194,7 +206,7 @@
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_5sdp"
 
-                android:background="@drawable/shape_dark"
+                android:background="@drawable/shape_button_grad"
 
                 android:gravity="center"
 
@@ -209,7 +221,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_25sdp"
-
                 android:background="@drawable/shape_dark"
                 android:gravity="center"
 
@@ -260,6 +271,17 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp"
                 android:tint="@color/white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+
+                android:gravity="center"
+
+                android:minWidth="@dimen/_70sdp"
+                android:text="Moto"
+                android:textColor="@color/quantum_black_100"
+                android:textSize="@dimen/_14ssp" />
+
 
             <TextView
                 android:id="@+id/tv_note"
@@ -271,8 +293,9 @@
 
                 android:minWidth="@dimen/_70sdp"
                 android:text="Add Note : "
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/quantum_black_100"
                 android:textSize="@dimen/_14ssp" />
+
 
             <EditText
                 android:id="@+id/ed_note"
@@ -291,6 +314,21 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_title_category"
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+             android:drawablePadding="8dp"
+            android:ellipsize="start"
+            android:gravity="center"
+             android:text="Select Category"
+            android:fontFamily="@font/clanpro_narrnews"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/pink"
+            android:textSize="@dimen/text_16" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/service_rv"
@@ -388,7 +426,7 @@
                 android:id="@+id/get_pricing"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/shape_rounded"
+                android:background="@drawable/shape_grad_blue"
                 android:fontFamily="@font/clanpro_narrnews"
                 android:text="@string/request_offers"
                 android:textAllCaps="true"
@@ -400,7 +438,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:orientation="horizontal"
             android:visibility="visible">
 
@@ -416,13 +454,15 @@
                 android:id="@+id/ride_now"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/shape_rounded"
+                android:layout_margin="@dimen/_10sdp"
+                android:textSize="25sp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/shape_grad_blue"
                 android:fontFamily="@font/clanpro_narrnews"
                 android:text="@string/request_offers"
-                android:textAllCaps="true"
-
+                android:textAllCaps="false"
                 android:textColor="@color/colorSecondaryText"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </LinearLayout>
 

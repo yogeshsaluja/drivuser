@@ -16,13 +16,13 @@
         android:layout_centerInParent="true"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
+        android:visibility="gone"
         app:lottie_rawRes="@raw/search" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#FFF"
+         android:background="#FFF"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -31,14 +31,20 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            android:text="@string/finding_driver"
-            android:textColor="@color/colorPrimaryText" />
+            android:background="@drawable/shape_grad"
+            android:text="Waiting offers"
+            android:textColor="@color/white" />
 
-        <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
             android:id="@+id/cancel"
-            style="@style/MyButton.Primary"
-            android:layout_margin="22dp"
-            android:text="@string/cancel_request" />
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+             android:text="@string/cancel_request" />
 
     </LinearLayout>
 

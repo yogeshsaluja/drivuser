@@ -127,7 +127,12 @@ import com.thinkincab.app.ui.fragment.service_flow.ServiceFlowFragment;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -178,6 +183,7 @@ public class MainActivity extends BaseActivity implements
         MainIView, LocationListener {
 
     public static String CURRENT_STATUS = EMPTY;
+    public boolean stausCheck=true;
     private MainPresenter<MainActivity> mainPresenter = new MainPresenter<>();
 
     @BindView(R.id.llChangeLocation)
@@ -188,6 +194,10 @@ public class MainActivity extends BaseActivity implements
     ImageView menu;
     @BindView(R.id.ivBack)
     ImageView ivBack;
+
+    @BindView(R.id.tv_title_offer)
+    TextView tv_title_offer;
+
     @BindView(R.id.gps)
     ImageView gps;
     @BindView(R.id.source)
@@ -241,7 +251,7 @@ public class MainActivity extends BaseActivity implements
     private Location mLastKnownLocation;
 
     public DataResponse checkStatusResponse = new DataResponse();
-    private UserAddress home = null, work = null;
+    public UserAddress home = null, work = null;
 
     private Runnable r;
     private Handler h;
@@ -256,6 +266,8 @@ public class MainActivity extends BaseActivity implements
     };
     private LatLngBounds.Builder builder;
     public static String type="";
+    public static AddressResponse addressResponse=null;
+    public static String address="";
 
     @Override
     public int getLayoutId() {
@@ -472,6 +484,8 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+    SearchingFragment searchingFragment;
+
     public void changeFlow(String status) {
         System.out.println("RRR CURRENT_STATUS = " + status);
 
@@ -485,8 +499,9 @@ public class MainActivity extends BaseActivity implements
                 CURRENT_STATUS = EMPTY;
                 ivBack.setVisibility(View.GONE);
                 menu.setVisibility(View.VISIBLE);
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.VISIBLE);
-                mGoogleMap.clear();
+                 mGoogleMap.clear();
                 providersMarker.clear();
 
                 hideLoading();
@@ -503,18 +518,25 @@ public class MainActivity extends BaseActivity implements
                 ivBack.setVisibility(View.VISIBLE);
                 menu.setVisibility(View.GONE);
                 updatePaymentEntities();
+                tv_title_offer.setVisibility(View.VISIBLE);
                 changeFragment(new ServiceTypesFragment());
                 break;
             case SEARCHING:
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
                 updatePaymentEntities();
-                startActivity(new Intent(MainActivity.this, OfferActivity.class));
-               /* SearchingFragment searchingFragment = new SearchingFragment();
-                searchingFragment.show(getSupportFragmentManager(), SEARCHING);*/
+                container.removeAllViews();
+            //    findViewById(R.id.mylayy).setVisibility(View.VISIBLE);
+
+                searchingFragment = new SearchingFragment();
+                 searchingFragment.show(getSupportFragmentManager(), SEARCHING);
                 break;
             case STARTED:
                 mGoogleMap.clear();
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
+                findViewById(R.id.mylayy).setVisibility(View.GONE);
+                msos.setVisibility(View.VISIBLE);
                 ivBack.setVisibility(View.GONE);
                 menu.setVisibility(View.VISIBLE);
                 if (DATUM != null)
@@ -522,28 +544,53 @@ public class MainActivity extends BaseActivity implements
                 changeFragment(new ServiceFlowFragment());
                 break;
             case ARRIVED:
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
+                msos.setVisibility(View.VISIBLE);
+
+                findViewById(R.id.mylayy).setVisibility(View.GONE);
                 changeFragment(new ServiceFlowFragment());
                 break;
             case PICKED_UP:
+                msos.setVisibility(View.VISIBLE);
+                hideLoading();
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
                 llChangeLocation.setVisibility(View.VISIBLE);
+                findViewById(R.id.mylayy).setVisibility(View.GONE);
                 changeDestination.setText(DATUM.getDAddress());
                 changeFragment(new ServiceFlowFragment());
                 break;
             case DROPPED:
             case COMPLETED:
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
                 llChangeLocation.setVisibility(View.GONE);
-                changeFragment(new InvoiceFragment());
+                msos.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        changeFragment(new InvoiceFragment());
+
+                    }
+                },3000);
+
                 break;
             case RATING:
                 changeFragment(null);
+
                 if (DATUM != null)
                     FirebaseMessaging.getInstance().unsubscribeFromTopic(String.valueOf(DATUM.getId()));
-                new RatingDialogFragment().show(getSupportFragmentManager(), RATING);
+
+                changeFragment(new RatingDialogFragment());
+                msos.setVisibility(View.GONE);
+
+                //new RatingDialogFragment().show(getSupportFragmentManager(), RATING);
                 RIDE_REQUEST.clear();
+                findViewById(R.id.mylayy).setVisibility(View.GONE);
                 mGoogleMap.clear();
+                if(pickLocationLayout!=null)
                 pickLocationLayout.setVisibility(View.GONE);
                 sourceTxt.setText("");
                 sourceTxt.setHint(getString(R.string.fetching_current_location));
@@ -561,11 +608,12 @@ public class MainActivity extends BaseActivity implements
         mapFragment.onResume();
         mainPresenter.getUserInfo();
         mainPresenter.checkStatus();
+        mainPresenter.getSavedAddress();
         if (CURRENT_STATUS.equalsIgnoreCase(EMPTY)) {
             RIDE_REQUEST.remove(DEST_ADD);
             RIDE_REQUEST.remove(DEST_LAT);
             RIDE_REQUEST.remove(DEST_LONG);
-            mainPresenter.getSavedAddress();
+
         }
     }
 
@@ -581,6 +629,14 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if ((getSupportFragmentManager().findFragmentById(R.id.container)
+                    instanceof ServiceTypesFragment)){
+                container.removeAllViews();
+                Log.e("TAG", "onViewClicked: onbackressed ");
+                finish();
+                return;
+
+        }
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
         else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             if (getSupportFragmentManager().findFragmentById(R.id.container)
@@ -598,16 +654,12 @@ public class MainActivity extends BaseActivity implements
         } else if (bsBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
             bsBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         else {
-            if (isDoubleBackPressed) {
                 super.onBackPressed();
                 return;
-            }
-            this.isDoubleBackPressed = true;
-            Toast.makeText(this, getString(R.string.please_click_back_again_to_exit), Toast.LENGTH_SHORT).show();
-        }
 
-        new Handler().postDelayed(() -> isDoubleBackPressed = false, 2000);
-    }
+              }
+
+     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -705,8 +757,8 @@ public class MainActivity extends BaseActivity implements
 
                 break;
             case R.id.ivBack:
-                onBackPressed();
-                break;
+                Log.e("TAG", "onViewClicked: ivback ");
+                finish();
             case R.id.gps:
                 if (mLastKnownLocation != null) {
                     LatLng currentLatLng = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
@@ -740,7 +792,7 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
-    private void updateSavedAddress(UserAddress userAddress) {
+    public void updateSavedAddress(UserAddress userAddress) {
         RIDE_REQUEST.put(DEST_ADD, userAddress.getAddress());
         RIDE_REQUEST.put(DEST_LAT, userAddress.getLatitude());
         RIDE_REQUEST.put(DEST_LONG, userAddress.getLongitude());
@@ -768,6 +820,8 @@ public class MainActivity extends BaseActivity implements
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
+        mainPresenter.getNavigationSettings();
+
         this.mGoogleMap = googleMap;
 
         getLocationPermission();
@@ -996,10 +1050,11 @@ public class MainActivity extends BaseActivity implements
         if (isFinishing()) return;
 
         if (fragment != null) {
-            if (fragment instanceof BookRideFragment || fragment instanceof ServiceTypesFragment ||
+            if (fragment instanceof BookRideFragment||fragment instanceof RatingDialogFragment || fragment instanceof ServiceTypesFragment ||
                     fragment instanceof ServiceFlowFragment || fragment instanceof RateCardFragment)
                 container.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-            else container.setBackgroundColor(getResources().getColor(R.color.white));
+            else
+                container.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
@@ -1031,15 +1086,24 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+
+
+
+
+
+
+
+
+
     void dismissDialog(String tag) {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
-        if (fragment instanceof SearchingFragment) {
-            SearchingFragment df = (SearchingFragment) fragment;
-            df.dismissAllowingStateLoss();
-        } else if (fragment instanceof RatingDialogFragment) {
-            RatingDialogFragment df = (RatingDialogFragment) fragment;
-            df.dismissAllowingStateLoss();
+        if (fragment!=null){
+            if (fragment instanceof SearchingFragment) {
+                SearchingFragment df = (SearchingFragment) fragment;
+                df.dismissAllowingStateLoss();
+            }
         }
+
     }
 
     private Bitmap getMarkerBitmapFromView() {
@@ -1174,12 +1238,14 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    public void onSuccessLogout(Object object) {
+    public void onSuccessLogout(Object object)
+    {
         LogoutApp();
     }
 
     @Override
     public void onSuccess(AddressResponse response) {
+          addressResponse=response;
         home = (response.getHome().isEmpty()) ? null : response.getHome().get(response.getHome().size() - 1);
         work = (response.getWork().isEmpty()) ? null : response.getWork().get(response.getWork().size() - 1);
         if (CURRENT_STATUS.equalsIgnoreCase(EMPTY))
@@ -1307,6 +1373,7 @@ public class MainActivity extends BaseActivity implements
 
     public void addSpecificProviders(List<Provider> providers, String key) {
         if (providers != null) {
+        hideLoading();
             Bitmap b;
             BitmapDescriptor bd;
             try {
@@ -1340,7 +1407,7 @@ public class MainActivity extends BaseActivity implements
                     serviceIcon = R.drawable.car_icon_11;
                 }
 
-                new TheTask(provider.getId(),provider.getLatitude(), provider.getLongitude(), provider.getFirstName(),"",MvpApplication.marker).execute();
+              //  new TheTask(provider.getId(),provider.getLatitude(), provider.getLongitude(), provider.getFirstName(),"",MvpApplication.marker).execute();
 
                /* MarkerOptions markerOptions = new MarkerOptions()
                         .anchor(0.5f, 0.5f)
@@ -1355,6 +1422,8 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onError(Throwable e) {
+      //  handleError(e);
+
 
     }
 
@@ -1446,7 +1515,7 @@ public class MainActivity extends BaseActivity implements
                 Toast.makeText(this, "waiting for your location ...", Toast.LENGTH_LONG).show();
                 mLastKnownLocation = getLastKnownLocation();
                 if(mLastKnownLocation != null){
-                    String address = getAddress(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
+                      address = getAddress(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()));
                     sourceTxt.setText(address);
                     RIDE_REQUEST.put(SRC_ADD, address);
                     RIDE_REQUEST.put(SRC_LAT, mLastKnownLocation.getLatitude());
@@ -1514,8 +1583,237 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onSuccess(SettingsResponse response) {
+    if (mGoogleMap!=null){
+
+
+        try {
+            if (isTimeBetweenTwoTime(response.getNight_start()+":00",response.getNight_end()+":00",getCurrentdate())){
+                try {
+                    // Customise the styling of the base map using a JSON object defined
+                    // in a raw resource file.
+                    boolean success = mGoogleMap.setMapStyle(
+                            MapStyleOptions.loadRawResourceStyle(
+                                    this, R.raw.style_dark));
+
+                    if (!success) {
+                        // Log.e(TAG, "Style parsing failed.");
+                    }
+                } catch (Resources.NotFoundException e) {
+                    //Log.e(TAG, "Can't find style. Error: ", e);
+                }
+            }else {
+                try {
+                    // Customise the styling of the base map using a JSON object defined
+                    // in a raw resource file.
+                    boolean success = mGoogleMap.setMapStyle(
+                            MapStyleOptions.loadRawResourceStyle(
+                                    this, R.raw.style_json));
+
+                    if (!success) {
+                        // Log.e(TAG, "Style parsing failed.");
+                    }
+                } catch (Resources.NotFoundException e) {
+                    //Log.e(TAG, "Can't find style. Error: ", e);
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+/*
+        try {
+            String string1 = response.getNight_start()+":00";
+            Date time1 = new SimpleDateFormat("HH:mm:ss").parse(string1);
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(time1);
+            calendar1.add(Calendar.DATE, 1);
+
+
+            String string2 = response.getNight_end()+":00";
+            Date time2 = new SimpleDateFormat("HH:mm:ss").parse(string2);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTime(time2);
+            calendar2.add(Calendar.DATE, 1);
+
+
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+            System.out.println(dateFormat.format(cal.getTime()));
+            cal.add(Calendar.DATE, 1);
+            Date x = cal.getTime();
+
+
+            if (isTimeWith_in_Interval(getCurrentdate(), response.getNight_start()+":00",response.getNight_end()+":00")) {
+
+                try {
+                    // Customise the styling of the base map using a JSON object defined
+                    // in a raw resource file.
+                    boolean success = mGoogleMap.setMapStyle(
+                            MapStyleOptions.loadRawResourceStyle(
+                                    this, R.raw.style_dark));
+
+                    if (!success) {
+                        // Log.e(TAG, "Style parsing failed.");
+                    }
+                } catch (Resources.NotFoundException e) {
+                    //Log.e(TAG, "Can't find style. Error: ", e);
+                }            }else {
+                try {
+                    // Customise the styling of the base map using a JSON object defined
+                    // in a raw resource file.
+                    boolean success = mGoogleMap.setMapStyle(
+                            MapStyleOptions.loadRawResourceStyle(
+                                    this, R.raw.style_json));
+
+                    if (!success) {
+                        // Log.e(TAG, "Style parsing failed.");
+                    }
+                } catch (Resources.NotFoundException e) {
+                    //Log.e(TAG, "Can't find style. Error: ", e);
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+*/
+
+    }
+
+
         if (response.getReferral().getReferral().equalsIgnoreCase("1")) navMenuVisibility(true);
         else navMenuVisibility(false);
+    }
+
+
+
+    public   boolean isTimeBetweenTwoTime(String argStartTime,
+                                               String argEndTime, String argCurrentTime) throws ParseException {
+        String reg = "^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
+        //
+        if (argStartTime.matches(reg) && argEndTime.matches(reg)
+                && argCurrentTime.matches(reg)) {
+            boolean valid = false;
+            // Start Time
+            java.util.Date startTime = new SimpleDateFormat("HH:mm:ss")
+                    .parse(argStartTime);
+            Calendar startCalendar = Calendar.getInstance();
+            startCalendar.setTime(startTime);
+
+            // Current Time
+            java.util.Date currentTime = new SimpleDateFormat("HH:mm:ss")
+                    .parse(argCurrentTime);
+            Calendar currentCalendar = Calendar.getInstance();
+            currentCalendar.setTime(currentTime);
+
+            // End Time
+            java.util.Date endTime = new SimpleDateFormat("HH:mm:ss")
+                    .parse(argEndTime);
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTime(endTime);
+
+            //
+            if (currentTime.compareTo(endTime) < 0) {
+
+                currentCalendar.add(Calendar.DATE, 1);
+                currentTime = currentCalendar.getTime();
+
+            }
+
+            if (startTime.compareTo(endTime) < 0) {
+
+                startCalendar.add(Calendar.DATE, 1);
+                startTime = startCalendar.getTime();
+
+            }
+            //
+            if (currentTime.before(startTime)) {
+
+                System.out.println(" Time is Lesser ");
+
+                valid = false;
+            } else {
+
+                if (currentTime.after(endTime)) {
+                    endCalendar.add(Calendar.DATE, 1);
+                    endTime = endCalendar.getTime();
+
+                }
+
+                System.out.println("Comparing , Start Time /n " + startTime);
+                System.out.println("Comparing , End Time /n " + endTime);
+                System.out
+                        .println("Comparing , Current Time /n " + currentTime);
+
+                if (currentTime.before(endTime)) {
+                    System.out.println("RESULT, Time lies b/w");
+                    valid = true;
+                } else {
+                    valid = false;
+                    System.out.println("RESULT, Time does not lies b/w");
+                }
+
+            }
+            return valid;
+
+        } else {
+            throw new IllegalArgumentException(
+                    "Not a valid time, expecting HH:MM:SS format");
+        }
+
+    }
+    public static String getCurrentdate() {
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+        return formattedDate;
+    }
+
+    public static boolean isTimeWith_in_Interval(String valueToCheck, String startTime, String endTime) {
+        boolean isBetween = false;
+        try {
+            Date time1 = new SimpleDateFormat("HH:mm:ss").parse(startTime);
+
+            Date time2 = new SimpleDateFormat("HH:mm:ss").parse(endTime);
+
+            Date d = new SimpleDateFormat("HH:mm:ss").parse(valueToCheck);
+
+            if (time1.before(d) && time2.after(d)) {
+                isBetween = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+    private Date parseDate(String date) {
+
+        final String inputFormat = "HH:mm";
+        SimpleDateFormat inputParser = new SimpleDateFormat(inputFormat, Locale.US);
+        try {
+            return inputParser.parse(date);
+        } catch (java.text.ParseException e) {
+            return new Date(0);
+        }
+    }
+    public static final boolean isBetweenValidTime(Date startTime, Date endTime, Date validateTime)
+    {
+        boolean validTimeFlag = false;
+
+        if(endTime.compareTo(startTime) <= 0)
+        {
+            if(validateTime.compareTo(endTime) < 0 || validateTime.compareTo(startTime) >= 0)
+            {
+                validTimeFlag = true;
+            }
+        }
+        else if(validateTime.compareTo(endTime) < 0 && validateTime.compareTo(startTime) >= 0)
+        {
+            validTimeFlag = true;
+        }
+
+        return validTimeFlag;
     }
 
     private void navMenuVisibility(boolean visibility) {

@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.thinkincab.app.base.BaseBottomSheetDialogFragment;
 import com.thinkincab.app.common.CancelRequestInterface;
 import com.thinkincab.app.data.network.model.CancelResponse;
 import com.thinkincab.app.data.network.model.Datum;
+import com.thinkincab.app.ui.activity.home.HomePageActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,11 +126,16 @@ public class CancelRideDialogFragment extends BaseBottomSheetDialogFragment impl
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        if (DATUM != null)
+         Log.e("TAG", "onSuccess: offferactivity");
+        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        getActivity().finish();
+       /* if (DATUM != null)
             FirebaseMessaging.getInstance().unsubscribeFromTopic(String.valueOf(DATUM.getId()));
         getActivity().sendBroadcast(new Intent(INTENT_FILTER));
         callback.cancelRequestMethod();
-        dismiss();
+        dismiss();*/
     }
 
     @Override
@@ -163,6 +171,7 @@ public class CancelRideDialogFragment extends BaseBottomSheetDialogFragment impl
 
     @Override
     public void onDestroyView() {
+
         presenter.onDetach();
         super.onDestroyView();
     }

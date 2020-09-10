@@ -1,5 +1,6 @@
 package com.thinkincab.app.ui.activity.main;
 
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.base.BasePresenter;
 import com.thinkincab.app.data.network.APIClient;
 
@@ -22,12 +23,15 @@ public class MainPresenter<V extends MainIView> extends BasePresenter<V> impleme
 
     @Override
     public void checkStatus() {
-        getCompositeDisposable().add(APIClient
-                .getAPIClient()
-                .checkStatus()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+
+            getCompositeDisposable().add(APIClient
+                    .getAPIClient()
+                    .checkStatus()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
+
+
     }
 
     @Override

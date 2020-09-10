@@ -113,8 +113,13 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_receipt:
-                InvoiceDialogFragment fragment = new InvoiceDialogFragment();
-                fragment.show(getSupportFragmentManager(), fragment.getTag());
+                if (isDisputeCreated) {
+                    DisputeStatusFragment disputeDetailFragment = DisputeStatusFragment.newInstance(datum);
+                    disputeDetailFragment.show(getSupportFragmentManager(), disputeDetailFragment.getTag());
+                } else {
+                    DisputeFragment disputeFragment = new DisputeFragment();
+                    disputeFragment.show(getSupportFragmentManager(), disputeFragment.getTag());
+                }
                 break;
         }
     }
@@ -210,13 +215,16 @@ public class PastTripDetailActivity extends BaseActivity implements PastTripDeta
             isLostItemCreated = datum.getLostitem() != null;
 
             Provider provider = datum.getProvider();
-            if (provider != null) {
+            if (provider != null&&provider.getAvatarNew()!=null) {
                 Glide.with(baseActivity())
                         .load(provider.getAvatar())
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder)
                                 .dontAnimate().error(R.drawable.ic_user_placeholder))
                         .into(avatar);
                 name.setText(String.format("%s %s", provider.getFirstName(), provider.getLastName()));
+            }else {
+                avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_placeholder));
+
             }
 
             if (providerRating != null) {

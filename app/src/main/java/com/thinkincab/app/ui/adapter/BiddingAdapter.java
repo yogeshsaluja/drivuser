@@ -45,21 +45,32 @@ public class BiddingAdapter extends RecyclerView.Adapter<BiddingAdapter.MyViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-         Glide.with(mContext)
-                .load(notifications.get(position).getProvider().getAvatar())
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_document_placeholder)
-                        .dontAnimate().error(R.drawable.ic_document_placeholder))
-                .into(holder.img);
+        if (notifications.get(position).getProvider().getAvatarNew()!=null){
+            Glide.with(mContext)
+                    .load(notifications.get(position).getProvider().getAvatar())
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_document_placeholder)
+                            .dontAnimate().error(R.drawable.ic_document_placeholder))
+                    .into(holder.img);
+
+        }else {
+            holder.img.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_user_placeholder));
+
+        }
         holder.tv_username.setText(notifications.get(position).getProvider().getFirstName());
         holder.tv_price.setText("driv : "+notifications.get(position).getAmount());
-      //  holder.tv_address.setText(notifications.get(position).getProvider().getProviderService().getServiceModel()+" ( "+notifications.get(position).getProvider().getProviderService().getServiceNumber()+" )");
+        if (notifications.get(position).getProvider().getProvider_service()!=null&&notifications.get(position).getProvider().getProvider_service().getServiceModel()!=null&&notifications.get(position).getProvider().getProvider_service().getServiceNumber()!=null)
+       holder.tv_address.setText(notifications.get(position).getProvider().getProvider_service().getServiceModel()+" ( "+notifications.get(position).getProvider().getProvider_service().getServiceNumber()+" )");
 
         if(notifications.get(position).getAmount()==0)
         {
             holder.tv_accept.setVisibility(View.GONE);
+            holder.tv_price.setVisibility(View.GONE);
 
         }
-        else  holder.tv_accept.setVisibility(View.VISIBLE);
+        else {
+            holder.tv_accept.setVisibility(View.VISIBLE);
+            holder.tv_price.setVisibility(View.VISIBLE);
+        }
 
 
         //holder.tv_dis.setText(notifications.get(position).getProvider().ge());

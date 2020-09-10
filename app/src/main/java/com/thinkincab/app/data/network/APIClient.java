@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.thinkincab.app.BuildConfig;
 import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.data.SharedHelper;
@@ -48,6 +49,7 @@ public class APIClient {
                 //.cache(new Cache(MvpApplication.getInstance().getCacheDir(), 10 * 1024 * 1024)) // 10 MB
                 .connectTimeout(10, TimeUnit.MINUTES)
                 .addNetworkInterceptor(new AddHeaderInterceptor())
+                .addInterceptor(new ChuckInterceptor(MvpApplication.getInstance()))
                 .addNetworkInterceptor(new StethoInterceptor())
                 .readTimeout(10, TimeUnit.MINUTES)
                 .writeTimeout(10, TimeUnit.MINUTES)

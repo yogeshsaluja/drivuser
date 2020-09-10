@@ -12,9 +12,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import com.braintreepayments.api.models.PayPalRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.thinkincab.app.BuildConfig;
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
 import com.thinkincab.app.common.Constants;
@@ -65,14 +68,13 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
     private static final int BRAINTREE_PAYMENT_REQUEST_CODE = 101;
     public static boolean isInvoiceCashToCard = false;
     @BindView(R.id.fragment_invoice)
-    NestedScrollView containerScroll;
+    RelativeLayout containerScroll;
     @BindView(R.id.payment_mode)
     TextView tvPaymentMode;
     @BindView(R.id.pay_now)
     Button payNow;
     @BindView(R.id.done)
     Button done;
-
     @BindView(R.id.main)
     LinearLayout main;
     @BindView(R.id.booking_id)
@@ -86,8 +88,6 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
 
     @BindView(R.id.ratingBarprovider)
     RatingBar ratingBarprovider;
-
-
     @BindView(R.id.img_provider)
     ImageView imgprovider;
 
@@ -194,12 +194,18 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
             providerlastname.setText(datum.getProvider().getLastName());
             providerphone.setVisibility(View.GONE);
             ratingBarprovider.setRating(Float.parseFloat(datum.getProvider().getRating()));
-            Glide.with(InvoiceFragment.this)
-                    .load(datum.getProvider().getAvatar())
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder)
-                            .dontAnimate()
-                            .error(R.drawable.ic_user_placeholder))
-                    .into(imgprovider);
+            if (datum.getProvider().getAvatarNew()!=null){
+                Glide.with(InvoiceFragment.this)
+                        .load(datum.getProvider().getAvatar())
+                        .apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder)
+                                .dontAnimate()
+                                .error(R.drawable.ic_user_placeholder))
+                        .into(imgprovider);
+
+            }else {
+                imgprovider.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_placeholder));
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -233,7 +239,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
             if (payment != null) {
                 if (payment.getFixed() > 0) {
                     llBaseFare.setVisibility(View.VISIBLE);
-                    fixed.setText(String.format("%s", getNewNumberFormat(payment.getFixed())));
+                    fixed.setText(String.format("%s", getNewNumberFormat(payment.getFixed()-payment.getMinute())));
                 } else llBaseFare.setVisibility(View.GONE);
                 tax.setText(String.format("%s", getNewNumberFormat(payment.getTax())));
                 total.setText(String.format("%s", getNewNumberFormat(payment.getTotal())));
@@ -333,8 +339,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
                 Toast.makeText(getActivity().getApplicationContext(), "Pagamento não identificado",
                         Toast.LENGTH_SHORT).show();
             }
-
-            main.setVisibility(View.VISIBLE);
+             main.setVisibility(View.VISIBLE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -474,7 +479,7 @@ public class InvoiceFragment extends BaseFragment implements InvoiceIView {
                 break;
             case R.id.done:
             case R.id.ivInvoice:
-                ((MainActivity) Objects.requireNonNull(getContext())).changeFlow(RATING);
+                 ((MainActivity) Objects.requireNonNull(getContext())).changeFlow(RATING);
                 break;
             case R.id.tvTipAmt:
             case R.id.tvGiveTip:

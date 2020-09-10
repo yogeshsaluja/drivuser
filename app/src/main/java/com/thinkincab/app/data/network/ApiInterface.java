@@ -276,12 +276,18 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/user/extend/time")
-    Observable<Object> extendTime(@FieldMap HashMap<String, Object> params);
+    Observable<DataResponse> extendTime(@FieldMap HashMap<String, Object> params);
 
 
     @FormUrlEncoded
     @POST("api/user/payu/response")
     Observable<CheckSumData> payuMoneyChecksum();
+
+
+
+  @FormUrlEncoded
+    @POST("api/user/change/payment")
+    Observable<Message> changePayment(@FieldMap HashMap<String, String> params);
 
     @FormUrlEncoded
     @POST("api/user/payment")

@@ -164,6 +164,11 @@ public class Provider {
         return BuildConfig.BASE_URL + "storage/" + avatar;
     }
 
+    public String getAvatarNew() {
+        return avatar;
+    }
+
+
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }

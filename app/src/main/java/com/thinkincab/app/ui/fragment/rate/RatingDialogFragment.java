@@ -2,8 +2,6 @@ package com.thinkincab.app.ui.fragment.rate;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.thinkincab.app.R;
-import com.thinkincab.app.base.BaseBottomSheetDialogFragment;
+import com.thinkincab.app.base.BaseFragment;
 import com.thinkincab.app.data.network.model.Datum;
 import com.thinkincab.app.data.network.model.Provider;
 import com.thinkincab.app.ui.activity.main.MainActivity;
@@ -34,7 +32,7 @@ import static com.thinkincab.app.chat.ChatActivity.chatPath;
 import static com.thinkincab.app.common.Constants.BroadcastReceiver.INTENT_FILTER;
 import static com.thinkincab.app.common.Constants.Status.EMPTY;
 
-public class RatingDialogFragment extends BaseBottomSheetDialogFragment implements RatingIView {
+public class RatingDialogFragment extends BaseFragment implements RatingIView {
 
     @BindView(R.id.avatar)
     CircleImageView avatar;
@@ -60,28 +58,31 @@ public class RatingDialogFragment extends BaseBottomSheetDialogFragment implemen
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void initView(View view) {
+    public View initView(View view) {
         InvoiceFragment.isInvoiceCashToCard = false;
-        setCancelable(false);
-        getDialog().setOnShowListener(dialog -> {
+       /*  getDialog().setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
             View bottomSheetInternal = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
             BottomSheetBehavior.from(bottomSheetInternal).setState(BottomSheetBehavior.STATE_EXPANDED);
         });
-        getDialog().setCanceledOnTouchOutside(false);
+        getDialog().setCanceledOnTouchOutside(false);*/
         ButterKnife.bind(this, view);
         presenter.attachView(this);
 
         if (DATUM != null) {
             Provider provider = DATUM.getProvider();
-            if (provider != null) {
+            if (provider != null&&provider.getAvatarNew()!=null) {
                 Glide.with(baseActivity()).load(provider.getAvatar()).
                         apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder).
                                 dontAnimate().error(R.drawable.ic_user_placeholder)).into(avatar);
                 ratingsName.setText(getString(R.string.ratings) + " " +
                         provider.getFirstName() + " " + provider.getLastName());
+            }else {
+                avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_placeholder));
+
             }
         }
+        return view;
     }
 
     @Override
@@ -91,7 +92,7 @@ public class RatingDialogFragment extends BaseBottomSheetDialogFragment implemen
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        dismiss();
+
         ((MainActivity)getContext()).finish();
 
         Objects.requireNonNull(getActivity()).sendBroadcast(new Intent(INTENT_FILTER));

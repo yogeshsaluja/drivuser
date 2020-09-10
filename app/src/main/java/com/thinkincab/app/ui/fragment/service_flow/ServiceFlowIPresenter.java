@@ -6,5 +6,6 @@ import java.util.HashMap;
 
 public interface ServiceFlowIPresenter<V extends ServiceFlowIView> extends MvpPresenter<V> {
     void extendTime(HashMap<String, Object> obj);
+    void changePayment(HashMap<String, String> obj);
 
 }

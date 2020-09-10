@@ -91,7 +91,13 @@ public class RegisterActivity extends BaseActivity implements RegisterIView {
 
 
 
-        ((ImageView)findViewById(R.id.include7).findViewById(R.id.back)).setVisibility(View.INVISIBLE);
+        ((ImageView)findViewById(R.id.include7).findViewById(R.id.back)).setVisibility(View.VISIBLE);
+        ((ImageView)findViewById(R.id.include7).findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         clickFunctions();
 
         //setCountryList();

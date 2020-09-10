@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/dark_border"
+            android:background="@drawable/shape_pink"
             android:gravity="center"
             android:text="Aceptar"
             android:textColor="@color/pink"
@@ -108,7 +108,7 @@
             android:layout_height="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_70sdp"
-            android:background="@drawable/ic_intro_money"
+            android:background="@drawable/cash_new"
             android:textColor="@color/pink"
             android:textSize="@dimen/_20sdp" />
 

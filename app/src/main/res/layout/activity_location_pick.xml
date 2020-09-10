@@ -24,6 +24,22 @@
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/ic_pin" />
 
+
+        <TextView
+            android:id="@+id/tv_done"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="@dimen/_150sdp"
+            android:elevation="5dp"
+            android:textColor="@color/colorSecondaryText"
+            android:layout_height="@dimen/_40sdp"
+            android:text="Accept"
+            android:textSize="@dimen/_16ssp"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:background="@drawable/shape_rounded"
+              />
+
     </RelativeLayout>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -37,14 +53,17 @@
             android:layout_height="match_parent">
             <include layout="@layout/custom_toolbar"/>
             <LinearLayout
+                android:id="@+id/ll_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFF"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
                     <LinearLayout

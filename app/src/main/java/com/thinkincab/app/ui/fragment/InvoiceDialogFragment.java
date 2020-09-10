@@ -109,7 +109,7 @@ public class InvoiceDialogFragment extends BaseBottomSheetDialogFragment {
 
             Payment payment = datum.getPayment();
             if (payment != null) {
-                fixed.setText( SharedHelper.getKey(getContext(), "currency")+payment.getFixed());
+                fixed.setText( SharedHelper.getKey(getContext(), "currency")+(payment.getFixed()-payment.getMinute()));
                 tax.setText( SharedHelper.getKey(getContext(), "currency")+payment.getTax());
                 double pastTripTotal = payment.getTotal() + payment.getTips();
                 total.setText( SharedHelper.getKey(getContext(), "currency")+pastTripTotal);

@@ -32,6 +32,7 @@
         android:id="@+id/estimated_fixed"
         android:layout_width="wrap_content"
         android:padding="@dimen/_5sdp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="@+id/image"

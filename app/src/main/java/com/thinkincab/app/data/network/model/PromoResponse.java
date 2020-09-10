@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PromoResponse {
+public class
+PromoResponse {
 
     @SerializedName("promo_list")
     @Expose

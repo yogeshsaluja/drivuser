@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
@@ -53,6 +55,10 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
     ImageView back;
     @BindView(R.id.textView35)
     TextView title;
+    private boolean status=true;
+    Handler handler;
+    Runnable runnable;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_offer;
@@ -87,11 +93,26 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
 
     }
 
+
+
+
     @Override
-    public void onSuccess(Object object) {
+    public void onSuccess(Object object)
+    {
+        status=false;
+        Log.e("TAG", "onSuccess: offferactivity");
         Intent intent = new Intent(this, HomePageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+
+    }
+
+    @Override
+    public void onSuccessResukt(Object object)
+    {
+        MvpApplication.timeout=false;
+         finish();
 
     }
 
@@ -130,7 +151,7 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
 
     private void populateAdapter(DataResponse dataResponse) {
 
-        if (dataResponse != null) {
+        if (dataResponse != null&&dataResponse.getBids().size()>0) {
             bidding.setAdapter(new BiddingAdapter(dataResponse.getBids()));
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -138,6 +159,20 @@ public class OfferActivity extends BaseActivity implements SearchingIView {
                     presenter.getRequest();
                 }
             }, 3000);
+
+        }else {
+
+            if (MvpApplication.timeout) {
+                Log.e("TAG", "onSuccess: offer activity handler");
+                    Intent intent = new Intent(OfferActivity.this, HomePageActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+
+
+
 
         }
     }

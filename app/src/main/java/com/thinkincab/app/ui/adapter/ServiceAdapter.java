@@ -82,7 +82,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
         if (obj != null)
             holder.serviceName.setText(obj.getName());
         if (estimateFare != null) {
-            holder.estimated_fixed.setVisibility(View.VISIBLE);
+        //    holder.estimated_fixed.setVisibility(View.VISIBLE);
             //holder.price.setVisibility(View.VISIBLE);
             MvpApplication.estFare=SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()));
             holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
@@ -114,7 +114,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
         if (position == lastCheckedPos && canNotifyDataSetChanged) {
             ColorMatrix mat = new ColorMatrix();
-            mat.setSaturation(30);
+            mat.setSaturation(20);
 
             ColorMatrixColorFilter fil  = new ColorMatrixColorFilter(mat);
             holder.image.setColorFilter(fil);
@@ -125,7 +125,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
             holder.serviceName.setTextColor(context.getResources().getColor(R.color.colorAccent));
             //holder.price.setVisibility(View.VISIBLE);
             holder.itemView.setAlpha(1);
-            holder.estimated_fixed.setVisibility(View.VISIBLE);
+           // holder.estimated_fixed.setVisibility(View.VISIBLE);
             if (estimateFare != null) {
                 if (SharedHelper.getKey(context, "measurementType").equalsIgnoreCase(Constants.MeasurementType.KM)) {
                     if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0)
@@ -136,7 +136,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                     if (estimateFare.getDistance() > 1 || estimateFare.getDistance() > 1.0)
                         holder.price.setText(estimateFare.getDistance() + " " + context.getString(R.string.miles));
                     else
-                        holder.price.setText(estimateFare.getDistance() + " " + context.getString(R.string.mile));
+                        holder.price.setText(estimateFare.getDistance() + " "  + context.getString(R.string.mile));
                 }
                 holder.estimated_fixed.setText(SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare())));
 
@@ -158,6 +158,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                             .load(obj.getImage())
                             .apply(RequestOptions.placeholderOf(R.drawable.ic_car).dontAnimate().error(R.drawable.ic_car))
                             .into(holder.image);
+                  //  MvpApplication.estFare=SharedHelper.getKey(context, "currency")+""+Double.parseDouble(String.valueOf(estimateFare.getEstimatedFare()));
 
                     if (lastCheckedPos == position) {
                         RateCardFragment.SERVICE = object;
@@ -165,6 +166,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
 
                     }
                     lastCheckedPos = position;
+                    canNotifyDataSetChanged=true;
                     notifyDataSetChanged();
                 }
                 mListener.whenClicked(position);

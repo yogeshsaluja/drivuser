@@ -49,7 +49,7 @@ public class YourTripActivity extends BaseActivity {
                 finish();
             }
         });
-       // tabs.addTab(tabs.newTab().setText(getString(R.string.past)));
+        tabs.addTab(tabs.newTab().setText(getString(R.string.past)));
        // tabs.addTab(tabs.newTab().setText(getString(R.string.upcoming)));
 
         adapter = new TabPagerAdapter(getSupportFragmentManager(), tabs.getTabCount());

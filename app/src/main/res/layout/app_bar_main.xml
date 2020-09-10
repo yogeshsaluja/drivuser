@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_45sdp"
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
@@ -39,16 +39,30 @@
                 android:padding="12dp"
                 android:tint="@color/colorPrimaryText"
                 android:visibility="gone"
-                app:srcCompat="@drawable/ic_back_black" />
+                 app:srcCompat="@drawable/ic_back_black" />
+            <TextView
+                android:id="@+id/tv_title_offer"
+                android:visibility="gone"
+                 android:textSize="18sp"
+                android:textColor="@color/quantum_black_100"
+                android:text="Choose the best offer"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/clanpro_book"
+                android:layout_marginLeft="@dimen/_60sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
 
             <ImageView
                 android:id="@+id/gps"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_centerInParent="true"
+
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_logo" />
+                app:srcCompat="@drawable/ic_logo" />
 
         </RelativeLayout>
 
@@ -56,29 +70,12 @@
             android:id="@+id/mylayy"
             layout="@layout/pick_location_layout"
             android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/sos"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="left"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/round"
-            android:backgroundTint="#000"
-            android:elevation="2dp"
-            android:fontFamily="@font/clanpro_medium"
-           android:gravity="center"
-            android:padding="12dp"
-            android:text="@string/sos"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_14" />
-
         <LinearLayout
             android:id="@+id/llChangeLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="#FFF"
+            android:background="@drawable/shape_white_location"
             android:elevation="1dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -94,6 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ellipsize="end"
+                    android:drawableLeft="@drawable/ic_marker"
+                    android:drawableTint="@color/colorPrimaryText"
                     android:fontFamily="@font/clanpro_narrnews"
                     android:gravity="center_vertical"
                     android:text="@string/where_to"
@@ -118,7 +117,28 @@
 
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/sos"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="left"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/round"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:backgroundTint="#000"
+            android:elevation="2dp"
+            android:fontFamily="@font/clanpro_medium"
+           android:gravity="center"
+            android:padding="12dp"
+            android:visibility="gone"
+            android:text="@string/sos"
+             android:textColor="@color/white"
+            android:textSize="@dimen/text_14" />
+
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -177,8 +197,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
     <FrameLayout
         android:id="@+id/container"

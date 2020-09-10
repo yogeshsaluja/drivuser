@@ -144,7 +144,7 @@
     <string name="sos_alert">SOS Alert</string>
     <string name="are_sure_you_want_to_emergency_alert">Are you sure you want to proceed with emergency alert?</string>
     <string name="finding_driver">Finding driver…</string>
-    <string name="cancel_request">Cancel Request</string>
+    <string name="cancel_request">Cancel</string>
     <string name="are_sure_you_want_to_cancel_the_request">Are you sure you want to cancel the request</string>
     <string name="invalid_first_name">Please enter first name</string>
     <string name="invalid_last_name">Please enter last name</string>

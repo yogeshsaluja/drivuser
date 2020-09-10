@@ -108,6 +108,8 @@ public class HomePageActivity   extends BaseActivity implements
 
 
         ((ImageView)findViewById(R.id.back)).setVisibility(View.GONE);
+        ((TextView)findViewById(R.id.textView35)).setText("Choose the best offer");
+
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View view, float v) {

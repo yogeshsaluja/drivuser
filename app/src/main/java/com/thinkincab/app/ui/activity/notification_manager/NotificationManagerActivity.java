@@ -36,7 +36,7 @@ public class NotificationManagerActivity extends BaseActivity implements Notific
     public void initView() {
         ButterKnife.bind(this);
         presenter.attachView(this);
-         title.setText(getString(R.string.notification_manager));
+              title.setText(getString(R.string.notification_manager));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

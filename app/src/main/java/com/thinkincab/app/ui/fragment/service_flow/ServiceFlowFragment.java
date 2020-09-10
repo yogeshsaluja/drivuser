@@ -2,6 +2,7 @@ package com.thinkincab.app.ui.fragment.service_flow;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.Nullable;
@@ -22,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,16 +38,20 @@ import com.akexorcist.googledirection.model.Route;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.thinkincab.app.MvpApplication;
 import com.thinkincab.app.R;
 import com.thinkincab.app.base.BaseFragment;
 import com.thinkincab.app.chat.ChatActivity;
 import com.thinkincab.app.common.CancelRequestInterface;
 import com.thinkincab.app.data.SharedHelper;
+import com.thinkincab.app.data.network.model.DataResponse;
 import com.thinkincab.app.data.network.model.Datum;
+import com.thinkincab.app.data.network.model.Message;
 import com.thinkincab.app.data.network.model.Provider;
 import com.thinkincab.app.data.network.model.ProviderService;
 import com.thinkincab.app.data.network.model.ServiceType;
 import com.thinkincab.app.ui.activity.main.MainActivity;
+import com.thinkincab.app.ui.activity.payment.PaymentActivity;
 import com.thinkincab.app.ui.fragment.cancel_ride.CancelRideDialogFragment;
 
 import java.text.DateFormat;
@@ -61,12 +69,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static com.thinkincab.app.MvpApplication.DATUM;
 import static com.thinkincab.app.MvpApplication.RIDE_REQUEST;
 import static com.thinkincab.app.MvpApplication.showOTP;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_ID;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.CARD_LAST_FOUR;
+import static com.thinkincab.app.common.Constants.RIDE_REQUEST.PAYMENT_MODE;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SRC_LAT;
 import static com.thinkincab.app.common.Constants.RIDE_REQUEST.SRC_LONG;
 import static com.thinkincab.app.common.Constants.Status.ARRIVED;
 import static com.thinkincab.app.common.Constants.Status.PICKED_UP;
 import static com.thinkincab.app.common.Constants.Status.STARTED;
 import static com.thinkincab.app.data.SharedHelper.key.SOS_NUMBER;
+import static com.thinkincab.app.ui.activity.payment.PaymentActivity.PICK_PAYMENT_METHOD;
 
 public class ServiceFlowFragment extends BaseFragment
         implements ServiceFlowIView, CancelRequestInterface {
@@ -84,7 +96,8 @@ public class ServiceFlowFragment extends BaseFragment
 
     @BindView(R.id.ll_hours)
     LinearLayout ll_hours;
-
+    @BindView(R.id.ll_label)
+    RelativeLayout ll_label;
 
     @BindView(R.id.avatar)
     CircleImageView avatar;
@@ -118,6 +131,11 @@ public class ServiceFlowFragment extends BaseFragment
 
 
     TextView tvTimer;
+    @BindView(R.id.img_cardd)
+    ImageView imgcardss;
+
+    @BindView(R.id.img_cash)
+    ImageView imgcash;
 
     @BindView(R.id.lefttime)
     TextView timeleft;
@@ -152,8 +170,6 @@ public class ServiceFlowFragment extends BaseFragment
         presenter.attachView(this);
 
 
-
-
         if (DATUM != null) initView(DATUM);
         return view;
     }
@@ -164,9 +180,43 @@ public class ServiceFlowFragment extends BaseFragment
         super.onDestroyView();
     }
 
-    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call,R.id.call_sec, R.id.chat,R.id.add_time,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
+    String paymentMode;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_PAYMENT_METHOD && resultCode == Activity.RESULT_OK) {
+            RIDE_REQUEST.put(PAYMENT_MODE, data.getStringExtra("payment_mode"));
+            paymentMode = data.getStringExtra("payment_mode");
+
+            System.out.println("RRR PAMENT_MODE = " + data.getStringExtra("payment_mode"));
+
+            if (data.getStringExtra("payment_mode").equals("CARD")) {
+                RIDE_REQUEST.put(CARD_ID, data.getStringExtra("card_id"));
+                RIDE_REQUEST.put(CARD_LAST_FOUR, data.getStringExtra("card_last_four"));
+            }
+            changecard(data.getStringExtra("card_id"));
+        }
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        super.onError(throwable);
+        hideLoading();
+    }
+
+    @OnClick({R.id.sos, R.id.cancel, R.id.share_ride, R.id.call, R.id.call_sec, R.id.chat, R.id.add_time, R.id.tv_two_hour, R.id.tv_four_hour, R.id.tv_eight_hour, R.id.img_cardd, R.id.img_cash})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.img_cardd:
+
+                startActivityForResult(new Intent(getActivity(), PaymentActivity.class), PICK_PAYMENT_METHOD);
+                break;
+
+            case R.id.img_cash:
+                changecash();
+                break;
+
             case R.id.sos:
                 sos();
                 break;
@@ -187,11 +237,11 @@ public class ServiceFlowFragment extends BaseFragment
 
                 ll_hours.setVisibility(View.VISIBLE);
 
-                 break;
+                break;
             case R.id.tv_two_hour:
                 HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
                 map.put("request_id", DATUM.getId());
-                map.put("rental_hours",15 );
+                map.put("rental_hours", 15);
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
 
@@ -208,7 +258,7 @@ public class ServiceFlowFragment extends BaseFragment
 
                 HashMap<String, Object> mapfour = new HashMap<>(RIDE_REQUEST);
                 mapfour.put("request_id", DATUM.getId());
-                mapfour.put("rental_hours",30 );
+                mapfour.put("rental_hours", 30);
                 presenter.extendTime(mapfour);
 
                 break;
@@ -219,7 +269,7 @@ public class ServiceFlowFragment extends BaseFragment
 
                 HashMap<String, Object> mapeight = new HashMap<>(RIDE_REQUEST);
                 mapeight.put("request_id", DATUM.getId());
-                mapeight.put("rental_hours",120 );
+                mapeight.put("rental_hours", 120);
                 presenter.extendTime(mapeight);
 
                 break;
@@ -233,19 +283,47 @@ public class ServiceFlowFragment extends BaseFragment
         }
     }
 
+    private void changecash() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("request_id", DATUM.getId() + "");
+        params.put("use_wallet", "0");
+        params.put("payment_mode", "CASH");
+        params.put("card_id", "");
+        presenter.changePayment(params);
+        showLoading();
+    }
+
+
+    private void changecard(String carddara) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("request_id", DATUM.getId() + "");
+        params.put("use_wallet", "0");
+        params.put("payment_mode", "CARD");
+        params.put("card_id", carddara);
+        presenter.changePayment(params);
+        showLoading();
+    }
+
     @SuppressLint({"StringFormatInvalid", "RestrictedApi"})
     private void initView(Datum datum) {
         Provider provider = datum.getProvider();
         if (provider != null) {
             firstName.setText(String.format("%s %s", provider.getFirstName(), provider.getLastName()));
-            rating.setText(""+Float.parseFloat(provider.getRating()));
-            Glide.with(baseActivity())
-                    .load(provider.getAvatar())
-                    .apply(RequestOptions
-                            .placeholderOf(R.drawable.ic_user_placeholder)
-                            .dontAnimate()
-                            .error(R.drawable.ic_user_placeholder))
-                    .into(avatar);
+            rating.setText("" + Float.parseFloat(provider.getRating()));
+            if (provider.getAvatarNew()!=null){
+                Glide.with(baseActivity())
+                        .load(provider.getAvatar())
+                        .apply(RequestOptions
+                                .placeholderOf(R.drawable.ic_user_placeholder)
+                                .dontAnimate()
+                                .error(R.drawable.ic_user_placeholder))
+                        .into(avatar);
+
+            }else {
+                avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_placeholder));
+
+            }
             providerPhoneNumber = provider.getMobile();
         }
 
@@ -279,43 +357,45 @@ public class ServiceFlowFragment extends BaseFragment
                 status.setText(R.string.driver_has_arrived_your_location);
                 break;
             case PICKED_UP:
-                add_time.setVisibility(View.VISIBLE);
-                status.setText(R.string.you_are_on_ride);
-                cancel.setVisibility(View.GONE);
+                 status.setText(R.string.you_are_on_ride);
+                cancel.setVisibility(View.INVISIBLE);
                 sharedRide.setVisibility(View.VISIBLE);
                 call.setVisibility(View.GONE);
+                ll_label.setVisibility(View.GONE);
                 call_sec.setVisibility(View.VISIBLE);
+                imgcardss.setVisibility(View.VISIBLE);
+                imgcash.setVisibility(View.VISIBLE);
 
-                if (!TextUtils.isEmpty(datum.getStartedAt())&&!loaded){
-                     startDate=getTimestampFromdate(datum.getStartedAt());
+                if (MainActivity.type.equals("RENTAL")) {
+                    add_time.setVisibility(View.VISIBLE);
+                    tvTimer.setVisibility(View.VISIBLE);
+                    timeleft.setVisibility(View.VISIBLE);
 
 
-                    if(datum.getRentalHours()!=null) {
+                }
+                if (!TextUtils.isEmpty(datum.getStartedAt()) && !loaded) {
+                    startDate = getTimestampFromdate(datum.getStartedAt());
+                    if (count!=null)
+                    count.cancel();
+
+                    if (datum.getRentalHours() != null) {
 
                         timeleft.setVisibility(View.VISIBLE);
-                        timeleft.setText("Rent for: "+(Integer.parseInt(datum.getRentalHours())/60)+"hrs. ");
-                    startDate=Long.parseLong(startDate)+Integer.parseInt(datum.getRentalHours())*60*1000+"";
+                        timeleft.setText("Rent for: " + (Integer.parseInt(datum.getRentalHours()) / 60) + "hrs. ");
+                        startDate = Long.parseLong(startDate) + Integer.parseInt(datum.getRentalHours()) * 60 * 1000 + "";
 
-                    }
-                    else timeleft.setVisibility(View.GONE);
-
-
-                    tvTimer.setVisibility(View.VISIBLE);
+                    } else timeleft.setVisibility(View.GONE);
 
 
-                     count = new CountDownTimer(1000000000,1000) {
+                    count = new CountDownTimer(1000000000, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            if(!isRemoving())
-                            {
-                                if(System.currentTimeMillis() > Long.parseLong(startDate))
-                                {
+                            if (!isRemoving()) {
+                                if (System.currentTimeMillis() > Long.parseLong(startDate)) {
                                     secondSplitUp(0, tvTimer);
+                                } else {
+                                    secondSplitUp((Long.parseLong(startDate) - System.currentTimeMillis()) / 1000, tvTimer);
                                 }
-                                else {
-                                    secondSplitUp((Long.parseLong(startDate)-System.currentTimeMillis())/1000, tvTimer);
-                                }
-
 
 
                             }
@@ -330,16 +410,7 @@ public class ServiceFlowFragment extends BaseFragment
                     count.start();
 
 
-
-
-
-
-
-
-
-
-
-                    loaded=true;
+                    loaded = true;
 
                 }
                 break;
@@ -358,8 +429,10 @@ public class ServiceFlowFragment extends BaseFragment
         }
 
     }
+
     CountDownTimer count;
     String startDate;
+
     public String getTimestampFromdate(String dateandtime) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
@@ -372,6 +445,7 @@ public class ServiceFlowFragment extends BaseFragment
         }
 
     }
+
     private long getUpdatedTime(Date d1, Date d2) {
         long seconds = (d2.getTime() - d1.getTime()) / 1000;
 
@@ -402,8 +476,50 @@ public class ServiceFlowFragment extends BaseFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getContext()!=null)
-        ((MainActivity)getContext()).msos.setVisibility(View.VISIBLE);
+
+    }
+
+
+   void   updateTime(Datum datum){
+        if (!TextUtils.isEmpty(datum.getStartedAt()) && !loaded) {
+            startDate = getTimestampFromdate(datum.getStartedAt());
+
+
+            if (datum.getRentalHours() != null) {
+
+                timeleft.setVisibility(View.VISIBLE);
+                timeleft.setText("Rent for: " + (Integer.parseInt(datum.getRentalHours()) / 60) + "hrs. ");
+                startDate = Long.parseLong(startDate) + Integer.parseInt(datum.getRentalHours()) * 60 * 1000 + "";
+
+            } else timeleft.setVisibility(View.GONE);
+
+
+            count = new CountDownTimer(1000000000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    if (!isRemoving()) {
+                        if (System.currentTimeMillis() > Long.parseLong(startDate)) {
+                            secondSplitUp(0, tvTimer);
+                        } else {
+                            secondSplitUp((Long.parseLong(startDate) - System.currentTimeMillis()) / 1000, tvTimer);
+                        }
+
+
+                    }
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                }
+            };
+            count.start();
+
+
+            loaded = true;
+
+        }
 
     }
 
@@ -411,31 +527,29 @@ public class ServiceFlowFragment extends BaseFragment
     @Override
     public void onPause() {
         super.onPause();
-        if(getContext()!=null)
-        ((MainActivity)getContext()).msos.setVisibility(View.INVISIBLE);
     }
 
     private void sharedRide() {
         try {
-            if(DATUM!=null){
-            String appName = getString(R.string.app_name) + " " + getString(R.string.share_ride);
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
+            if (DATUM != null) {
+                String appName = getString(R.string.app_name) + " " + getString(R.string.share_ride);
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
 
-            LatLng myloc= new LatLng((Double) RIDE_REQUEST.get(SRC_LAT), (Double) RIDE_REQUEST.get(SRC_LONG));
+                LatLng myloc = new LatLng((Double) RIDE_REQUEST.get(SRC_LAT), (Double) RIDE_REQUEST.get(SRC_LONG));
 
-            if(myloc!=null) {
-                shareRideText = getString(R.string.app_name) + ": "
-                        + DATUM.getUser().getFirstName() + " " + DATUM.getUser().getLastName() + " is traveling with "
-                        + DATUM.getServiceType().getName() + ". and the current location "
-                        + "http://maps.google.com/maps?saddr=" + myloc.latitude + "," + myloc.longitude + "&daddr=" + DATUM.getDLatitude() + "," + DATUM.getDLongitude() + "";
-                sendIntent.putExtra(Intent.EXTRA_TEXT, shareRideText);
-                sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName);
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                if (myloc != null) {
+                    shareRideText = getString(R.string.app_name) + ": "
+                            + DATUM.getUser().getFirstName() + " " + DATUM.getUser().getLastName() + " is traveling with "
+                            + DATUM.getServiceType().getName() + ". and the current location "
+                            + "http://maps.google.com/maps?saddr=" + myloc.latitude + "," + myloc.longitude + "&daddr=" + DATUM.getDLatitude() + "," + DATUM.getDLongitude() + "";
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, shareRideText);
+                    sendIntent.putExtra(Intent.EXTRA_SUBJECT, appName);
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
             }
-        } }
-        catch (Exception e) {
+        } catch (Exception e) {
             Toast.makeText(baseActivity(), "applications not found!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -455,8 +569,7 @@ public class ServiceFlowFragment extends BaseFragment
     public void onDestroy() {
         presenter.onDetach();
         if (handler != null) handler.removeCallbacks(runnable);
-        if(count!=null)
-        {
+        if (count != null) {
 
             count.cancel();
         }
@@ -470,18 +583,14 @@ public class ServiceFlowFragment extends BaseFragment
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
 
 
-        if(MainActivity.type.equals("RENTAL"))
-        {
-            tvTimer.setVisibility(View.VISIBLE);
-            add_time.setVisibility(View.VISIBLE);
-            timeleft.setVisibility(View.VISIBLE);
-        }
-        else { tvTimer.setVisibility(View.GONE);
-            add_time.setVisibility(View.GONE);
+        if (MainActivity.type.equals("RENTAL")) {
+           // tvTimer.setVisibility(View.VISIBLE);
+           // timeleft.setVisibility(View.VISIBLE);
+        } else {
+            tvTimer.setVisibility(View.GONE);
             timeleft.setVisibility(View.GONE);
 
         }
@@ -489,16 +598,14 @@ public class ServiceFlowFragment extends BaseFragment
         System.out.println("RRR ServiceFlowFragment.onResume");
         super.onResume();
 
-        if (!TextUtils.isEmpty(DATUM.getStartedAt())&&DATUM.getStatus().equalsIgnoreCase(PICKED_UP)&&!loaded){
-            String startDate=getTimestampFromdate(DATUM.getStartedAt());
-            Log.e("TAG", "initView: "+startDate );
+        if (!TextUtils.isEmpty(DATUM.getStartedAt()) && DATUM.getStatus().equalsIgnoreCase(PICKED_UP) && !loaded) {
+            String startDate = getTimestampFromdate(DATUM.getStartedAt());
+            Log.e("TAG", "initView: " + startDate);
 
             Date myDate = new Date(Long.parseLong(startDate));
             Date dateNew = new Date(System.currentTimeMillis());
             timerInHandler = timerInHandler + getUpdatedTime(myDate, dateNew);
-            Log.e("TAG", "initView: "+timerInHandler );
-
-
+            Log.e("TAG", "initView: " + timerInHandler);
 
 
         }
@@ -562,8 +669,34 @@ public class ServiceFlowFragment extends BaseFragment
         handler.postDelayed(runnable, 100);
     }
 
+
     @Override
     public void onSuccess(Object o) {
+
+
+        hideLoading();
+        if (o instanceof Message) {
+            if (((Message) o).getMessage().equals("Payment Mode Changed ")) {
+
+                Toast.makeText(getContext(), ((Message) o).getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+    }
+
+    @Override
+    public void onSuccessMinutes(DataResponse result) {
+        hideLoading();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loaded=false;
+                initView(result.getData().get(0));
+            }
+        },3000);
+
+
 
     }
 

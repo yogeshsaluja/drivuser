@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_20sdp"
+    android:layout_margin="@dimen/_30sdp"
     android:background="@drawable/shape_white_border"
     android:elevation="@dimen/_4sdp"
     android:padding="@dimen/activity_vertical_margin"
 
     android:paddingTop="@dimen/_2sdp"
-    tools:ignore="UnusedAttribute">
+     >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,4 +95,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -16,6 +16,22 @@ public class ServiceFlowPresenter<V extends ServiceFlowIView> extends BasePresen
                 .extendTime(obj)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .subscribe(getMvpView()::onSuccessMinutes, getMvpView()::onError));
+    }
+
+
+    @Override
+    public void changePayment(HashMap<String, String> obj) {
+        getCompositeDisposable().add(APIClient
+                .getAPIClient()
+                .changePayment(obj)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(getMvpView()::onSuccess, getMvpView()::onError));
     }
+
+
+
+
+
 }

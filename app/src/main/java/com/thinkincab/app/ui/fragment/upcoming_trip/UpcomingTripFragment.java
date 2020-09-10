@@ -176,11 +176,15 @@ public class UpcomingTripFragment extends BaseFragment implements UpcomingTripIV
                     .diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.staticMap);
 
             Provider provider = datum.getProvider();
-            if (provider != null)
+            if (provider != null&&provider.getAvatarNew()!=null){
                 Glide.with(baseActivity()).load(provider.getAvatar()).
                         apply(RequestOptions.placeholderOf(R.drawable.ic_user_placeholder).
                                 dontAnimate().error(R.drawable.ic_user_placeholder).
                                 diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.avatar);
+
+            }else {
+                holder.avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_placeholder));
+            }
 
 
         }

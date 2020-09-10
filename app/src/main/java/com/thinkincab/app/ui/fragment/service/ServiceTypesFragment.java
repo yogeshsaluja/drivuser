@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,7 @@ import com.thinkincab.app.data.network.APIClient;
 import com.thinkincab.app.data.network.model.EstimateFare;
 import com.thinkincab.app.data.network.model.Provider;
 import com.thinkincab.app.data.network.model.Service;
+import com.thinkincab.app.data.network.model.UserAddress;
 import com.thinkincab.app.ui.activity.location_pick.LocationPickActivity;
 import com.thinkincab.app.ui.activity.main.MainActivity;
 import com.thinkincab.app.ui.activity.payment.PaymentActivity;
@@ -87,6 +92,15 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     LinearLayout ll_hours;
     @BindView(R.id.ll_home)
     LinearLayout ll_home;
+    @BindView(R.id.view)
+    View viewGreyLine;
+    @BindView(R.id.main)
+    RelativeLayout main;
+    @BindView(R.id.tv_title_category)
+    TextView tv_title_category;
+
+
+
     @BindView(R.id.ll_work)
     LinearLayout ll_work;
     @BindView(R.id.ll_moto)
@@ -95,6 +109,11 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     EditText ed_note;
     @BindView(R.id.tv_title)
     TextView tv_title;
+
+    @BindView(R.id.tv_home)
+    TextView tv_home;
+    @BindView(R.id.tv_work)
+    TextView tv_work;
 
 
     @BindView(R.id.tv_two_hour)
@@ -110,6 +129,8 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     @BindView(R.id.destination)
     TextView mdestination;
 
+    @BindView(R.id.llDropLocationContainer)
+    LinearLayout destination_layout;
 
 
     @BindView(R.id.capacity)
@@ -143,7 +164,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         @Override
         public void whenClicked(int pos) {
             try {
-                MvpApplication.marker=mServices.get(pos).getMarker();
+                MvpApplication.marker = mServices.get(pos).getMarker();
                 isFromAdapter = true;
                 servicePos = pos;
                 String key = mServices.get(pos).getName() + mServices.get(pos).getId();
@@ -163,7 +184,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
         }
     };
-
+    private UserAddress home = null, work = null;
 
 
     public ServiceTypesFragment() {
@@ -178,36 +199,88 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     public View initView(View view) {
         unbinder = ButterKnife.bind(this, view);
         presenter.attachView(this);
-
-        if (MainActivity.type.equalsIgnoreCase("NORMAL")){
-            ll_hours.setVisibility(View.GONE);
-        }else if (MainActivity.type.equalsIgnoreCase("RENTAL")){
-            ll_home.setVisibility(View.GONE);
-            ll_work.setVisibility(View.GONE);
-            tv_title.setText("Rent By Hours");
-
-
-        }else {
-            tv_title.setText("Moto Express");
-            tv_title.setTextColor(getActivity().getColor(R.color.pink));
-            ll_home.setVisibility(View.GONE);
-            ll_work.setVisibility(View.GONE);
-            ll_hours.setVisibility(View.GONE);
-            ll_moto.setVisibility(View.VISIBLE);
+        RIDE_REQUEST.put("rental_hours", "120");
+        if (!MainActivity.type.equalsIgnoreCase("RENTAL")) {
+            main.setVisibility(View.VISIBLE);
 
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (MainActivity.addressResponse != null) {
+                    home = (MainActivity.addressResponse.getHome().isEmpty()) ? null : (MainActivity.addressResponse.getHome().get(MainActivity.addressResponse.getHome().size() - 1));
+                    work = (MainActivity.addressResponse.getWork().isEmpty()) ? null : (MainActivity.addressResponse.getWork().get(MainActivity.addressResponse.getWork().size() - 1));
+
+                    if (!MainActivity.type.equalsIgnoreCase("RENTAL")) {
+                        ll_home.setVisibility(View.VISIBLE);
+
+                        if (home != null && home.getLatitude() != 0 && home.getLongitude() != 0)
+                            tv_home.setText(home.getAddress());
+                        if (work != null && work.getLatitude() != 0 && work.getLongitude() != 0)
+                            tv_work.setText(work.getAddress());
+
+                    }
+
+
+                    if (!MainActivity.address.equalsIgnoreCase("")) {
+                        msource.setText(MainActivity.address);
+                    }
+
+                    if (MainActivity.type.equalsIgnoreCase("RENTAL")) {
+                        destination_layout.setVisibility(View.GONE);
+                        ll_home.setVisibility(View.GONE);
+                         ll_work.setVisibility(View.GONE);
+                        viewGreyLine.setVisibility(View.GONE);
+
+                        presenter.services();
+
+                    }
+
+                }
+
+            }
+        }, 2000);
+
+
         return view;
     }
 
 
-
-    @OnClick({R.id.payment_type, R.id.get_pricing,R.id.source,R.id.destination, R.id.schedule_ride, R.id.ride_now,R.id.tv_two_hour,R.id.tv_four_hour,R.id.tv_eight_hour})
+    @OnClick({R.id.tv_work, R.id.tv_home, R.id.payment_type, R.id.get_pricing, R.id.source, R.id.destination, R.id.schedule_ride, R.id.ride_now, R.id.tv_two_hour, R.id.tv_four_hour, R.id.tv_eight_hour})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.payment_type:
                 ((MainActivity) Objects.requireNonNull(getActivity())).updatePaymentEntities();
                 startActivityForResult(new Intent(getActivity(), PaymentActivity.class), PICK_PAYMENT_METHOD);
                 break;
+            case R.id.tv_home:
+                if (home != null) {
+                    RIDE_REQUEST.put(DEST_ADD, home.getAddress());
+                    RIDE_REQUEST.put(DEST_LAT, home.getLatitude());
+                    RIDE_REQUEST.put(DEST_LONG, home.getLongitude());
+                    mdestination.setText(home.getAddress());
+
+                    if (!TextUtils.isEmpty(msource.getText().toString())) {
+                        presenter.services();
+                    }
+                }
+
+
+                break;
+            case R.id.tv_work:
+                if (work != null) {
+                    RIDE_REQUEST.put(DEST_ADD, work.getAddress());
+                    RIDE_REQUEST.put(DEST_LAT, work.getLatitude());
+                    RIDE_REQUEST.put(DEST_LONG, work.getLongitude());
+                    mdestination.setText(work.getAddress());
+                    if (!TextUtils.isEmpty(msource.getText().toString())) {
+                        presenter.services();
+                    }
+
+                }
+
+                break;
+
             case R.id.get_pricing:
                 if (adapter != null) {
                     isFromAdapter = false;
@@ -216,7 +289,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                         RIDE_REQUEST.put(SERVICE_TYPE, service.getId());
                         if (RIDE_REQUEST.containsKey(SERVICE_TYPE) && RIDE_REQUEST.get(SERVICE_TYPE) != null) {
                             showLoading();
-                            estimatedApiCall();
+                             estimatedApiCall();
                         }
                     }
                 }
@@ -224,19 +297,19 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
 
             case R.id.source:
-                ((MainActivity)getContext()).CURRENT_STATUS = EMPTY;
+                ((MainActivity) getContext()).CURRENT_STATUS = EMPTY;
                 Intent sourceIntent = new Intent(getContext(), LocationPickActivity.class);
                 sourceIntent.putExtra("actionName", Constants.LocationActions.SELECT_SOURCE);
                 startActivityForResult(sourceIntent, 3);
                 break;
             case R.id.destination:
-                ((MainActivity)getContext()).CURRENT_STATUS = EMPTY;
+                ((MainActivity) getContext()).CURRENT_STATUS = EMPTY;
                 Intent intent = new Intent(getContext(), LocationPickActivity.class);
                 intent.putExtra("actionName", Constants.LocationActions.SELECT_DESTINATION);
                 startActivityForResult(intent, 3);
                 break;
             case R.id.tv_two_hour:
-                RIDE_REQUEST.put("rental_hours","120");
+                RIDE_REQUEST.put("rental_hours", "120");
 
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
@@ -245,7 +318,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
                 break;
             case R.id.tv_four_hour:
-                RIDE_REQUEST.put("rental_hours","240");
+                RIDE_REQUEST.put("rental_hours", "240");
 
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
@@ -254,12 +327,11 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
                 break;
             case R.id.tv_eight_hour:
-                RIDE_REQUEST.put("rental_hours","480");
+                RIDE_REQUEST.put("rental_hours", "480");
 
                 tv_two_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_four_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.shape_dark));
                 tv_eight_hour.setBackground(getActivity().getResources().getDrawable(R.drawable.gradent_shape));
-
 
 
                 break;
@@ -275,6 +347,14 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     }
 
     private void estimatedApiCall() {
+        if (MainActivity.type.equalsIgnoreCase("RENTAL")){
+            RIDE_REQUEST.put(DEST_LAT, RIDE_REQUEST.get(SRC_LAT));
+            RIDE_REQUEST.put(DEST_LONG, RIDE_REQUEST.get(SRC_LONG));
+            RIDE_REQUEST.put(DEST_ADD, RIDE_REQUEST.get(SRC_ADD));
+
+
+        }
+
         Call<EstimateFare> call = APIClient.getAPIClient().estimateFare(RIDE_REQUEST);
         call.enqueue(new Callback<EstimateFare>() {
             @SuppressLint("SetTextI18n")
@@ -337,6 +417,7 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
 
             @Override
             public void onFailure(@NonNull Call<EstimateFare> call, @NonNull Throwable t) {
+                hideLoading();
                 onErrorBase(t);
             }
         });
@@ -348,13 +429,33 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
             hideLoading();
             if (services != null && !services.isEmpty()) {
                 RIDE_REQUEST.put(SERVICE_TYPE, 1);
+                if (MainActivity.type.equalsIgnoreCase("NORMAL")) {
+                    ll_hours.setVisibility(View.GONE);
+                } else if (MainActivity.type.equalsIgnoreCase("RENTAL")) {
+                    ll_home.setVisibility(View.GONE);
+                    ll_work.setVisibility(View.GONE);
+                    tv_title.setText("Rent By Hours");
+                    ll_hours.setVisibility(View.VISIBLE);
+                    main.setVisibility(View.VISIBLE);
+
+
+                } else {
+                    tv_title.setText("Moto Express");
+                    tv_title.setTextColor(getActivity().getColor(R.color.pink));
+                    ll_home.setVisibility(View.GONE);
+                    ll_work.setVisibility(View.GONE);
+                    ll_hours.setVisibility(View.GONE);
+                    serviceRv.setVisibility(View.GONE);
+                    ll_moto.setVisibility(View.VISIBLE);
+
+                }
                 mServices.clear();
                 for (Service service : services) {
-                    if (MainActivity.type.equalsIgnoreCase(service.getType())){
+                    if (MainActivity.type.equalsIgnoreCase(service.getType())) {
                         mServices.add(service);
                     }
                 }
-               // mServices.addAll(services);
+                // mServices.addAll(services);
 
                 try {
                     AsyncTask.execute(new Runnable() {
@@ -377,11 +478,9 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                 }
 
 
-                if(mServices.size()>0)
-                {
-                   ride_now.setVisibility(View.VISIBLE);
-                }
-                else ride_now.setVisibility(View.GONE);
+                if (mServices.size() > 0) {
+                    ride_now.setVisibility(View.VISIBLE);
+                } else ride_now.setVisibility(View.GONE);
 
                 adapter = new ServiceAdapter(getActivity(), mServices, mListener, capacity, mEstimateFare);
                 serviceRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -407,25 +506,22 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
         get_princing.setVisibility(View.GONE);
         new AlertDialog.Builder(getContext())
                 .setTitle("Attention")
+                .setCancelable(false)
                 .setIcon(R.drawable.ic_checked)
                 .setMessage("\n" + "We have no services in this region.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        ((MainActivity)getActivity()).finish();
+                        ((MainActivity) getActivity()).finish();
                     }
                 })
                 .show();
     }
 
 
-
-
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_PAYMENT_METHOD && resultCode == Activity.RESULT_OK) {
             RIDE_REQUEST.put(PAYMENT_MODE, data.getStringExtra("payment_mode"));
             if (data.getStringExtra("payment_mode").equals("CARD")) {
@@ -446,14 +542,14 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
                     && RIDE_REQUEST.containsKey(DEST_ADD)
                     && CURRENT_STATUS.equalsIgnoreCase(EMPTY)) {
                 CURRENT_STATUS = SERVICE;
-               // ((MainActivity)getContext()).changeFlow(CURRENT_STATUS);
+                // ((MainActivity)getContext()).changeFlow(CURRENT_STATUS);
                 LatLng origin = new LatLng((Double) RIDE_REQUEST.get(SRC_LAT), (Double) RIDE_REQUEST.get(SRC_LONG));
                 LatLng destination = new LatLng((Double) RIDE_REQUEST.get(DEST_LAT), (Double) RIDE_REQUEST.get(DEST_LONG));
-                ((MainActivity)getContext()).drawRoute(origin, destination);
+                ((MainActivity) getContext()).drawRoute(origin, destination);
             } else if (RIDE_REQUEST.containsKey(DEST_ADD)
                     && !RIDE_REQUEST.get(DEST_ADD).equals("")
                     && CURRENT_STATUS.equalsIgnoreCase(PICKED_UP))
-                ((MainActivity)getContext()).extendRide();
+                ((MainActivity) getContext()).extendRide();
 
             presenter.services();
         }
@@ -462,13 +558,21 @@ public class ServiceTypesFragment extends BaseFragment implements ServiceTypesIV
     private void sendRequest() {
         HashMap<String, Object> map = new HashMap<>(RIDE_REQUEST);
         map.put("use_wallet", useWallet.isChecked() ? 1 : 0);
-          if (MainActivity.type.equalsIgnoreCase("DELIVERY")){
 
-            map.put("description",ed_note.getText().toString());
-              map.remove("rental_hours");
-        }else if (MainActivity.type.equalsIgnoreCase("NORMAL")){
-              map.remove("rental_hours");
-          }
+        if (MainActivity.type.equalsIgnoreCase("RENTAL")) {
+            RIDE_REQUEST.put(DEST_LAT, RIDE_REQUEST.get(SRC_LAT));
+            RIDE_REQUEST.put(DEST_LONG, RIDE_REQUEST.get(SRC_LONG));
+            RIDE_REQUEST.put(DEST_ADD, RIDE_REQUEST.get(SRC_ADD));
+
+
+        }
+        if (MainActivity.type.equalsIgnoreCase("DELIVERY")) {
+
+            map.put("description", ed_note.getText().toString());
+            map.remove("rental_hours");
+        } else if (MainActivity.type.equalsIgnoreCase("NORMAL")) {
+            map.remove("rental_hours");
+        }
         showLoading();
         presenter.rideNow(map);
     }
